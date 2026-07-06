@@ -1,0 +1,161 @@
+/* genel kurallar burada bulunur*/
+
+/*padding iç boşluk margin dış boşluk*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #F8F9FA;
+    margin: 0;
+    font-family: sans-serif;
+}
+.responsive-content {
+  background-color: transparent ;
+  padding: 30px;
+  display: flex;
+  flex-direction: column; /*flexbox ta sıralamayı sütuna göre yapar*/
+  gap: 32px; /* Karşılama yazısı, 3'lü kartlar ve alt kutular arasına eşit boşluk koyar */
+}
+
+/* ---DARK MODE MİMARİSİ  --- */
+/* 1. Ana Arka Plan ve Kapsayıcıları Zorla Temizleme (!important ile eziyoruz) */
+body.dark-mode,
+body.dark-mode .kapsayici,
+body.dark-mode .responsive-container {
+  background-color: #0f172a !important; /* Arka plan kesinlikle lacivert olacak */
+  background-image: none !important; /* Varsa çizgili/gri deseni zorla kaldıracak */
+  color: #f8fafc;
+}
+/* 2. Sol Menü Paneli ve Tüm Kart Bileşenleri */
+body.dark-mode .responsive-sidebar,
+body.dark-mode .card,
+body.dark-mode .stat-card {
+  background-color: #1e293b !important;
+  color: #ffffff;
+  border: 1px solid #334155;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+/* 3. Sidebar İçerik Renkleri */
+body.dark-mode .responsive-sidebar h3,
+body.dark-mode .responsive-sidebar a {
+  color: #e2e8f0;
+}
+body.dark-mode .responsive-sidebar a:hover,
+body.dark-mode .responsive-sidebar a.active {
+  background-color: #334155;
+}
+/* 4. Başlıklar ve Büyük Değerler */
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .report-main-value,
+body.dark-mode .report-title {
+  color: #f8fafc !important;
+}
+/* 5. Alt Açıklama ve Gri Yazılar */
+body.dark-mode p,
+body.dark-mode .dashboard-header p,
+body.dark-mode .report-subtitle,
+body.dark-mode .goal-desc,
+body.dark-mode .task-desc {
+  color: #94a3b8 !important;
+}
+/* 6. Görev Listesindeki Beyaz Kutuları (Task Items) Düzeltme */
+/* (Senin html yapındaki o patlayan beyaz kutuların arka planını şeffaf yapıyoruz) */
+body.dark-mode .task-item,
+body.dark-mode .goal-item,
+body.dark-mode li {
+  background-color: transparent !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+/* Diğer Sayfalar İçin Hazırlıklar */
+body.dark-mode .goal-date-box {
+  background-color: #0f172a;
+  border-color: #334155;
+}
+body.dark-mode .icon-box {
+  background-color: #334155;
+}
+body.dark-mode .icon-box-purple {
+  background-color: #312e81;
+  color: #818cf8;
+}
+body.dark-mode .search-input {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+
+/* Sayfalar Arası Yumuşak Geçiş Efekti (Gözü yormaması için) */
+body, .responsive-sidebar, .card, a, input {
+   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Sol Menü Flexbox Yapılandırması (Karanlık mod butonunu dibe itmek için) */
+.responsive-sidebar {
+   display: flex;
+   flex-direction: column;
+}
+.responsive-sidebar ul {
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1; /* Menü listesinin tüm boş alanı kaplamasını sağlar */
+}
+
+/*  MOBİL RESPONSIVE) VE HAMBURGER MENÜ
+  */
+/* --- 1. MASAÜSTÜ DURUMU (Varsayılan Ayarlar) --- */
+/* Masaüstünde onay kutusunu ve hamburger butonunu tamamen gizliyoruz */
+.menu-checkbox, .hamburger-btn {
+   display: none;
+}
+
+.kapsayici{
+   display: flex;       /* İçindeki elemanları yan yana dizer */
+    gap: 20px;           /* Sidebar ile Main arasında 20px boşluk bırakır */
+    max-width: 1200px;   /* Sayfanın çok fazla genişlemesini engeller */
+    margin: 0 auto;      /* Sayfayı ortalar */
+}
+
+.responsive-sidebar{
+    flex: 1;             /* Sidebar'ın genişlik payı (Örn: %25 genişlik) */
+    background-color: #f4f4f4;
+    padding: 15px;
+}
+
+.responsive-container{
+    flex: 3;             /* Main'in genişlik payı (Sidebar'ın 3 katı genişlik, Örn: %75) */
+    background-color: #ffffff;
+    padding: 15px;
+}
+
+@media (max-width: 768px) {
+   /* Tüm sayfanın sağa/sola taşmasını engeller */
+   html, body {
+       overflow-x: hidden;
+       width: 100%;
+       margin: 0;
+       padding: 0;
+   }
+   /* İçerik kapsayıcısının ekrandan büyük olmasını yasaklar */
+   .responsive-container,
+   .responsive-content {
+       width: 100%;
+       max-width: 100vw;
+       box-sizing: border-box;
+       overflow-x: hidden;
+   }
+}
+
+/*Karanlık moddaki düzelmeyen arka plan için*/
+body.dark-mode,
+body.dark-mode .kapsayici,
+body.dark-mode .responsive-container,
+body.dark-mode .responsive-content {
+   background-color: #0f172a !important;
+   background-image: none !important;
+}
+

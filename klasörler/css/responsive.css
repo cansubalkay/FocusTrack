@@ -1,0 +1,226 @@
+/* --- 2. MOBİL VE TABLET DURUMU (Ekran 768px ve altı olduğunda) --- */
+@media (max-width: 768px) {
+  /* Onay kutusunu arkada çalışması için gizli tutuyoruz */
+  .menu-checkbox {
+    display: none;
+  }
+  /* Hamburger butonunu (☰) mobilde görünür ve şık yapıyoruz */
+  .hamburger-btn {
+    display: block;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    font-size: 28px;
+    color: #0f172a;
+    cursor: pointer;
+    z-index: 1100; /* Menünün de üstünde kalması için */
+    background-color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  /* Sol Menüyü (Sidebar) Ekrandan Dışarı Çıkarıyoruz */
+  .responsive-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    z-index: 1000;
+    transform: translateX(-100%); /* Menüyü sol tarafa, ekranın dışına gizler */
+    transition: transform 0.3s ease; /* Açılıp kapanırken yumuşak kayma efekti */
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+  /* Mantık şu: Eğer input (checkbox) seçili ise (~ işaretiyle) yanındaki sidebar'ı bul ve ekrana getir */
+  .menu-checkbox:checked ~ .responsive-sidebar {
+    transform: translateX(0); /* Menüyü ekrana geri kaydırır */
+  }
+  /* Menü açıldığında hamburger butonunu 'X' işaretine dönüştürme */
+  .menu-checkbox:checked ~ .hamburger-btn {
+    content: "✕";
+    left: 210px; /* Menüyle beraber sağa kayması için */
+    background-color: transparent;
+    box-shadow: none;
+    color: #ffffff; /* Karanlık menü üzerinde beyaz dursun */
+  }
+  /* Sağ İçerik Alanını Düzenleme */
+  .responsive-content {
+    padding: 60px 16px 24px 16px; /* Üstten hamburger butonu için ekstra boşluk bıraktık */
+  }
+  /*
+     AŞAMA 3: IZGARA (GRID) SİSTEMLERİNİN ÇÖKERTİLMESİ
+     */
+  /* TASKS (GÖREVLER) Izgarası */
+  .tasks-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr; /* 3 sütundan tek sütuna düşürür, kartlar alt alta dizilir */
+    gap: 16px;
+    box-sizing: border-box; /*taşmayı önlemek için*/
+    padding: 0;
+    margin: 0;
+  }
+  .task-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  /*üstteki filtre butonalrı*/
+  .tasks-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-start; /*butonları sola yaslar*/
+    margin-bottom: 16px;
+  }
+  /*baslık ve yeni görev butonu*/
+  .tasks-header {
+    display: flex;
+    justify-content: space-between; /*biri sağa biri sola*/
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+  /*yeni görev butonunu alta inmesini engeller*/
+  .tasks-header .btn-primary {
+    white-space: nowrap;
+  }
+  /*baslık kısımlarının düzeni*/
+  .task-title-area {
+    flex: 1;
+  }
+  /*arama çubuğu*/
+  .search-bar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+  }
+  .search-input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .filter-group {
+    display: flex;
+    gap: 8px;
+  }
+  /* GOALS (HEDEFLER) SAYFASI İÇİN MOBİL */
+  /*Mobilde yerler değişir*/
+  .goal-progress-area {
+    order: 4;
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+  .goal-date-box {
+    order: 5;
+  }
+  /*mobildeki takvimin görünüşü*/
+  .goal-date-box {
+    background-color: transparent; /*mavi arkapalanı gorunmez kılar*/
+    padding: 0;
+    margin: 0;
+    display: flex !important; /*içindeki iki tarihi yan yana koyar*/
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+  /*tarihler yan yana hizalansın diye*/
+  .date-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #64748b;
+  }
+  .goals-grid {
+    grid-template-columns: 1fr; /* Kartlar alt alta dizilir */
+    gap: 16px;
+  }
+  /* Başlık ve butonu yan yana, aralarını açarak dizer */
+  .goals-header {
+    display: flex;
+    justify-content: space-between; /* Yazıları sola, butonu en sağa yaslar */
+    align-items: flex-start; /* Butonun yukarıya (Goals ile aynı hizaya) yapışmasını sağlar */
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  /* Yazı alanının kalan tüm boşluğu kullanmasına izin verir */
+  .goals-title-area {
+    flex: 1;
+  }
+
+  /* yeni hedef butonu tek satır*/
+  .goals-header .btn-primary {
+    white-space: nowrap; /* Metnin alt satıra kırılmasını kesin olarak yasaklar */
+    flex-shrink: 0; /* Ekran daralsa bile butonun sıkışıp küçülmesini engeller */
+    padding: 8px 16px; /* İhtiyaca göre mobilde butonun iç boşluğunu ayarlayabilirsiniz */
+  }
+
+  /* REPORTS (RAPORLAR) Asimetrik Izgarası */
+
+  /* Kartları yan yana dizmeyi bırakıp alt alta (column) sıralar */
+   .reports-grid {
+       display: flex;
+       flex-direction: column;
+       /*grid-template-columns: 1fr; /* Geniş ve küçük kartlar sırayla alt alta dizilir */
+       gap: 16px; /* Kartlar arasına dikey boşluk bırakır */
+       width: 100%;
+   }
+   /* Kartların Ekrana tam oturmalarını sağlar */
+   .report-large-card,
+   .report-small-card {
+       width: 100%;
+       max-width: 100%; /* Ekran dışına taşmayı kesin olarak engeller */
+       box-sizing: border-box; /* Padding'lerin genişliği bozmasını önler */
+       margin: 0;
+   }
+   /* Kart İçerik Hizalaması (Opsiyonel Düzenleme) */
+   /* Masaüstünde başlık ve ikon yan yana ise mobilde de bu düzeni korumak için */
+   .report-card-header {
+       display: flex;
+       justify-content: space-between;
+       align-items: flex-start;
+   }
+
+
+  /*
+     DASHBOARD (ANA SAYFA) MOBİL DÜZENİ */
+  /* 1. Üstteki 3'lü istatistik kartlarını alt alta diz */
+  .dashboard-stats {
+    flex-direction: column;
+  }
+  /* 2. Alttaki Görevler ve Hedefler büyük kutularını alt alta diz */
+  .dashboard-bottom-grid {
+    flex-direction: column;
+  }
+  /* Font ve Boşluk Küçültme Ayarları */
+  h2 {
+    font-size: 24px;
+  }
+  .report-main-value {
+    font-size: 32px;
+  }
+
+  /*istatistik kartlarının iç elemanları mobilde üst üste binmesin diye(flex order)*/
+  .stat-card {
+    flex-direction: column; /*elemanları alt alta dşzşn diyr*/
+    align-items: flex-start; /*içindekileri sola yaslr*/
+    gap: 12px;
+  }
+
+  /*rozetin mobilde üstte dursun diye */
+  .stat-card .badge {
+    order: 1;
+
+    margin-bottom: 12px; /*bir sonraki elemanla mesafe*/
+  }
+  /*sol paket altta dursun diye*/
+  .stat-left-group {
+    order: 2;
+  }
+}

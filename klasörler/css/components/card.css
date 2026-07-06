@@ -1,0 +1,94 @@
+/* Bu dosya beyaz kart kutu görünümü için kullanılacak */
+/* Bu kod class = "card" yazılan her <div> elementini beyaz kutuya dönüştürür */
+
+/* Genel Kart Tasarımı */
+.card {
+
+    background-color: #ffffff;
+    border-radius: 12px; /* Köşeleri yuvarlatır */
+    padding: 24px; /* Kutunun içindeki yazılarla kenarları arasına boşluk bırakır */
+    border: 1px solid #C8C4D5; 
+
+}
+
+/* Kartların içindeki başlıklar için ortak ayar */
+
+.card-header {
+    display: flex;
+    justify-content: space-between; /* Başlığı sola, "View All" linkini sağa iter */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #1e293b; /* Koyu gri/lacivert yazı rengi */
+}
+
+/*alltime, completed ve pending yazılarını etiket gibi göstermek için */
+.badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.badge.allTime{
+    background-color: #C8C4D5;
+    color:black
+}
+
+.badge.completed {
+    background-color: #dcfce3; 
+    color: #166534; /* Koyu yeşil yazı */
+}
+
+.badge.pending {
+    background-color: #fef08a; /* Açık sarı/turuncu arka plan */
+    color: #854d0e; /* Koyu sarı/turuncu yazı */
+}
+ 
+
+/*ikonlAr resim dosyası olaraka ekledniğinden kayma yapmaması için sabitleme*/
+.stat-icon img{
+    width: 24px;
+    height: 24px;
+}
+
+/* Yanyana duran toplam tamamlanan bekleyen kartları için düzeltmeler*/
+
+/*İstatistik kartı ana kapsayıcı(sol paket ve rozetler kartların ters tarafına konumlanıcak*/
+.stat-card {
+    display:flex;  /*bu kartları sıradan html kutusu olmaktan çıkarıp bir flex container(parent) hale getirir 
+    elemanları da flex item(child yapar)*/
+    align-items:center;
+    justify-content: space-between;
+}
+
+/*sol paket için*/
+.stat-left-group{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-details {
+    display:flex;
+    flex-direction: column; /* yanyana değil alt alta diz örn toplam 18 görevi alt alta*/
+    gap: 4px; /*yazıların arasına çok az boşluk*/
+}
+
+/*Üstteki küçük başlıklar için yazı düzeltmesi(toplam,tamamlanan,bekleyen)*/
+.stat-title{
+    font-size:14px;
+    color: #64748b;
+    font-weight:500;
+}
+/*alttaki daha koyu metinler (18 görev vb.)*/
+.stat-value{
+    font-size:24px;
+    font-weight:700; /* 700 olduğu için bold olucak*/
+    color:#0f172a;
+    white-space: nowrap;
+}

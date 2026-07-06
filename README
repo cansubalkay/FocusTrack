@@ -1,0 +1,7 @@
+index.html, goals.html, reports.html, tasks.html dosyaları sayfaların ana iskeletidir.
+
+assets depo olarak kullanılır images ve icons klasörlerinde dışardan aınan resim görsel ve ikonlar bulunur.
+
+global.css projedeki genel geçer dekorasyon ayarlarını bulundurur. Componentsdekiler de projenin farklı 
+kısımlarında kullanılabilir kullanıma hazır bulunan dosyalardır. layouttakiler sayfalarda sabit kalan kısımları
+bulundurur. pages kalsöründe sayfalara özel tasarım ayarları bulunur.

@@ -1,0 +1,62 @@
+{
+  "user": {
+    "name": "Cansu"
+  },
+  "stats": [
+    {
+      "title": "Toplam",
+      "value": 18 ,
+      "badge": "All Time",
+      "icon": "Container.svg",
+      "colorClass" :"badge-blue"
+    },
+    {
+      "title": "Tamamlanan",
+      "value": 12,
+      "badge": "Completed",
+      "icon": "tamamlanan.svg",
+      "colorClass": "badge-green"
+    },
+    {
+      "title": "Bekleyen",
+      "value": 6,
+      "badge": "Pending",
+      "icon": "bekleyen.svg",
+      "colorClass": "badge-orange"
+    }
+  ],
+  "todayTasks": [
+    {
+      "id": 1,
+      "title": "HTML Çalış",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "CSS Layout Tamamla",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "title": "JS Eventleri Öğren",
+      "completed": false
+    }
+  ],
+  "monthlyGoals": [
+    {
+      "id": 1,
+      "title": "Frontend Roadmap",
+      "progress": 75
+    },
+    {
+      "id": 2,
+      "title": "Vue Öğrenme",
+      "progress": 40
+    },
+    {
+      "id": 3,
+      "title": "Portfolio Hazırlama",
+      "progress": 20
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks - FocusTrack</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/layout/sidebar.css" />
+    <link rel="stylesheet" href="css/components/card.css" />
+    <link rel="stylesheet" href="css/pages/tasks.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div class="kapsayici">
+      <!-- Hamburger menü ve sidebar için js divi  -->
+        <div id="sidebar-container"></div>
+
+      <main class="responsive-container">
+        <div class="responsive-content">
+          <header class="tasks-header">
+            <div class="tasks-title-area">
+              <h2>Tasks</h2>
+              <p>Manage your priorities and flow.</p>
+            </div>
+            <button class="btn-primary">+ Yeni Görev</button>
+          </header>
+
+          <div class="search-bar-container">
+            <img src="assets/icons/search.svg" alt="Ara" class="search-icon" />
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Görev Ara..."
+            />
+          </div>
+
+          <div class="tasks-actions">
+            <div class="filter-group">
+              <button class="filter-btn active">Tümü</button>
+              <button class="filter-btn">Tamamlanan</button>
+              <button class="filter-btn">Tamamlanmayan</button>
+            </div>
+          </div>
+
+          <div class="tasks-grid">
+            <div class="card task-item-card">
+              <div class="task-card-header">
+                <span class="badge high-priority">Yüksek</span>
+                <button class="more-options-btn">⋮</button>
+              </div>
+              <h3 class="task-card-title">Vue Component Yapısı Öğren</h3>
+              <div class="task-date">
+                <img
+                  src="assets/icons/calendar.svg"
+                  alt="Tarih"
+                  class="date-icon"
+                />
+                12.07.2026
+              </div>
+              <div class="task-card-footer">
+                <button class="complete-btn">
+                  <span class="circle-icon"></span> Tamamla
+                </button>
+              </div>
+            </div>
+            <div class="card task-item-card">
+              <div class="task-card-header">
+                <span class="badge normal-priority">Normal</span>
+                <button class="more-options-btn">⋮</button>
+              </div>
+              <h3 class="task-card-title">Design System Tokens Review</h3>
+              <p class="task-desc">
+                Review and finalize color palette and typography scales for the
+                new
+              </p>
+              <div class="task-date">
+                <img
+                  src="assets/icons/calendar.svg"
+                  alt="Tarih"
+                  class="date-icon"
+                />
+                15.07.2026
+              </div>
+              <div class="task-card-footer">
+                <button class="complete-btn">
+                  <span class="circle-icon"></span> Tamamla
+                </button>
+              </div>
+            </div>
+            <div class="card task-item-card">
+              <div class="task-card-header">
+                <span class="badge done-priority">Tamamlandı</span>
+                <button class="more-options-btn">⋮</button>
+              </div>
+              <h3 class="task-card-title completed-text">
+                API Endpoints Documentation
+              </h3>
+              <div class="task-date">
+                <img
+                  src="assets/icons/calendar.svg"
+                  alt="Tarih"
+                  class="date-icon"
+                />
+                10.07.2026
+              </div>
+              <div class="task-card-footer">
+                <button class="complete-btn done">
+                  <span class="circle-icon">✔</span> Bitti
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="js/app.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/tasks.js"></script>
+
+  </body>
+</html>

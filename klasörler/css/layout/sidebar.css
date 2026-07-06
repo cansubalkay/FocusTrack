@@ -1,0 +1,75 @@
+/* Ana kapsayıcıyı yan yana dizecek esnek yapıya getiriyoruz */
+.responsive-container {
+    display: flex;
+    flex-direction: row; /*burada içerik(solmenüve anasayfa) yanyana hizalanır*/
+    min-height: calc(100vh - 60px); /* Ekran yüksekliğinden header'ı çıkarıyoruz */
+}
+
+/* Sidebar Ayarları */
+.responsive-sidebar {
+    flex: 1 1 25%;  /* alan ikiye bölünür ve sidebara 25lik kısım verilir*/
+    min-width: 200px; 
+    max-width: 350px; 
+    background-color: #ffffff;
+    border-right: 1px solid #e2e8f0; /*sağa ince ç,zgi*/
+    color: white;
+    padding: 20px;
+}
+
+/*Sıdebar başlığı FocusTrack */
+.responsive-sidebar h3 {
+    color: #11418d;
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 30px; /*altındaki menüyle arasında boşluk olur*/
+    padding-left: 10px;
+}
+
+.responsive-sidebar ul {
+    list-style-type: none;/*listenin başındaki siyah noktaları sil*/
+    padding: 0;
+}
+
+.responsive-sidebar a {
+    text-decoration: none; /*linklerin altındaki çizgi silinir*/
+    color: #64748b;
+    display: block; /*yazının satırındaa bi yere tıklansa da olur*/
+    padding: 10px;
+
+}
+
+/* İçerik Alanı Ayarları */
+.responsive-content {
+    flex: 3 1 75%;  /*dashboarda 75lik kısım*/
+    background-color: #ecf0f1;
+    padding: 20px;
+}
+
+/* Mobil Ekranlar İçin Alt Alta Geçme Kuralı */
+@media (max-width: 768px) {
+    .responsive-container {
+        flex-direction: column; 
+    }
+    .responsive-sidebar, 
+    .responsive-content {
+        flex: 1 1 100%; 
+        max-width: 100%; 
+        min-width: 100%; 
+    }
+}
+
+
+/*ikonlAr resim dosyası olaraka ekledniğinden kayma yapmaması için sabitleme*/
+.menu-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/*sidebarda seçili olan menü elemanının vurgusu için*/
+.responsive-sidebar a.active{
+    color: #3b82f6;
+    font-weight: 600;
+    background-color: #eff6ff;
+    border-radius:8px; /*kutunun köşelerini yuvarlatmak için*/
+}

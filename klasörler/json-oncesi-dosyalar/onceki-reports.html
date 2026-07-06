@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports - FocusTrack</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/layout/sidebar.css" />
+    <link rel="stylesheet" href="css/components/card.css" />
+    <link rel="stylesheet" href="css/pages/reports.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div class="kapsayici">
+      <!-- Hamburger menü ve sidebar için js divi  -->
+        <div id="sidebar-container"></div>
+
+
+      <main class="responsive-container">
+        <div class="responsive-content">
+          <header class="reports-header">
+            <h2>Reports</h2>
+            <p>Your performance metrics for the current week.</p>
+          </header>
+          <div class="reports-grid">
+            <div class="card report-large-card">
+              <div class="report-card-header">
+                <div>
+                  <h3 class="report-title">Görev Tamamlama Oranı</h3>
+                  <p class="report-subtitle">Weekly progress toward goals</p>
+                </div>
+                <div class="icon-box-purple">
+                  <img
+                    src="assets/icons/oran.svg"
+                    alt="Oran"
+                    class="report-icon-purple"
+                  />
+                </div>
+              </div>
+              <div class="report-main-value">80%</div>
+              <div class="progress-bar-large">
+                <div class="progress-fill-green" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="card report-small-card">
+              <div class="report-card-header">
+                <h3 class="report-title">Tamamlanan<br />Görev</h3>
+                <span class="small-icon">
+                  <img
+                    src="assets/icons/check.svg"
+                    alt="Tamamlanan"
+                    class="report-icon-purple"
+                  />
+                </span>
+              </div>
+              <div class="report-main-value">18</div>
+            </div>
+            <div class="card report-small-card">
+              <div class="report-card-header">
+                <h3 class="report-title">Bekleyen</h3>
+                <span class="small-icon">
+                  <img
+                    src="assets/icons/hourglass.svg"
+                    alt="Bekleyen"
+                    class="report-icon-purple"
+                  />
+                </span>
+              </div>
+              <div class="report-main-value">4</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="js/app.js"></script>
+    <script src="js/dark-mode.js"></script>
+  </body>
+</html>

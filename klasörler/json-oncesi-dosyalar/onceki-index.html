@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ana Sayfa- Hoş Geldiniz</title>
+
+    <!-- CSS Dosya Bağlantıları -->
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/layout/sidebar.css" />
+    <link rel="stylesheet" href="css/pages/dashboard.css" />
+    <link rel="stylesheet" href="css/components/card.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+
+  <body>
+    <div class="kapsayici">
+      <!-- Hamburger menü için  -->
+      <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+      <label for="menu-toggle" class="hamburger-btn">☰</label>
+
+      <aside class="responsive-sidebar">
+        <h3>FocusTrack</h3>
+        <ul>
+          <li>
+            <a href="#" class="active">
+              <img
+                src="assets/icons/dashboard.svg"
+                alt="Dashboard"
+                class="menu-icon"
+              />
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="assets/icons/tasks.svg" alt="Tasks" class="menu-icon" />
+              Tasks
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="assets/icons/goal.svg" alt="Tasks" class="menu-icon" />
+              Goals
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img
+                src="assets/icons/reports.svg"
+                alt="Tasks"
+                class="menu-icon"
+              />
+              Reports
+            </a>
+          </li>
+          <li style="margin-top: auto; padding-top: 32px">
+            <a href="#" id="theme-toggle">
+              <span class="menu-icon" id="theme-icon">🌙</span>
+              <span id="theme-text">Dark Mode</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Tüm ana içerik tek bir <main>  -->
+      <main class="responsive-container">
+        <div class="responsive-content">
+          <div class="responsive-content">
+            <header class="dashboard-header">
+              <h2>Merhaba Cansu 👋</h2>
+              <p>Here is your focus for today. Stay in the flow.</p>
+            </header>
+
+            <!-- iconları svg olarak indirdiğimden completed ekledi-->
+
+            <section class="dashboard-stats">
+              <div class="card stat-card">
+                <div class="stat-left-group">
+                  <div class="stat-icon completed">
+                    <img src="assets/icons/dashboard.svg" alt="Toplam" />
+                  </div>
+                  <div class="stat-details">
+                    <span class="stat-title">Toplam</span>
+                    <span class="stat-value">18 Görev</span>
+                  </div>
+                </div>
+                <span class="badge allTime">All Time</span>
+              </div>
+
+              <div class="card stat-card">
+                <div class="stat-left-group">
+                  <div class="stat-icon completed">
+                    <img src="assets/icons/tamamlanan.svg" alt="Tamamlanan" />
+                  </div>
+                  <div class="stat-details">
+                    <span class="stat-title">Tamamlanan</span>
+                    <span class="stat-value">12 Görev</span>
+                  </div>
+                </div>
+                <span class="badge completed">Completed</span>
+              </div>
+
+              <div class="card stat-card">
+                <div class="stat-left-group">
+                  <div class="stat-icon completed">
+                    <img src="assets/icons/bekleyen.svg" alt="Bekleyen" />
+                  </div>
+                  <div class="stat-details">
+                    <span class="stat-title">Bekleyen</span>
+                    <span class="stat-value">6 Görev</span>
+                  </div>
+                </div>
+                <span class="badge pending">Pending</span>
+              </div>
+            </section>
+
+            <section class="dashboard-bottom-grid">
+              <div class="card tasks-card">
+                <div class="card-header">
+                  <h3>Bugünkü Görevler</h3>
+                  <a href="#" class="view-all">View All</a>
+                </div>
+                <ul class="task-list">
+                  <li>
+                    <input type="checkbox" id="task1" />
+                    <label for="task1">HTML Çalış</label>
+                  </li>
+                  <li class="completed">
+                    <input type="checkbox" id="task2" checked />
+                    <label for="task2">CSS Layout Tamamla</label>
+                  </li>
+                  <li>
+                    <input type="checkbox" id="task3" />
+                    <label for="task3">JS Eventleri Öğren</label>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="card goals-card">
+                <div class="card-header">
+                  <h3>Bu Ayki Hedefler</h3>
+                </div>
+                <ul class="goal-list">
+                  <li>
+                    <div class="goal-info">
+                      <span class="goal-name">Frontend Roadmap</span>
+                      <span class="goal-percent">75%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="goal-info">
+                      <span class="goal-name">Vue Öğrenme</span>
+                      <span class="goal-percent">40%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 40%"></div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="goal-info">
+                      <span class="goal-name">Portfolio Hazırlama</span>
+                      <span class="goal-percent">20%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 20%"></div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

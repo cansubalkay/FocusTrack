@@ -1,0 +1,31 @@
+{
+  "goals": [
+    {
+      "id": 1,
+      "title": "Frontend Öğrenme",
+      "icon": "learn.svg",
+      "description":"Sektör standartlarında bir frontend geliştirici olma yolculuğu.",
+      "progress": 70,
+      "startDate": "01.01.2026",
+      "endDate":  "31.12.2026"
+    },
+    {
+      "id": 2,
+      "title": "Maraton Hazırlığı",
+      "icon": "run.svg",
+      "description":"Ekim ayındaki İstanbul Maratonu için 42K koşu programını tamamla.",
+      "progress": 45,
+      "startDate": "15.03.2026",
+      "endDate": "15.10.2026"
+    },
+    {
+      "id": 3,
+      "title": "Kitap Okuma",
+      "icon": "book.svg",
+      "description":"Yıl sonuna kadar 24 kitap okuma hedefini gerçekleştir.",
+      "progress": 85,
+      "startDate": "01.01.2026",
+      "endDate":  "31.12.2026"
+    }
+  ]
+}

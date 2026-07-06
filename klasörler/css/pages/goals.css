@@ -1,0 +1,140 @@
+  .responsive-content {
+  background-color: transparent ;
+  padding: 30px;
+  display: flex;
+  flex-direction: column; /*flexbox ta sıralamayı sütuna göre yapar*/
+  gap: 32px; /* Karşılama yazısı, 3'lü kartlar ve alt kutular arasına eşit boşluk koyar */
+}
+/* --- ÜST BAŞLIK ALANI --- */
+.goals-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 32px;
+}
+.goals-title-area h2 { margin: 0 0 4px 0; color: #0f172a; font-size: 28px; }
+.goals-title-area p { margin: 0; color: #64748b; font-size: 14px; }
+.btn-primary {
+   background-color: #1e3a8a; color: white; border: none; padding: 10px 20px;
+   border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer;
+}
+/* --- IZGARA SİSTEMİ --- */
+.goals-grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 24px;
+}
+/* --- KART İÇ MİMARİSİ --- */
+.goal-item-card {
+   display: flex;
+   flex-direction: column;
+   padding: 24px;
+}
+
+/* Üst Alan( ikon ve 3 nokta)*/
+.goal-top-row {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+   margin-bottom: 16px;
+}
+.goal-icon-box {
+   width: 40px;
+   height: 40px;
+   background-color: #e0f2fe; /* Açık mavi arka plan */
+   border-radius: 8px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 18px;
+}
+.top-icon {
+   width: 20px;
+}
+.more-options-btn {
+   background: none; border: none; font-size: 20px; color: #94a3b8;
+   cursor: pointer; font-weight: bold; padding: 0;
+}
+
+/* Başlık ve Açıklama */
+.goal-card-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center; /* flex-start yerine center yaptık, yazılar aynı hizada olsun diye */
+   margin-bottom: 8px; /* Başlık ile açıklama arasını biraz daralt */
+}
+.goal-title {
+   font-weight: 600;
+   color: #333;
+   font-size: 16px;
+}
+.goal-desc {
+   font-size: 13px;
+   color: #666;
+   margin: 0 0 16px 0;
+   line-height: 1.5;
+}
+
+/* Tarih Kutusu Ana Çerçeve */
+.goal-date-box {
+   background-color: #d2e2f3;
+   padding: 12px;
+   border-radius: 8px;
+   margin-bottom: 16px;
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+/* Her Bir Tarih Satırı */
+.date-row {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+.date-row span {
+   font-size: 13px;
+   color: #555;
+}
+.date-icon {
+   width: 16px;
+}
+/*İLerleme cubukarı*/
+.progress-section {
+   margin-top: auto; /* üstteki alanlar ne kadar kısa olursa olsun progress kısmını hep kartın en dibine iter */
+   margin-bottom: 16px;
+}
+.progress-info {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-end; /* Yazıların alt kısımlarını hizalar */
+   margin-bottom: 8px;
+}
+.progress-label {
+   font-size: 11px;
+   font-weight: 700;
+   color: #64748b;
+   letter-spacing: 0.5px; /* İLERLEME yazısındaki harflerin arasını biraz açar */
+}
+.progress-percent {
+   font-size: 18px;
+   font-weight: 700;
+}
+.progress-track {
+   width: 100%;
+   height: 4px; /* Çizgiyi ince ve şık yaptık */
+   background-color: #e2e8f0;
+   border-radius: 10px;
+   overflow: hidden;
+}
+.progress-fill {
+   height: 100%;
+   border-radius: 10px;
+   /* Arka plan rengi JS içinden dinamik gelecek */
+}
+
+/* kutuların içindeki şkonların boyut ayarı*/
+.goal-icon{
+    width: 20px;
+    height: 20px;
+}
+

@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Vue Component Yapısı Öğren",
+      "description": "",
+      "priority": "high",
+      "completed": false,
+      "date": "12.07.2026"
+    },
+    {
+      "id": 2,
+      "title": "Design System Tokens Review",
+      "description": "Review and finalize color palette and typography scales.",
+      "priority": "normal",
+      "completed": false,
+      "date": "15.07.2026"
+    },
+    {
+      "id": 3,
+      "title": "API Endpoints Documentation",
+      "description": "",
+      "priority": "completed",
+      "completed": true,
+      "date": "10.07.2026"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+.responsive-content {
+  background-color: transparent ;
+  padding: 30px;
+  display: flex;
+  flex-direction: column; /*flexbox ta sıralamayı sütuna göre yapar*/
+  gap: 32px; /* Karşılama yazısı, 3'lü kartlar ve alt kutular arasına eşit boşluk koyar */
+}
+/* --- ÜST BAŞLIK VE BUTONLAR --- */
+.tasks-header {
+   display: flex;
+   justify-content: space-between; /* Başlığı sola, butonları sağa iter */
+   align-items: center; /* Dikeyde ortalar */
+   margin-bottom: 24px;
+}
+.tasks-title-area h2 {
+   margin: 0 0 4px 0;
+   color: #0f172a;
+   font-size: 28px;
+}
+.tasks-title-area p {
+   margin: 0;
+   color: #64748b;
+   font-size: 14px;
+}
+.tasks-actions {
+   display: flex;
+   gap: 24px; /* Filtreler ile butonu arasındaki boşluk */
+   align-items: center;
+   margin-bottom: 16px;
+}
+/* Filtre Butonları (Tümü, Tamamlanan vb.) */
+.filter-group {
+   display: flex;
+   gap: 8px;
+}
+.filter-btn {
+   background-color: transparent;
+   border: 1px solid #e2e8f0;
+   color: #64748b;
+   padding: 8px 16px;
+   border-radius: 20px; /* Hap görünümü */
+   font-weight: 600;
+   font-size: 13px;
+   cursor: pointer;
+   transition: 0.2s;
+}
+/* Seçili Olan Filtre Butonu (Tümü) */
+.filter-btn.active {
+   background-color: #1e3a8a; /* Koyu lacivert */
+   color: #ffffff;
+   border-color: #1e3a8a;
+}
+/* Yeni Görev Butonu */
+.btn-primary {
+   background-color: #1e3a8a;
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   border-radius: 8px;
+   font-weight: 600;
+   font-size: 14px;
+   cursor: pointer;
+}
+/* --- ARAMA ÇUBUĞU --- */
+.search-bar-container {
+   position: relative; /* İçindeki ikonun konumunu buna göre ayarlayacağız */
+   margin-bottom: 32px;
+}
+.search-input {
+   width: 100%;
+   padding: 12px 16px 12px 44px; /* Soldan 44px boşluk bıraktık ki büyüteç ikonuna yer açılsın */
+   border: 1px solid #e2e8f0;
+   border-radius: 8px;
+   font-size: 14px;
+   color: #0f172a;
+   background-color: #ffffff;
+   outline: none;
+}
+/* Arama Çubuğunun içindeki büyüteç ikonu */
+.search-icon {
+   position: absolute; /* Arama çubuğunun içine hapseder */
+   left: 16px; /* Soldan 16px içeri kaydırır */
+   top: 50%; /* Yukarıdan %50 aşağı indirir */
+   transform: translateY(-50%); /* Tam merkeze oturtur */
+   width: 20px;
+   height: 20px;
+   opacity: 0.5; /* Rengini biraz silik (gri) yapar */
+}
+
+/* IZGARA SİSTEMİ */
+.tasks-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+   gap: 24px;
+}
+/* KART İÇ TASARIMI */
+.task-item-card {
+   display: flex;
+   flex-direction: column;
+}
+.task-card-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 16px;
+}
+/* Yeni rozet renkleri */
+.badge.high-priority { background-color: #fee2e2; color: #ef4444; }
+.badge.normal-priority { background-color: #e0f2fe; color: #0ea5e9; }
+.badge.completed-priority { background-color: #dcfce3; color: #166534; }
+.more-options-btn {
+   background: none; border: none; font-size: 20px;
+   color: #94a3b8; cursor: pointer; font-weight: bold;
+}
+.task-card-title { font-size: 16px; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4; }
+.task-desc { font-size: 13px; color: #64748b; margin: 0 0 16px 0; line-height: 1.5; }
+
+
+.task-date {
+    display: flex; /*ikon ve yazı yanyana olur*/
+    align-items: center; /* ikon ve yazıyı tam orta için ayarlar*/
+    gap: 6px; /*ikon ve yazı arasına çok küçük boşluk bıraır*/
+    font-size: 13px;
+    color: #64748b; 
+    margin-bottom: 24px; 
+    margin-top: auto; 
+}
+
+.task-card-footer { border-top: 1px solid #e2e8f0; padding-top: 16px; }
+.complete-btn {
+   display: flex; align-items: center; gap: 8px;
+   background: none; border: none; color: #0f172a;
+   font-weight: 600; font-size: 14px; cursor: pointer; padding: 0;
+}
+.circle-icon {
+   display: flex; justify-content: center; align-items: center;
+   width: 18px; height: 18px; border: 2px solid #cbd5e1;
+   border-radius: 50%; color: transparent; font-size: 12px;
+}
+.complete-btn.done { color: #166534; }
+.complete-btn.done .circle-icon { background-color: #166534; border-color: #166534; color: white; }
+
+/* En sondaki tamamlanan görevin üzerine ince bir çizgi*/
+.completed-card .task-card-title{
+    text-decoration: line-through;
+    color: #94a3b8;
+}

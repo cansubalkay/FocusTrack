@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks - FocusTrack</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/layout/sidebar.css" />
+    <link rel="stylesheet" href="css/components/card.css" />
+    <link rel="stylesheet" href="css/components/modal.css" />
+    <link rel="stylesheet" href="css/pages/tasks.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div class="kapsayici">
+      <!-- Hamburger menü ve sidebar için js divi  -->
+        <div id="sidebar-container"></div>
+
+      <main class="responsive-container">
+        <div class="responsive-content">
+          <header class="tasks-header">
+            <div class="tasks-title-area">
+              <h2>Tasks</h2>
+              <p>Manage your priorities and flow.</p>
+            </div>
+            <button class="btn-primary">+ Yeni Görev</button>
+          </header>
+
+          <div class="search-bar-container">
+            <img src="assets/icons/search.svg" alt="Ara" class="search-icon" />
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Görev Ara..."
+            />
+          </div>
+
+          <div class="tasks-actions">
+            <div class="filter-group">
+              <button class="filter-btn active">Tümü</button>
+              <button class="filter-btn">Tamamlanan</button>
+              <button class="filter-btn">Tamamlanmayan</button>
+            </div>
+          </div>
+
+          <div class="tasks-grid" id="tasks-container">
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="js/app.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/tasks.js"></script>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="taskModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Yeni Task Oluştur</h3>
+          <button class="close-btn" id="closeModalBtn">&times;</button>
+        </div>
+        <form id="newTaskForm">
+          <div class="form-group">
+            <label for="taskTitle">Görev Başlığı</label>
+            <input type="text" id="taskTitle" placeholder="Örn: Tasarım sistemini güncelle" required>
+          </div>
+          <div class="form-group">
+            <label for="dueDate">Bitiş Tarihi</label>
+            <input type="date" id="dueDate" required>
+          </div>
+          <div class="form-group">
+            <label>Öncelik</label>
+              <div class="priority-options">
+                <input type="radio" id="priorityHigh" name="priority" value="high">
+                <label for="priorityHigh" class="priority-label high">Yüksek</label>
+                <input type="radio" id="priorityMedium" name="priority" value="medium">
+                <label for="priorityMedium" class="priority-label medium">Orta</label>
+                <input type="radio" id="priorityLow" name="priority" value="low">
+                <label for="priorityLow" class="priority-label low">Düşük</label>
+              </div>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" id="cancelModalBtn">İptal</button>
+            <button type="submit" class="btn-save">Kaydet</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+  </body>
+</html>

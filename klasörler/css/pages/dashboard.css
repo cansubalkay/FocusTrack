@@ -1,0 +1,180 @@
+/* Ana içerik alanının genel boşlukları */
+.responsive-content {
+  background-color: transparent ;
+  padding: 30px;
+  display: flex;
+  flex-direction: column; /*flexbox ta sıralamayı sütuna göre yapar*/
+  gap: 32px; /* Karşılama yazısı, 3'lü kartlar ve alt kutular arasına eşit boşluk koyar */
+}
+
+/* dashboard header kısmının flex özelliği kazanması için*/
+.dashboard-header {
+  display:flex;
+  justify-content: space-between; /* biri en sola biri en sağa*/
+  align-items: flex-start; /*yukarıda olsun diye buton*/
+  margin-bottom: 24px;
+}
+/* Karşılama Yazısı (Merhaba Cansu) */
+.dashboard-header h2 {
+  margin: 0 0 8px 0; /* Sadece altına biraz boşluk */
+  color: #0f172a;
+}
+.dashboard-header p {
+  margin: 0;
+  color: #64748b; /* Açık gri alt metin */
+}
+
+/* --- ORTA BÖLÜM: 3'lü İstatistik Kartları --- */
+.dashboard-stats {
+  display: flex;
+  gap: 20px; /* 3 kartın arasına 20px boşluk koyar */
+}
+/* Her bir küçük kartın eşit genişlikte olması için */
+.stat-card {
+  flex: 1; /* 3 kart da ekranı eşit paylaşır */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px; /* İkon ile yazı arasına boşluk */
+  position: relative;
+}
+
+.stat-top {
+   display: flex ;
+   width: 100% ;
+   justify-content: space-between;
+   align-items: center;
+}
+.stat-info h3 {
+   font-weight: 400;
+   font-size: 14px;
+   color: #64748b;
+   padding: 2px;
+}
+.stat-badge {
+   border-radius: 20px;
+   padding: 4px 12px;
+   font-size : 12 px;
+   font-weight: 500;
+}
+.badge-blue{
+   color: #0B1C30;
+   background-color: #e5eeff;
+}
+.badge-green{
+   color: #00714D ;
+   background-color: #6CF8BB;
+}
+.badge-orange{
+   color: #F49D09;
+   background-color: #603B00;
+}
+.stat-info {
+   width: 100% ;
+   text-align: left ;
+}
+/* --- ALT BÖLÜM: Görevler ve Hedefler Kutuları --- */
+.dashboard-bottom-grid {
+  display: flex;
+  gap: 20px; /* İki büyük kutunun arasına boşluk koyar */
+}
+
+/* Ekranı yarı yarıya paylaşmaları için */
+.tasks-card,
+.goals-card {
+  flex: 1;
+}
+
+/*Bu ayki görevler ve hedeflerin altındaki siyah noktaları silmek için*/
+.task-list,
+.goal-list {
+  list-style-type: none; /*noktaları siler*/
+  padding: 0;
+  margin: 0;
+}
+
+/* Hedeflerin başlığı ve yüzdesini yan yana dizen kutu */
+.goal-info {
+   display: flex;
+   justify-content: space-between; /* Yazıyı sola, yüzdeyi sağa yaslar */
+   margin-bottom: 8px; /* Altındaki çubukla arasına nefes boşluğu bırakır */
+   font-size: 14px; /* Yazıları biraz kibarlaştırır */
+}
+/* Yüzde metninin tasarımı */
+.goal-percent {
+   color: #64748b; /* Rengini Figma'daki gibi gri yapar */
+   font-weight: 600; /* Biraz kalınlaştırır */
+}
+/* Çubuklar arasına biraz daha boşluk ekle*/
+.goal-list li {
+   margin-bottom: 20px;
+}
+.goal-list li:last-child {
+   margin-bottom: 0; /* En son elemanın altına gereksiz boşluk koymaz */
+}
+
+/*ilerleme çubukları */
+.progress-bar {
+  background-color: #e2e8f0; /* Çubuğun boş gri kısmı */
+  height: 8px; /* Çubuğun kalınlığı */
+  border-radius: 4px; /* Kenarları yuvarlatır */
+  margin: 8px 0; /* Yazılarla arasına boşluk koyar */
+  width: 100%;
+}
+
+.progress-fill {
+  background-color: #3b82f6; /* Çubuğun dolu mavi kısmı */
+  height: 100%;
+  border-radius: 4px;
+}
+
+/*bugünkülerin alt alta farklı kutularmış gibi görünmesi için*/
+/* Listeyi esnek yapıya geçirip aralarına boşluk koyuyoruz */
+.task-list {
+   list-style-type: none;
+   padding: 0;
+   margin: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 12px; /* Her bir görev kutusunun arasına 12px boşluk koyar */
+}
+/* Her bir görev elemanını (li) mini bir karta dönüştürüyoruz */
+.task-list li {
+   display: flex;
+   align-items: center; /* Checkbox ve yazıyı dikeyde ortalar */
+   gap: 12px; /* Checkbox ile yazı arasına boşluk koyar */
+   padding: 12px 16px; /* İç boşluk (Ferahlık) */
+   border: 1px solid #e2e8f0; /* Figma'daki o ince gri çerçeve */
+   border-radius: 8px; /* Köşeleri hafif yuvarlatır */
+   background-color: #ffffff;
+}
+/* Tamamlanmış (completed) olanların yazısını silik ve üstü çizili yap */
+.task-list li.completed label {
+   text-decoration: line-through; /* Yazının ortasından çizgi çeker */
+   color: #94a3b8; /* Rengi siyah yerine soluk gri yapar */
+}
+
+/*GÜNDÜZ MOD*/
+.dash-goal-title {
+   color: #333;
+}
+.dash-goal-percent {
+   color: #4361EE; 
+}
+.dash-progress-track {
+   background-color: #E2E8F0; 
+}
+.dash-progress-fill {
+   background-color: #4361EE;
+}
+/*DARK MOD*/
+body.dark-mode .dash-goal-title {
+   color: #f8fafc; 
+}
+body.dark-mode .dash-goal-percent {
+   color: #60a5fa; 
+}
+body.dark-mode .dash-progress-track {
+   background-color: #334155; 
+}
+
