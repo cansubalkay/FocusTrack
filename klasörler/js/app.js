@@ -101,3 +101,51 @@ function initGoalModal() {
    }
  });
 }
+
+// YENİ GÖREV EKLEME VE VERİTABANINA (POST) KAYDETME
+document.addEventListener('DOMContentLoaded', () => {
+ const taskForm = document.getElementById('newTaskForm');
+ const taskTitleInput = document.getElementById('taskTitle');
+ const dueDateInput = document.getElementById('dueDate');
+ const taskModal = document.getElementById('taskModal');
+ if (taskForm) {
+   // Buton tıklamasını değil, formun gönderilmesini (submit) dinliyoruz
+   taskForm.addEventListener('submit', async (e) => {
+     e.preventDefault(); // Sayfanın anında yenilenip veriyi kaybetmesini engeller
+     // Seçili olan öncelik değerini (high, medium, low) yakala
+     const selectedPriority = document.querySelector('input[name="priority"]:checked');
+     const priorityValue = selectedPriority ? selectedPriority.value : 'medium'; // Seçilmemişse varsayılan Orta olsun
+     // 1. db.json'a gönderilecek veri objesi
+     const newTask = {
+       title: taskTitleInput.value,
+       date: dueDateInput.value,
+       priority: priorityValue,
+       status: "Tamamlanmayan" // Başlangıç durumu
+     };
+     // 2. Fetch API ile POST isteği
+     try {
+       const response = await fetch("http://localhost:3000/tasks", {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json"
+         },
+         body: JSON.stringify(newTask)
+       });
+       if (response.ok) {
+         console.log("Görev başarıyla eklendi!");
+         // Formun içindeki tüm yazıları tek komutla temizle
+         taskForm.reset();
+         // Modalı gizle (kendi css yapına göre active class'ını siler veya display none yapar)
+         taskModal.style.display = 'none';
+         taskModal.classList.remove('active');
+         // Veriyi ekranda canlı görmek için sayfayı yenile
+         window.location.reload();
+       } else {
+         console.error("Görev eklenirken bir sunucu hatası oluştu.");
+       }
+     } catch (error) {
+       console.error("Bağlantı hatası:", error);
+     }
+   });
+ }
+});

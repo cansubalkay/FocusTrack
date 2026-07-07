@@ -13,7 +13,7 @@
   }
   /* Sol taraftaki Sidebar'ı tutan ana JS kutusu */
   #sidebar-container {
-    flex: 0 0 25% !important; /* Ekranın tam olarak %32'sini buraya kilitler */
+    flex: 0 0 23% !important; /* Ekranın tam olarak %'sini buraya kilitler */
     width: 25% !important;
     height: 100% !important;
     margin: 0 !important;

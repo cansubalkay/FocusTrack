@@ -1,0 +1,14 @@
+{
+  "tasks": [
+    {
+      "title": "Javascript CRUD işlemleri öğren.",
+      "date": "2026-07-19",
+      "priority": "medium",
+      "status": "Tamamlanmayan",
+      "id": "P9_00Zj9TtM"
+    }
+  ],
+  "goals": [],
+  "reports": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}
