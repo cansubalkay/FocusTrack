@@ -92,3 +92,43 @@
     color:#0f172a;
     white-space: nowrap;
 }
+
+/*tasks sayfasındaki DROPDOWN MENÜ  */
+.dropdown-container {
+   position: relative;
+}
+.dropdown-menu {
+   display: none; /* Başlangıçta gizli tutar JS ile açarız */
+   position: absolute;
+   right: 0;
+   top: 100%;
+   background-color: #ffffff;
+   border: 1px solid #e2e8f0;
+   border-radius: 8px;
+   z-index: 10;
+   min-width: 120px;
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+   overflow: hidden; /* Kenar ovalliğinden butonların taşmasını önler */
+}
+.dropdown-item {
+   display: block;
+   width: 100%;
+   padding: 10px 16px;
+   border: none;
+   background: none;
+   text-align: left;
+   cursor: pointer;
+   font-size: 14px;
+   color: #0f172a;
+   transition: background-color 0.2s ease;
+}
+.dropdown-item:hover {
+   background-color: #f8fafc; /* Üzerine gelince hafif gri olur */
+}
+/* Sil Butonuna Özel Renklendirme */
+.dropdown-item.delete-item {
+   color: #ef4444;
+}
+.dropdown-item.delete-item:hover {
+   background-color: #fef2f2; /* Silin üzerine gelince hafif kırmızı olur */
+}

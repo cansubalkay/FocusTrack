@@ -10,7 +10,7 @@
    display: flex;
    justify-content: space-between; /* Başlığı sola, butonları sağa iter */
    align-items: center; /* Dikeyde ortalar */
-   margin-bottom: 24px;
+   margin-bottom: 8px;
 }
 .tasks-title-area h2 {
    margin: 0 0 4px 0;
@@ -26,7 +26,7 @@
    display: flex;
    gap: 24px; /* Filtreler ile butonu arasındaki boşluk */
    align-items: center;
-   margin-bottom: 16px;
+   margin-bottom: 8px;
 }
 /* Filtre Butonları (Tümü, Tamamlanan vb.) */
 .filter-group {
@@ -64,7 +64,7 @@
 /* --- ARAMA ÇUBUĞU --- */
 .search-bar-container {
    position: relative; /* İçindeki ikonun konumunu buna göre ayarlayacağız */
-   margin-bottom: 32px;
+   margin-bottom: 16px;
 }
 .search-input {
    width: 100%;
@@ -106,8 +106,9 @@
 }
 /* Yeni rozet renkleri */
 .badge.high-priority { background-color: #fee2e2; color: #ef4444; }
-.badge.normal-priority { background-color: #e0f2fe; color: #0ea5e9; }
+.badge.normal-priority { background-color: #ffedd5; color: #f39c12; }
 .badge.completed-priority { background-color: #dcfce3; color: #166534; }
+.badge.low-priority { background-color: #e0f2fe; color: #0ea5e9;}
 .more-options-btn {
    background: none; border: none; font-size: 20px;
    color: #94a3b8; cursor: pointer; font-weight: bold;

@@ -1,76 +1,163 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Sayfa yüklenince dashboard verilerini çekmeye başla
   fetchGoalsData();
+  setupFormSubmit();
 });
-
-// async, fonksiyonun içinde bekleme gerektiren işler var anlamına gelir.
 async function fetchGoalsData() {
   try {
-    // json/tasks.json dosyasından veriyi alıyoruz. await, fetch işlemi bitene kadar bir sonraki satıra geçmez
-    const response = await fetch("./json/goals.json");
-
-    if (!response.ok) {
-      throw new Error(`Veri çekilemedi! Hata Kodu: ${response.status}`);
-    }
-    // dosyadan gelen veri bir string yığınıdır. .json() komutu jsnin anlayacağı json formatına çevirir
+    const response = await fetch("http://localhost:3000/goals");
+    if (!response.ok) throw new Error(`Hata: ${response.status}`);
     const data = await response.json();
-
-    // Verileri ilgili HTML elemanlarına yazdıran fonksiyonları çağırıyoruz(render-dağıtım fonkları)
-    renderGoals(data.goals); //task kartlarını günceller
+    renderGoals(data);
   } catch (error) {
     console.error("Goals verisi yüklenirken hata oluştu:", error);
   }
 }
-
-//Task kartlarını ekrana basan fonksiyon
 function renderGoals(goalsArray) {
   const goalListElement = document.getElementById("goals-container");
   if (!goalListElement) return;
-
-  goalListElement.innerHTML = ""; // Önce içini temizle ki üst üste binmesin
-
-  //taskin yapılıp yapılmadığını kontrol eder yapıldıysa işaretlenir yoksa boş kalır.
+  goalListElement.innerHTML = "";
   goalsArray.forEach((goal) => {
-    //CSSin kullanıcağı html  şablonu
-
+    // Dinamik renk yönetimi
+    const progressColor = goal.progress >= 70 ? "#15803d" : "#4361EE";
     const goalItem = `
-    <div class="card goal-item-card">
-
-        <!-- 1. Üst Alan (İkon ve Menü) -->
-        <div class="goal-top-row">
-          <div class="goal-icon-box">
-            <img src="assets/icons/${goal.icon}" alt="İkon" class="goal-icon">
-          </div>
-          <button class="more-options-btn">⋮</button>
-        </div>
-        <!-- 2. Başlık ve Açıklama -->
-        <h3 class="goal-title">${goal.title}</h3>
-        ${goal.description ? `<p class="goal-desc">${goal.description}</p>` : ""}
-
-        <!-- 3. Tarih Kutusu (Başlangıç ve Bitiş yazıları eklendi) -->
-        <div class="goal-date-box">
-          <div class="date-row">
-            <img src="assets/icons/calendar1.svg" alt="Başlangıç" class="goal-icon">
-            <span>Başlangıç: ${goal.startDate}</span>
-          </div>
-          <div class="date-row">
-            <img src="assets/icons/calendar2.svg" alt="Bitiş" class="goal-icon">
-            <span>Bitiş: ${goal.endDate}</span>
-          </div>
-        </div>
-        <!-- 4. İlerleme Alanı (En alta itilecek kısım) -->
-        <div class="progress-section">
-          <div class="progress-info">
-            <span class="progress-label">İLERLEME</span>
-            <span class="progress-percent" style="color: ${goal.progress >= 70 ? "#15803d" : "#4361EE"};">${goal.progress}%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" style="width: ${goal.progress}%; background-color: ${goal.progress >= 70 ? "#15803d" : "#4361EE"};"></div>
-        </div>
-      </div>
-    </div>
-    `;
-
+<div class="card goal-item-card">
+<div class="goal-top-row">
+<div class="goal-icon-box">
+<img src="assets/icons/goal.svg" alt="İkon" class="goal-icon">
+</div>
+<div class="dropdown-container">
+<button class="more-options-btn" onclick="toggleMenu(event, '${goal.id}')">⋮</button>
+<div id="dropdown-${goal.id}" class="dropdown-menu">
+<button class="dropdown-item" onclick="editGoal('${goal.id}')">Düzenle</button>
+<button class="dropdown-item delete-item" onclick="deleteGoal('${goal.id}')">Sil</button>
+</div>
+</div>
+</div>
+<h3 class="goal-title">${goal.title}</h3>
+       ${goal.description ? `<p class="goal-desc">${goal.description}</p>` : ""}
+<div class="goal-date-box">
+<div class="date-row">
+<img src="assets/icons/calendar1.svg" alt="Başlangıç" class="goal-icon">
+<span>Başlangıç: ${goal.startDate}</span>
+</div>
+<div class="date-row">
+<img src="assets/icons/calendar2.svg" alt="Bitiş" class="goal-icon">
+<span>Bitiş: ${goal.endDate}</span>
+</div>
+</div>
+<div class="progress-section">
+<div class="progress-info">
+<span class="progress-label">İLERLEME</span>
+<span class="progress-percent" style="color: ${progressColor}">${goal.progress}%</span>
+</div>
+<div class="progress-track">
+<div class="progress-fill" style="width: ${goal.progress}%; background-color: ${progressColor}"></div>
+</div>
+</div>
+</div>`;
     goalListElement.insertAdjacentHTML("beforeend", goalItem);
   });
 }
+
+// 3. Formu Yakala ve Sunucuya Gönder (Ekleme ve Güncelleme)
+function setupFormSubmit() {
+ const goalForm = document.getElementById("newGoalForm");
+ const modal = document.getElementById("goalModal");
+ if (!goalForm) return;
+ goalForm.addEventListener("submit", async (e) => {
+   e.preventDefault();
+   const newGoal = {
+     title: document.getElementById("goalTitle").value,
+     description: document.getElementById("goalDesc").value,
+     startDate: document.getElementById("goalStartDate").value,
+     endDate: document.getElementById("goalEndDate").value,
+     progress: Number(document.getElementById("goalProgress").value),
+     icon: "target.svg",
+   };
+   // Formda bir editId var mı kontrol et
+   const editId = goalForm.dataset.editId;
+   // Eğer editId varsa PUT (Güncelle), yoksa POST (Yeni Ekle)
+   const method = editId ? "PUT" : "POST";
+   const url = editId ? `http://localhost:3000/goals/${editId}` : "http://localhost:3000/goals";
+   try {
+     const response = await fetch(url, {
+       method: method,
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify(newGoal),
+     });
+     if (response.ok) {
+       goalForm.reset();
+       // İşlem bitince formdaki gizli ID'yi ve başlığı temizle
+       delete goalForm.dataset.editId;
+       const modalTitle = modal.querySelector(".modal-header h3");
+       if (modalTitle) modalTitle.textContent = "Yeni Hedef Oluştur";
+       modal.classList.remove("active");
+       fetchGoalsData(); // Sayfayı yenilemeden listeyi güncelle
+     }
+   } catch (error) {
+     console.error("Kayıt hatası:", error);
+   }
+ });
+}
+
+window.deleteGoal = async function (id) {
+  if (!confirm("Bu hedefi silmek istediğine emin misin?")) return;
+
+  try {
+    const response = await fetch(`http://localhost:3000/goals/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) fetchGoalsData(); // Listeyi güncelle
+  } catch (error) {
+    console.error("Silme hatası:", error);
+  }
+};
+
+window.editGoal = async function (id) {
+ try {
+   // 1. Tıklanan hedefin mevcut verilerini veritabanından çek
+   const response = await fetch(`http://localhost:3000/goals/${id}`);
+   const goal = await response.json();
+   // 2. Modalı bul ve aç
+   const modal = document.getElementById("goalModal");
+   if (modal) modal.classList.add("active");
+   // 3. Modal başlığını "Güncelle" olarak değiştir
+   const modalTitle = modal.querySelector(".modal-header h3");
+   if (modalTitle) modalTitle.textContent = "Hedef Güncelle";
+   // 4. Inputların içini veritabanından gelen verilerle doldur
+   document.getElementById("goalTitle").value = goal.title;
+   document.getElementById("goalDesc").value = goal.description;
+   document.getElementById("goalStartDate").value = goal.startDate;
+   document.getElementById("goalEndDate").value = goal.endDate;
+   document.getElementById("goalProgress").value = goal.progress;
+   // 5. Formun içine gizli bir şekilde ID'yi kaydet (Kaydet'e basılınca lazım olacak)
+   const form = document.getElementById("newGoalForm");
+   if (form) form.dataset.editId = id;
+ } catch (error) {
+   console.error("Veri çekme hatası:", error);
+ }
+};
+
+// --- DROPDOWN MENÜ YÖNETİMİ ---
+window.toggleMenu = function (event, id) {
+  event.stopPropagation(); // Tıklamanın dışarı taşmasını engeller
+  const menu = document.getElementById(`dropdown-${id}`);
+  const isVisible = menu.style.display === "block";
+  // Önce ekrandaki tüm menüleri kapat
+  document
+    .querySelectorAll(".dropdown-menu")
+    .forEach((m) => (m.style.display = "none"));
+  // Tıklanan menü kapalıysa aç
+  if (!isVisible) {
+    menu.style.display = "block";
+  }
+};
+// Ekranda boş bir yere tıklanınca açık kalan menüleri kapatır
+document.addEventListener("click", () => {
+  document
+    .querySelectorAll(".dropdown-menu")
+    .forEach((m) => (m.style.display = "none"));
+});
+
+

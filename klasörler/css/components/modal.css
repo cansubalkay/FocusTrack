@@ -22,35 +22,20 @@
   z-index: 999;
   padding: 16px; /* Ekranın köşelerine yapışmasını engeller */
 }
-
 /* JavaScript ile eklenecek aktif durumu */
-
 .modal-overlay.active {
-
   display: flex;
-
 }
-
 /* Beyaz Modal Kutusu */
-
 .modal-content {
-
   background-color: #fff;
-
   width: 100%; /* Overlay'de zaten padding olduğu için %100 kullanabiliriz */
-
   max-width: 400px;
-
   border-radius: 12px;
-
   padding: 24px;
-
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-
   font-family: inherit;
-
   box-sizing: border-box;
-
 }
 
 .modal-header {
@@ -142,8 +127,8 @@
 }
 
 #priorityLow:checked + .priority-label {
-  border-color: #27ae60;
-  color: #27ae60;
+  border-color: #0ea5e9;
+  color: #0ea5e9;
   background-color: #f4fbf7;
 }
 

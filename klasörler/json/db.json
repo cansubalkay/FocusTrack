@@ -6,9 +6,51 @@
       "priority": "medium",
       "status": "Tamamlanmayan",
       "id": "P9_00Zj9TtM"
+    },
+    {
+      "title": "POST ve GET metodlarını öğrenip kullan",
+      "date": "2026-07-09",
+      "priority": "low",
+      "status": "Tamamlanmayan",
+      "id": "KsY0DyEQGqU"
+    },
+    {
+      "title": "Vue Component Yapısını öğren",
+      "date": "2026-07-20",
+      "priority": "high",
+      "status": "Tamamlanmayan",
+      "id": "kIgDGJ2aJ8E"
     }
   ],
-  "goals": [],
+  "goals": [
+    {
+      "title": "Frontend Öğrenme",
+      "description": "Sektör standartlarında bir frontend geliştirici olma yolculuğu.",
+      "startDate": "2026-07-07",
+      "endDate": "2026-07-08",
+      "progress": 72,
+      "icon": "target.svg",
+      "id": "PVJUAchXsJI"
+    },
+    {
+      "title": "Maraton Hazırlığı ",
+      "description": "Ekim ayındaki İstanbul Maratonu için 42K koşu programını tamamla.",
+      "startDate": "2026-07-07",
+      "endDate": "2026-07-07",
+      "progress": 44,
+      "icon": "target.svg",
+      "id": "DFp3EZjFnl0"
+    },
+    {
+      "title": "Kitap Okuma ",
+      "description": "Yıl sonuna kadar 24 kitap okuma hedefini gerçekleştir.",
+      "startDate": "2026-07-07",
+      "endDate": "2026-07-07",
+      "progress": 88,
+      "icon": "target.svg",
+      "id": "KtUONFhvkEs"
+    }
+  ],
   "reports": [],
   "$schema": "./node_modules/json-server/schema.json"
 }
