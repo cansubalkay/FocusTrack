@@ -1,10 +1,57 @@
-/* --- 2. MOBİL VE TABLET DURUMU (Ekran 768px ve altı olduğunda) --- */
+/* =========================================
+   1. MASAÜSTÜ (DESKTOP) KURALLARI (Ekran 769px ve üzeri olduğunda)
+   ========================================= */
+@media (min-width: 769px) {
+  /* Tüm ekranı yöneten ana kapsayıcı */
+  .kapsayici {
+    display: flex !important;
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  /* Sol taraftaki Sidebar'ı tutan ana JS kutusu */
+  #sidebar-container {
+    flex: 0 0 25% !important; /* Ekranın tam olarak %32'sini buraya kilitler */
+    width: 25% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  /* Sidebar'ın kendi iç yapısının dış kutuyu tam doldurması */
+  .responsive-sidebar {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important; /* Mobildeki fixed kuralını ezer, sayfaya oturtur */
+    transform: translateX(0) !important; /* Mobildeki dışarı itme kuralını ezer */
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+  }
+  /* Masaüstünde menü zaten hep açık olduğu için hamburger ve checkbox gizlenir */
+  .hamburger-btn, 
+  .menu-checkbox {
+    display: none !important; 
+  }
+  /* Sağ taraftaki ana içerik alanı (%68'lik kısım) */
+  .responsive-content {
+    flex: 1 !important; /* Geriye kalan tüm alanı otomatik doldurur */
+    height: 100% !important;
+    overflow-y: auto !important; /* İçerik uzarsa sadece sağ taraf kendi içinde kayar */
+    margin-left: 0 !important; 
+    padding: 40px !important; /* Masaüstünde rahat bir iç boşluk */
+    box-sizing: border-box !important;
+  }
+}
+/* =========================================
+   2. MOBİL VE TABLET DURUMU (Ekran 768px ve altı olduğunda) 
+   ========================================= */
 @media (max-width: 768px) {
   /* Onay kutusunu arkada çalışması için gizli tutuyoruz */
   .menu-checkbox {
     display: none;
   }
-  /* Hamburger butonunu (☰) mobilde görünür ve şık yapıyoruz */
+  /* Hamburger butonunu (☰) mobilde görünür  */
   .hamburger-btn {
     display: block;
     position: fixed;
@@ -67,7 +114,6 @@
     box-sizing: border-box;
     margin: 0;
   }
-
   /*üstteki filtre butonalrı*/
   .tasks-actions {
     display: flex;
@@ -153,21 +199,18 @@
   .goals-title-area {
     flex: 1;
   }
-
   /* yeni hedef butonu tek satır*/
   .goals-header .btn-primary {
     white-space: nowrap; /* Metnin alt satıra kırılmasını kesin olarak yasaklar */
     flex-shrink: 0; /* Ekran daralsa bile butonun sıkışıp küçülmesini engeller */
     padding: 8px 16px; /* İhtiyaca göre mobilde butonun iç boşluğunu ayarlayabilirsiniz */
   }
-
   /* REPORTS (RAPORLAR) Asimetrik Izgarası */
-
   /* Kartları yan yana dizmeyi bırakıp alt alta (column) sıralar */
    .reports-grid {
        display: flex;
        flex-direction: column;
-       /*grid-template-columns: 1fr; /* Geniş ve küçük kartlar sırayla alt alta dizilir */
+       /*grid-template-columns: 1fr; Geniş ve küçük kartlar sırayla alt alta dizilir */
        gap: 16px; /* Kartlar arasına dikey boşluk bırakır */
        width: 100%;
    }
@@ -186,10 +229,7 @@
        justify-content: space-between;
        align-items: flex-start;
    }
-
-
-  /*
-     DASHBOARD (ANA SAYFA) MOBİL DÜZENİ */
+  /* DASHBOARD (ANA SAYFA) MOBİL DÜZENİ */
   /* 1. Üstteki 3'lü istatistik kartlarını alt alta diz */
   .dashboard-stats {
     flex-direction: column;
@@ -205,18 +245,15 @@
   .report-main-value {
     font-size: 32px;
   }
-
   /*istatistik kartlarının iç elemanları mobilde üst üste binmesin diye(flex order)*/
   .stat-card {
     flex-direction: column; /*elemanları alt alta dşzşn diyr*/
     align-items: flex-start; /*içindekileri sola yaslr*/
     gap: 12px;
   }
-
   /*rozetin mobilde üstte dursun diye */
   .stat-card .badge {
     order: 1;
-
     margin-bottom: 12px; /*bir sonraki elemanla mesafe*/
   }
   /*sol paket altta dursun diye*/

@@ -9,6 +9,9 @@
 body {
     background-color: #F8F9FA;
     margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
     font-family: sans-serif;
 }
 .responsive-content {
@@ -115,20 +118,26 @@ body, .responsive-sidebar, .card, a, input {
 
 .kapsayici{
    display: flex;       /* İçindeki elemanları yan yana dizer */
-    gap: 20px;           /* Sidebar ile Main arasında 20px boşluk bırakır */
-    max-width: 1200px;   /* Sayfanın çok fazla genişlemesini engeller */
-    margin: 0 auto;      /* Sayfayı ortalar */
+    height: 100vh;
+    width: 100%;   /* Sayfanın çok fazla genişlemesini engeller */
+    margin: 0;
+    padding: 0;
+    gap: 0 ;      /* sidebarla içerik arasındaki tüm boşluğu silers */
+    overflow: hidden;
 }
 
 .responsive-sidebar{
-    flex: 1;             /* Sidebar'ın genişlik payı (Örn: %25 genişlik) */
+    flex: 0 0 25%;             /* Sidebar'ın genişlik payı (Örn: %25 genişlik) */
     background-color: #f4f4f4;
+    height: 100%;
     padding: 15px;
 }
 
 .responsive-container{
-    flex: 3;             /* Main'in genişlik payı (Sidebar'ın 3 katı genişlik, Örn: %75) */
+    flex: 1;             /* Main'in genişlik payı (Sidebar'ın 3 katı genişlik, Örn: %75) */
     background-color: #ffffff;
+    height: 100%;
+    overflow-y: auto;
     padding: 15px;
 }
 

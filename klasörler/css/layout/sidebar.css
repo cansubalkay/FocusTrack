@@ -2,18 +2,19 @@
 .responsive-container {
     display: flex;
     flex-direction: row; /*burada içerik(solmenüve anasayfa) yanyana hizalanır*/
-    min-height: calc(100vh - 60px); /* Ekran yüksekliğinden header'ı çıkarıyoruz */
+    height: 100vh ; /* Ekran yüksekliğinden header'ı çıkarıyoruz */
 }
 
 /* Sidebar Ayarları */
 .responsive-sidebar {
-    flex: 1 1 25%;  /* alan ikiye bölünür ve sidebara 25lik kısım verilir*/
-    min-width: 200px; 
-    max-width: 350px; 
+    flex: 0 0 25%;  /* alan ikiye bölünür ve sidebara 32lik kısım verilir*/
+    width: 100%; 
+    height: 100%;
     background-color: #ffffff;
     border-right: 1px solid #e2e8f0; /*sağa ince ç,zgi*/
     color: white;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 /*Sıdebar başlığı FocusTrack */
@@ -22,13 +23,21 @@
     font-size: 22px;
     font-weight: 700;
     margin-top: 0;
-    margin-bottom: 30px; /*altındaki menüyle arasında boşluk olur*/
-    padding-left: 10px;
+    margin-bottom: 20px; /*altındaki menüyle arasında boşluk olur*/
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: -20px;
+    margin-right: -20px;
+
+
 }
 
 .responsive-sidebar ul {
     list-style-type: none;/*listenin başındaki siyah noktaları sil*/
-    padding: 0;
+    padding: 20px;
+    
 }
 
 .responsive-sidebar a {
