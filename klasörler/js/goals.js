@@ -131,7 +131,7 @@ window.editGoal = async function (id) {
    document.getElementById("goalStartDate").value = goal.startDate;
    document.getElementById("goalEndDate").value = goal.endDate;
    document.getElementById("goalProgress").value = goal.progress;
-   // 5. Formun içine gizli bir şekilde ID'yi kaydet (Kaydet'e basılınca lazım olacak)
+   // 5. Formun içine gizli bir şekilde ID'yi kaydet (Kaydet'e basılınca lazım olcak)
    const form = document.getElementById("newGoalForm");
    if (form) form.dataset.editId = id;
  } catch (error) {
@@ -139,7 +139,7 @@ window.editGoal = async function (id) {
  }
 };
 
-// --- DROPDOWN MENÜ YÖNETİMİ ---
+// DROPDOWN MENÜ
 window.toggleMenu = function (event, id) {
   event.stopPropagation(); // Tıklamanın dışarı taşmasını engeller
   const menu = document.getElementById(`dropdown-${id}`);

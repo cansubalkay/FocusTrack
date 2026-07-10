@@ -1,25 +1,25 @@
 {
   "tasks": [
     {
-      "title": "Javascript CRUD işlemleri öğren.",
-      "date": "2026-07-19",
-      "priority": "medium",
-      "status": "Tamamlanmayan",
-      "id": "P9_00Zj9TtM"
-    },
-    {
-      "title": "POST ve GET metodlarını öğrenip kullan",
-      "date": "2026-07-09",
-      "priority": "low",
-      "status": "Tamamlanmayan",
-      "id": "KsY0DyEQGqU"
-    },
-    {
       "title": "Vue Component Yapısını öğren",
       "date": "2026-07-20",
       "priority": "high",
       "status": "Tamamlanmayan",
       "id": "kIgDGJ2aJ8E"
+    },
+    {
+      "title": "Stajı başarıyla tamamla",
+      "date": "2026-07-20",
+      "priority": "medium",
+      "status": "Tamamlanmayan",
+      "id": "KvMS6evQwzk"
+    },
+    {
+      "title": "POST ve GET metodlarını öğrenip kullan",
+      "date": "2026-07-15",
+      "priority": "low",
+      "status": "Tamamlanmayan",
+      "id": "Fr6VDiJpP2s"
     }
   ],
   "goals": [

@@ -1,35 +1,69 @@
+// TASKS SAYFASININ JS KODLARI
+//bunun sayesinde önce HTML sayfası yukarıdan aşağı doğru tamamen yüklenir. Aksi olur da tam yüklenmeden
+//JS çalışırsa ekrandaki butonu bulmaya çalışır ve bulamazsa hata verir.
 document.addEventListener("DOMContentLoaded", async () => {
   // 1. Değişkenler ve Seçiciler
-  let allTasks = []; // Bütün verinin tutulacağı yer
+  // document.getelementById vs; js ile html arası bağlantıları kurmaya yarar.
+  let allTasks = []; // Bütün verinin tutulacağı kısa süreli hafıza
   const container = document.getElementById("tasks-container");
   const filterButtons = document.querySelectorAll(".filter-btn");
   const taskForm = document.getElementById("newTaskForm");
   const taskTitleInput = document.getElementById("taskTitle");
   const dueDateInput = document.getElementById("dueDate");
   const taskModal = document.getElementById("taskModal");
-  // =================================================================
+  const searchInput = document.getElementById("searchInput"); // Arama çubuğu seçicisi
   // VERİLERİ SUNUCUDAN ÇEKME (GET)
-  // =================================================================
-  try {
-    // Statik dosya yerine json-server API adresimizden verileri çekiyoruz
-    const response = await fetch("http://localhost:3000/tasks");
-    if (!response.ok) {
-      throw new Error(`Veri çekilemedi! Hata Kodu: ${response.status}`);
+  // async ve await sayesinde istenen gelmeden bir sonrki satıra geçilmez
+  // her şey doğru çalışırsa try bloğu çalışır aksi takdirde catch erroru devreye girer.
+  async function fetchTasksData() {
+    try {
+      const response = await fetch("http://localhost:3000/tasks");
+      if (!response.ok) throw new Error(`Hata: ${response.status}`);
+      const data = await response.json();
+      allTasks = data; // Arama yapmak için veriyi hafızaya alıyoruz
+      renderTasks(allTasks); // İlk açılışta tüm veriyi ekrana basıyoruz
+    } catch (error) {
+      console.error("Task verisi yüklenirken hata oluştu:", error);
     }
-    allTasks = await response.json();
-    // Verileri ekrana basan fonksiyonu çağır
-    renderTasks(allTasks);
-  } catch (error) {
-    console.error("Tasks verisi yüklenirken hata oluştu:", error);
   }
-  // =================================================================
+
+  // aRAMA CUBUGU VE DEBOUNCE*
+  // debounce fonku sayesinde her harf yazıldığında sistem arama yapıp yorulmayacak
+  function debounce(callback, delay = 300) {
+    let timeoutId;
+    return function (...args) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        callback(...args);
+      }, delay);
+    };
+  }
+  // Baslşga gore aramanın mantığı
+  function searchByTitle(searchText) {
+    const normalizedSearchText = searchText.trim().toLowerCase();
+    if (!normalizedSearchText) {
+      renderTasks(allTasks);
+      return;
+    }
+    const filteredData = allTasks.filter((task) =>
+      // includes jsde içinde geçiyor mu mantığıdır.
+      task.title.toLowerCase().includes(normalizedSearchText),
+    );
+    renderTasks(filteredData);
+  }
+  // Arama çubuğu varsa dinleyiciyi ekle
+  if (searchInput) {
+    const debouncedSearch = debounce(function (event) {
+      searchByTitle(event.target.value);
+    }, 300);
+    searchInput.addEventListener("input", debouncedSearch);
+  }
+
   // FİLTRELEME MANTIĞI
-  // =================================================================
   filterButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       const filterType = e.target.textContent.trim();
       let filteredTasks = [];
-      // Yeni veritabanı yapımızdaki string "status" alanına göre süzüyoruz
       if (filterType === "Tümü") {
         filteredTasks = allTasks;
       } else if (filterType === "Tamamlanan") {
@@ -45,64 +79,57 @@ document.addEventListener("DOMContentLoaded", async () => {
       e.target.classList.add("active");
     });
   });
-  // =================================================================
+
   // GÖREV KARTLARINI EKRANA BASAN FONKSİYON (RENDER)
-  // =================================================================
   function renderTasks(tasksArray) {
     if (!container) return;
     container.innerHTML = ""; // Önce içini temizle
     tasksArray.forEach((task) => {
       // Tamamlanma durumuna göre CSS class'larını belirle
-      const isChecked = task.status === "Tamamlandı" ? "checked" : "";
       const completedClass =
         task.status === "Tamamlandı" ? "completed-card" : "";
-      // Senin CSS'indeki öncelik rozet renklerini eşleştiriyoruz
+      // CSS'indeki öncelik rozet renklerini eşleştiriyoruz
       let priorityClass = "normal-priority";
       if (task.priority === "low") {
         priorityClass = "low-priority";
-      }
-      if (task.priority === "high") {
+      } else if (task.priority === "high") {
         priorityClass = "high-priority";
-      } else if (
-        task.priority === "completed" ||
-        task.status === "Tamamlandı"
-      ) {
+      }
+      if (task.priority === "completed" || task.status === "Tamamlandı") {
         priorityClass = "completed-priority";
       }
-      // Senin CSS yapınla birebir uyumlu HTML şablonu
+      // CSS yapınla birebir uyumlu HTML şablonu
       const taskItem = `
-        <div class="card task-item-card ${completedClass}">
-          <div class="task-card-header">
-            <span class="badge ${priorityClass}">${task.priority === "high" ? "Yüksek" : task.priority === "medium" ? "Orta" : "Düşük"}</span>
-            <div class="dropdown-container">
-              <button class="more-options-btn" onclick="toggleMenu(event, '${task.id}')">⋮</button>
-              <div id="dropdown-${task.id}" class="dropdown-menu">
-                <button class="dropdown-item" onclick="editTask('${task.id}', '${task.title}', '${task.date}', '${task.priority}')">Düzenle</button>
-                <button class="dropdown-item delete-item" onclick="deleteTask('${task.id}')">Sil</button>
-              </div>
-            </div>
-          </div>
-          <h3 class="task-card-title">
-               ${task.title}
-          </h3>
-          <div class="task-date">
-            <img src="assets/icons/calendar1.svg" alt="Tarih" class="date-icon">
-            <span>${task.date}</span>
-          </div>
-          <div class="task-card-footer">
-            <button class="complete-btn ${task.status === "Tamamlandı" ? "done" : ""}">
-              <span class="circle-icon">+</span>
-              ${task.status === "Tamamlandı" ? "Bitti" : "Tamamla"}
-            </button>
-        </div>
-      </div>
-     `;
+<div class="card task-item-card ${completedClass}">
+<div class="task-card-header">
+<span class="badge ${priorityClass}">${task.priority === "high" ? "Yüksek" : task.priority === "medium" ? "Orta" : "Düşük"}</span>
+<div class="dropdown-container">
+<button class="more-options-btn" onclick="toggleMenu(event, '${task.id}')">⋮</button>
+<div id="dropdown-${task.id}" class="dropdown-menu">
+<button class="dropdown-item" onclick="editTask('${task.id}', '${task.title}', '${task.date}', '${task.priority}')">Düzenle</button>
+<button class="dropdown-item delete-item" onclick="deleteTask('${task.id}')">Sil</button>
+</div>
+</div>
+</div>
+<h3 class="task-card-title">
+              ${task.title}
+</h3>
+<div class="task-date">
+<img src="assets/icons/calendar1.svg" alt="Tarih" class="date-icon">
+<span>${task.date}</span>
+</div>
+<div class="task-card-footer">
+<button class="complete-btn ${task.status === "Tamamlandı" ? "done" : ""}">
+<span class="circle-icon">+</span>
+             ${task.status === "Tamamlandı" ? "Bitti" : "Tamamla"}
+</button>
+</div>
+</div>
+    `;
       container.insertAdjacentHTML("beforeend", taskItem);
     });
   }
-  // =================================================================
   // YENİ GÖREV EKLEME VE SUNUCUYA KAYDETME (POST)
-  // =================================================================
   if (taskForm) {
     taskForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -118,9 +145,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         priority: priorityValue,
         status: "Tamamlanmayan",
       };
+      // Formda bir editId var mı kontrol et
+      const editId = taskForm.dataset.editId;
+      // Eğer editId varsa PUT (Güncelle), yoksa POST (Yeni Ekle)
+      const method = editId ? "PUT" : "POST";
+      const url = editId
+        ? `http://localhost:3000/tasks/${editId}`
+        : "http://localhost:3000/tasks";
       try {
-        const response = await fetch("http://localhost:3000/tasks", {
-          method: "POST",
+        const response = await fetch(url, {
+          method: method, // Dinamik olark metod belrilenrir put veya post
           headers: {
             "Content-Type": "application/json",
           },
@@ -128,11 +162,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
         if (response.ok) {
           taskForm.reset();
+          // İşlem bitince formdaki gizli ID'yi ve başlığı temizle
+          delete taskForm.dataset.editId;
+
           if (taskModal) {
             taskModal.style.display = "none";
             taskModal.classList.remove("active");
+            // başlığı sıfırla (yeni gorev eklencekmis gibi)
+            const modalTitle = taskModal.querySelector(".modal-header h3");
+            if (modalTitle) modalTitle.textContext = "Yeni Görev";
           }
-          window.location.reload(); // Yeni veriyi çekmesi için sayfayı yenile
+          window.location.reload();
         } else {
           console.error("Görev eklenirken bir sunucu hatası oluştu.");
         }
@@ -141,9 +181,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   }
+  // Sayfa yüklendiğinde verileri çekme fonksiyonunu başlat (Burası kritik!)
+  fetchTasksData();
 });
-
-// --- DROPDOWN MENÜ YÖNETİMİ ---
+// DROPDOWN MENÜ YÖNETİmi
 window.toggleMenu = function (event, id) {
   event.stopPropagation(); // Tıklamanın dışarı taşmasını engeller
   const menu = document.getElementById(`dropdown-${id}`);
@@ -163,22 +204,23 @@ document.addEventListener("click", () => {
     .querySelectorAll(".dropdown-menu")
     .forEach((m) => (m.style.display = "none"));
 });
-// --- SİLME İŞLEMİ (DELETE) ---
+// SİLME İŞLEMİ DELET
+// --- SİLME İŞLEMİ (DELETE - NATIVE CONFIRM) ---
 window.deleteTask = async function (id) {
-  // Yanlışlıkla silmelere karşı küçük bir onay kutusu
-  if (!confirm("Bu görevi silmek istediğine emin misin?")) return;
-  try {
-    const response = await fetch(`http://localhost:3000/tasks/${id}`, {
-      method: "DELETE",
-    });
-    if (response.ok) {
-      window.location.reload(); // Silince sayfayı günceller
-    }
-  } catch (error) {
-    console.error("Silme işlemi başarısız:", error);
-  }
+ // Tarayıcının varsayılan, her zaman çalışan onay kutusu
+ if (!confirm("Bu görevi silmek istediğine emin misin?")) return;
+ try {
+   const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+     method: "DELETE",
+   });
+   if (response.ok) {
+     window.location.reload(); // Silince sayfayı günceller
+   }
+ } catch (error) {
+   console.error("Silme işlemi başarısız:", error);
+ }
 };
-// --- DÜZENLEME İŞLEMİ (MODALI DOLDURUR) ---
+// DÜZENLEME İŞLEMİ (MODALI DOLDUR
 window.editTask = function (id, title, date, priority) {
   const modal = document.getElementById("taskModal");
   if (modal) modal.classList.add("active");
