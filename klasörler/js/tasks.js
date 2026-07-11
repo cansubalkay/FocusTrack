@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 <button class="more-options-btn" onclick="toggleMenu(event, '${task.id}')">⋮</button>
 <div id="dropdown-${task.id}" class="dropdown-menu">
 <button class="dropdown-item" onclick="editTask('${task.id}', '${task.title}', '${task.date}', '${task.priority}')">Düzenle</button>
-<button class="dropdown-item delete-item" onclick="deleteTask('${task.id}')">Sil</button>
+<button class="dropdown-item delete-item" onclick="testSil('${task.id}')">Sil</button>
 </div>
 </div>
 </div>
@@ -205,16 +205,46 @@ document.addEventListener("click", () => {
     .forEach((m) => (m.style.display = "none"));
 });
 // SİLME İŞLEMİ DELET
-// --- SİLME İŞLEMİ (DELETE - NATIVE CONFIRM) ---
-window.deleteTask = async function (id) {
- // Tarayıcının varsayılan, her zaman çalışan onay kutusu
- if (!confirm("Bu görevi silmek istediğine emin misin?")) return;
+window.testSil = function (id) {
+
+  taskToDeleteId = id; 
+
+  const deleteModal = document.getElementById("deleteModal");
+
+  // DEDEKTİF KONTROLÜ: Modal gerçekten HTML'de var mı?
+
+  if (!deleteModal) {
+
+    alert("DİKKAT: JavaScript çalışıyor ama HTML dosyasında 'deleteModal' isimli kutuyu bulamıyor! HTML kodunu silmiş olabiliriz.");
+
+    return;
+
+  }
+
+  deleteModal.style.display = "flex"; // CSS engellerini ezip zorla göster
+
+  deleteModal.classList.add("active"); 
+
+};
+ 
+// "İptal" butonuna basıldığında
+window.closeDeleteModal = function () {
+ taskToDeleteId = null;
+ const deleteModal = document.getElementById("deleteModal");
+ if (deleteModal) {
+   deleteModal.classList.remove("active"); // Modalı gizle
+ }
+};
+// "Evet, Sil" kırmızı butonuna basıldığında
+window.confirmDelete = async function () {
+ if (!taskToDeleteId) return;
  try {
-   const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+   const response = await fetch(`http://localhost:3000/tasks/${taskToDeleteId}`, {
      method: "DELETE",
    });
    if (response.ok) {
-     window.location.reload(); // Silince sayfayı günceller
+     window.closeDeleteModal();
+     window.location.reload();
    }
  } catch (error) {
    console.error("Silme işlemi başarısız:", error);
