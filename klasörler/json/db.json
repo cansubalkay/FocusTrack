@@ -4,21 +4,21 @@
       "title": "Vue Component Yapısını öğren",
       "date": "2026-07-20",
       "priority": "high",
-      "status": "Tamamlanmayan",
+      "status": "Devam Ediyor",
       "id": "kIgDGJ2aJ8E"
     },
     {
       "title": "Stajı başarıyla tamamla",
       "date": "2026-07-20",
       "priority": "medium",
-      "status": "Tamamlanmayan",
+      "status": "Devam Ediyor",
       "id": "KvMS6evQwzk"
     },
     {
       "title": "POST ve GET metodlarını öğrenip kullan",
       "date": "2026-07-15",
       "priority": "low",
-      "status": "Tamamlanmayan",
+      "status": "Devam Ediyor",
       "id": "Fr6VDiJpP2s"
     }
   ],
@@ -28,7 +28,7 @@
       "description": "Sektör standartlarında bir frontend geliştirici olma yolculuğu.",
       "startDate": "2026-07-07",
       "endDate": "2026-07-08",
-      "progress": 72,
+      "progress": 28,
       "icon": "target.svg",
       "id": "PVJUAchXsJI"
     },

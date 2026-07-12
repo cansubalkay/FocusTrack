@@ -119,9 +119,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 <span>${task.date}</span>
 </div>
 <div class="task-card-footer">
-<button class="complete-btn ${task.status === "Tamamlandı" ? "done" : ""}">
-<span class="circle-icon">+</span>
-             ${task.status === "Tamamlandı" ? "Bitti" : "Tamamla"}
+<button class="complete-btn ${task.status === 'Tamamlandı' ? 'done' : ''}" onclick="toggleTaskCompletion('${task.id}', '${task.status}')">
+<span class="circle-icon">
+         ${task.status === 'Tamamlandı' ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
+</span>
+       ${task.status === 'Tamamlandı' ? 'Bitti' : 'Tamamla'}
 </button>
 </div>
 </div>
@@ -204,6 +206,48 @@ document.addEventListener("click", () => {
     .querySelectorAll(".dropdown-menu")
     .forEach((m) => (m.style.display = "none"));
 });
+
+// --- GÖREV TAMAMLANDI DURUMUNU GÜNCELLEME (PATCH) ---
+
+window.toggleTaskCompletion = async function (id, currentStatus) {
+
+  try {
+
+    // Eğer durum zaten "Tamamlandı" ise geri al ("Devam Ediyor" yap), değilse "Tamamlandı" yap.
+
+    const newStatus = currentStatus === "Tamamlandı" ? "Devam Ediyor" : "Tamamlandı";
+
+    const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+
+      method: "PATCH",
+
+      headers: {
+
+        "Content-Type": "application/json",
+
+      },
+
+      // Sadece 'status' alanını yeni durumla güncelliyoruz
+
+      body: JSON.stringify({ status: newStatus }), 
+
+    });
+
+    if (response.ok) {
+
+      window.location.reload(); // Kartın yeni tasarımla çizilmesi için sayfayı yenile
+
+    }
+
+  } catch (error) {
+
+    console.error("Görev güncellenirken hata:", error);
+
+  }
+
+};
+ 
+
 // SİLME İŞLEMİ DELET
 window.testSil = function (id) {
 

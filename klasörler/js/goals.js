@@ -12,14 +12,21 @@ async function fetchGoalsData() {
     console.error("Goals verisi yüklenirken hata oluştu:", error);
   }
 }
+// İlerleme yüzdesine göre CSS sınıfı döndüren yardımcı fonksiyon
+function getProgressClass(progress) {
+ if (progress <= 35) return "progress-red"; // Kırmızı (0-35)
+ if (progress <= 50) return "progress-orange"; // Turuncumsu Sarı (36-50)
+ if (progress <= 75) return "progress-blue"; // Mavi (51-75)
+ return "progress-green"; // Yeşil (76-100)
+}
 function renderGoals(goalsArray) {
-  const goalListElement = document.getElementById("goals-container");
-  if (!goalListElement) return;
-  goalListElement.innerHTML = "";
-  goalsArray.forEach((goal) => {
-    // Dinamik renk yönetimi
-    const progressColor = goal.progress >= 70 ? "#15803d" : "#4361EE";
-    const goalItem = `
+ const goalListElement = document.getElementById("goals-container");
+ if (!goalListElement) return;
+ goalListElement.innerHTML = "";
+ goalsArray.forEach((goal) => {
+   // Dinamik renk yönetimi
+   const colorClass = getProgressClass(goal.progress); // İsim colorClass olarak düzeltildi
+   const goalItem = `
 <div class="card goal-item-card">
 <div class="goal-top-row">
 <div class="goal-icon-box">
@@ -45,19 +52,21 @@ function renderGoals(goalsArray) {
 <span>Bitiş: ${goal.endDate}</span>
 </div>
 </div>
-<div class="progress-section">
+<div class="progress-section ${colorClass}">
 <div class="progress-info">
 <span class="progress-label">İLERLEME</span>
-<span class="progress-percent" style="color: ${progressColor}">${goal.progress}%</span>
+<span class="progress-percent">${goal.progress}%</span>
 </div>
-<div class="progress-track">
-<div class="progress-fill" style="width: ${goal.progress}%; background-color: ${progressColor}"></div>
+<div class="progress-bar-bg">
+<div class="progress-bar-fill" style="width: ${goal.progress}%;"></div>
 </div>
 </div>
 </div>`;
     goalListElement.insertAdjacentHTML("beforeend", goalItem);
   });
 }
+
+
 
 // 3. Formu Yakala ve Sunucuya Gönder (Ekleme ve Güncelleme)
 function setupFormSubmit() {
