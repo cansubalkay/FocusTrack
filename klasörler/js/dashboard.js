@@ -67,52 +67,43 @@ function renderStats(statsArray) {
   });
 }
 
-//Bugünün Görevlerini Ekrana Basma
+// Bugünün Görevlerini Ekrana Basma
 function renderTasks(tasksArray) {
-  // bu fonk. Görev listesini barındıran tasksArray dizisini girdi olarak alır.
-  const taskListElement = document.getElementById("dashboard-task-list");
-
-  if (!taskListElement) return;
-
-  taskListElement.innerHTML = ""; // Önce içini temizle ki üst üste binmesin
-
-  //taskin yapılıp yapılmadığını kontrol eder yapıldıysa işaretlenir yoksa boş kalır.
-  tasksArray.forEach((task) => {
-    const isChecked = task.completed ? "checked" : "";
-
-    // Aşağıdaki html bloğu; her bir görev için liste elemanı (<li>) şablonu oluşturur. Görev tamamlandıysa
-    // sınıfına completed ekler (böylece CSS ile üstü çizilebilir). Checkbox kısmına da belirlediğimiz checked durumunu koyar.
-    const taskItem = `
-<li class="task-item ${task.completed ? "completed" : ""}">
-<label>
-<input type="checkbox" ${isChecked}>
-<span>${task.title}</span>
+ const taskListElement = document.getElementById("dashboard-task-list");
+ if (!taskListElement) return;
+ taskListElement.innerHTML = ""; // Önce içini temizle ki üst üste binmesin
+ // taskin yapılıp yapılmadığını kontrol eder, yapıldıysa işaretlenir yoksa boş kalır.
+ tasksArray.forEach((task) => {
+   const isChecked = task.completed ? "checked" : "";
+   // DİKKAT: Eski <li> yapısını sildik. Yeni CSS sınıflarımıza uygun <label> şablonunu kullanıyoruz.
+   const taskItem = `
+<label class="task-row ${task.completed ? "completed" : ""}">
+<input type="checkbox" class="custom-checkbox" ${isChecked}>
+<span class="task-text">${task.title}</span>
 </label>
-</li>
-
-        `;
-
-    taskListElement.insertAdjacentHTML("beforeend", taskItem);
-  });
+   `;
+   taskListElement.insertAdjacentHTML("beforeend", taskItem);
+ });
 }
-
-//Bu fonk aylık hedefleri ve yüzdelerini gösteren ilerleme çubuklarını (progress bar) ekrana basar
+// Bu fonk aylık hedefleri ve yüzdelerini gösteren ilerleme çubuklarını (progress bar) ekrana basar
 function renderGoals(goalsArray) {
-  const goalListElement = document.getElementById("dashboard-goal-list");
-  if (!goalListElement) return;
-  goalListElement.innerHTML = ""; // Önce içini temizle
-  goalsArray.forEach((goal) => {
-    const goalItem = `
-            <li class="goal-item" style="list-style: none; margin-bottom: 20px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span class="dash-goal-title" style="font-weight: 600; color: font-size: 14px;">${goal.title}</span>
-                    <span class="dash-goal-percent" style="font-weight: 700; font-size: 14px;">%${goal.progress}</span>
-                </div>
-                <div class="dash-progress-track" style="width: 100%; height: 8px; border-radius: 10px; overflow: hidden;">
-                    <div class="dash-progress-fill" style="width: ${goal.progress}%; height: 100%; border-radius: 10px; transition: width 0.5s ease-in-out;"></div>
-                </div>
-            </li>
-        `;
-    goalListElement.insertAdjacentHTML("beforeend", goalItem);
-  });
+ const goalListElement = document.getElementById("dashboard-goal-list");
+ if (!goalListElement) return;
+ goalListElement.innerHTML = ""; // Önce içini temizle
+ goalsArray.forEach((goal) => {
+   // DİKKAT: O upuzun "style=" kısımlarını sildik! Tasarımı tamamen dashboard.css dosyasına bıraktık.
+   // Sadece dinamik olan "width" (genişlik) değerini mecburen inline bırakıyoruz.
+   const goalItem = `
+<div class="goal-row">
+<div class="goal-info">
+<span class="goal-name">${goal.title}</span>
+<span class="goal-percent">%${goal.progress}</span>
+</div>
+<div class="dash-progress-bg">
+<div class="dash-progress-fill" style="width: ${goal.progress}%;"></div>
+</div>
+</div>
+   `;
+   goalListElement.insertAdjacentHTML("beforeend", goalItem);
+ });
 }

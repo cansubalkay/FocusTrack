@@ -1,84 +1,210 @@
 /* Ana kapsayıcıyı yan yana dizecek esnek yapıya getiriyoruz */
+
 .responsive-container {
+
     display: flex;
-    flex-direction: row; /*burada içerik(solmenüve anasayfa) yanyana hizalanır*/
-    height: 100vh ; /* Ekran yüksekliğinden header'ı çıkarıyoruz */
+
+    flex-direction: row; /* Burada içerik (sol menü ve anasayfa) yan yana hizalanır */
+
+    height: 100vh;
+
 }
 
 /* Sidebar Ayarları */
+
 .responsive-sidebar {
-    flex: 0 0 25%;  /* alan ikiye bölünür ve sidebara 32lik kısım verilir*/
-    width: 100%; 
-    height: 100%;
+
+    flex: 0 0 260px;  /* Masaüstünde sidebar'ın sabit, ideal genişlikte kalmasını sağlıyoruz */
+
     background-color: #ffffff;
-    border-right: 1px solid #e2e8f0; /*sağa ince ç,zgi*/
-    color: white;
-    padding: 20px;
+
+    border-right: 1px solid #e2e8f0; /* Sağa ince çizgi */
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 0; /* KRİTİK: Dıştaki padding'i 0 yapıyoruz ki aktif arka plan kenarlara tam sıfır yanaşsın */
+
     box-sizing: border-box;
+
 }
 
-/*Sıdebar başlığı FocusTrack */
+/* Sidebar başlığı FocusTrack */
+
 .responsive-sidebar h3 {
-    color: #11418d;
-    font-size: 22px;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 20px; /*altındaki menüyle arasında boşluk olur*/
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e5e7eb;
-    margin-bottom: -20px;
-    margin-right: -20px;
 
+    color: #11418d;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    margin: 0;
+
+    padding: 24px 24px 20px 24px; /* Başlık alanına şık bir iç boşluk veriyoruz */
+
+    border-bottom: 1px solid #e5e7eb; /* Logonun altındaki o tam boy ince yatay çizgi */
 
 }
+
+/* Menü Listesi */
 
 .responsive-sidebar ul {
-    list-style-type: none;/*listenin başındaki siyah noktaları sil*/
-    padding: 20px;
-    
+
+    list-style-type: none; /* Listenin başındaki siyah noktaları sil */
+
+    padding: 16px 0; /* Sadece üstten ve alttan boşluk bırakıyoruz */
+
+    margin: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px; /* Menü elemanları arasında dengeli, şık bir boşluk */
+
 }
 
+.responsive-sidebar li {
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+/* Menü Linkleri (Ortak / Pasif Durum) */
+
 .responsive-sidebar a {
-    text-decoration: none; /*linklerin altındaki çizgi silinir*/
+
+    text-decoration: none; /* Linklerin altındaki çizgi silinir */
+
     color: #64748b;
-    display: block; /*yazının satırındaa bi yere tıklansa da olur*/
-    padding: 10px;
+
+    display: flex; /* İkon ve yazıyı kusursuz yan yana getirmek için esnek yapı */
+
+    align-items: center;
+
+    gap: 12px; /* İkon ile yazı arasındaki boşluk */
+
+    /* HİZALAMA MATEMATİĞİ: 20px sol boşluk + 4px border = Toplam 24px. 
+
+       Böylece menü yazıları, yukarıdaki 24px boşluklu FocusTrack logosu ile milimetrik olarak aynı dikey hizaya oturur! */
+
+    padding: 12px 24px 12px 20px; 
+
+    border-left: 4px solid transparent; /* Pasifken görünmez referans sol çizgi */
+
+    font-weight: 500;
+
+    font-size: 15px;
+
+    transition: all 0.2s ease;
+
+}
+
+/* Menü elemanının üzerine gelindiğinde (Hover) */
+
+.responsive-sidebar a:hover {
+
+    background-color: #f8fafc;
+
+    color: #0f172a;
+
+}
+
+/* Sidebarda seçili olan menü elemanının vurgusu (Figma Aktif Durumu) */
+
+.responsive-sidebar a.active {
+
+    color: #11418d; /* Tasarımdaki koyu lacivert yazı rengi */
+
+    font-weight: 600;
+
+    background-color: #eff6ff; /* Tasarımdaki kenarlara sıfır uçuk mavi arka plan dolgusu */
+
+    border-left: 4px solid #11418d; /* FİGMA'DAKİ O SOL KALIN LACİVERT ÇİZGİ */
+
+    border-radius: 0; /* Eski yuvarlatılmış hap görünümünü tamamen sıfırlıyoruz */
+
+}
+
+/* İkonlar resim dosyası olarak eklendiğinden kayma yapmaması için sabitleme */
+
+.menu-icon {
+
+    width: 20px;
+
+    height: 20px;
+
+    flex-shrink: 0; /* Alan daraldığında ikonun büzüşmesini engeller */
+
+    display: block;
 
 }
 
 /* İçerik Alanı Ayarları */
+
 .responsive-content {
-    flex: 3 1 75%;  /*dashboarda 75lik kısım*/
-    background-color: #ecf0f1;
-    padding: 20px;
+
+    flex: 1; /* Kalan tüm alanı doldurması için esnek bıraktık */
+
+    background-color: #f8fafc; /* Gövde arka planını tasarıma uygun hafif mat, göz yormayan bir tona çektik */
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
 }
 
-/* Mobil Ekranlar İçin Alt Alta Geçme Kuralı */
+/* Mobil Ekranlar İçin Düzenleme */
+
 @media (max-width: 768px) {
+
     .responsive-container {
-        flex-direction: column; 
+
+        flex-direction: column;
+
     }
-    .responsive-sidebar, 
+
+    .responsive-sidebar {
+
+        flex: 0 0 auto;
+
+        width: 100%;
+
+        border-right: none;
+
+        border-bottom: 1px solid #e2e8f0;
+
+    }
+
+    .responsive-sidebar h3 {
+
+        padding: 16px 20px;
+
+    }
+
+    .responsive-sidebar ul {
+
+        padding: 8px 0;
+
+    }
+
+    .responsive-sidebar a {
+
+        padding: 10px 20px;
+
+    }
+
     .responsive-content {
-        flex: 1 1 100%; 
-        max-width: 100%; 
-        min-width: 100%; 
+
+        flex: 1;
+
+        width: 100%;
+
     }
-}
 
-
-/*ikonlAr resim dosyası olaraka ekledniğinden kayma yapmaması için sabitleme*/
-.menu-icon {
-    width: 20px;
-    height: 20px;
 }
-
-/*sidebarda seçili olan menü elemanının vurgusu için*/
-.responsive-sidebar a.active{
-    color: #3b82f6;
-    font-weight: 600;
-    background-color: #eff6ff;
-    border-radius:8px; /*kutunun köşelerini yuvarlatmak için*/
-}
+ 
