@@ -1,30 +1,63 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Sayfa yüklenince dashboard verilerini çekmeye başla
-  fetchDashboardData();
+ // Sayfa yüklenince dashboard verilerini çekmeye başla
+ fetchDashboardData();
+ // DİNAMİK CHECKBOX KONTROLÜ (Event Delegation)
+ // Görevler sonradan (API'den) geldiği için tıklama olayını ana kapsayıcıya (parent) veriyoruz.
+ const taskListElement = document.getElementById("dashboard-task-list");
+ if (taskListElement) {
+   taskListElement.addEventListener("change", (e) => {
+     // Sadece custom-checkbox sınıfına sahip bir şeye tıklandıysa çalış
+     if (e.target.classList.contains("custom-checkbox")) {
+       const taskRow = e.target.closest(".task-row"); // Tıklanan kutunun ana kapsayıcısını bul
+       if (e.target.checked) {
+         taskRow.classList.add("completed"); // Seçiliyse üstünü çiz
+       } else {
+         taskRow.classList.remove("completed"); // Seçimi kalktıysa çiziği kaldır
+       }
+     }
+   });
+ }
 });
-
-// async, fonksiyonun içinde bekleme gerektiren işler var anlamına gelir.
 async function fetchDashboardData() {
-  try {
-    // json/index.json dosyasından veriyi alıyoruz. await, fetch işlemi bitene kadar bir sonraki satıra geçmez
-    const response = await fetch("./json/index.json");
-
-    if (!response.ok) {
-      throw new Error(`Veri çekilemedi! Hata Kodu: ${response.status}`);
-    }
-    // dosyadan gelen veri bir string yığınıdır. .json() komutu jsnin anlayacağı json formatına çevirir
-    const data = await response.json();
-
-    // Verileri ilgili HTML elemanlarına yazdıran fonksiyonları çağırıyoruz(render-dağıtım fonkları)
-    renderUser(data.user); //kullanıcı bilgilerini günceller
-    renderStats(data.stats); // istatistikleri günceller
-    renderTasks(data.todayTasks); // görevleri günceller
-    renderGoals(data.monthlyGoals); // hedefleri günceller
-  } catch (error) {
-    console.error("Dashboard verisi yüklenirken hata oluştu:", error);
-  }
+ try {
+   // 1. İstatistikler ve Kullanıcı Bilgisi (Mevcut index.json'dan gelmeye devam edebilir)
+   const statRes = await fetch("./json/index.json");
+   if (statRes.ok) {
+     const data = await statRes.json();
+     renderUser(data.user);
+     renderStats(data.stats);
+   }
+   // --- 2. DİNAMİK GÖREVLER (En Yakın 3 Görev) ---
+   // Gerçek görevleri json-server'dan çekiyoruz
+   const tasksRes = await fetch("http://localhost:3000/tasks");
+   if (tasksRes.ok) {
+     const allTasks = await tasksRes.json();
+     // Görevleri tarihe göre sırala (en yakın tarih en üste gelir) ve ilk 3 tanesini al (slice)
+     const upcomingTasks = allTasks
+       .sort((a, b) => new Date(a.date) - new Date(b.date))
+       .slice(0, 3);
+     renderTasks(upcomingTasks);
+   }
+   // --- 3. DİNAMİK HEDEFLER (Bu Ayki 3 Hedef) ---
+   const goalsRes = await fetch("http://localhost:3000/goals");
+   if (goalsRes.ok) {
+     const allGoals = await goalsRes.json();
+     const currentMonth = new Date().getMonth() + 1; // JS'de aylar 0'dan başlar, o yüzden +1 ekliyoruz
+     const currentYear = new Date().getFullYear();
+     // Sadece içinde bulunduğumuz ay ve yıla ait hedefleri filtrele
+     const monthlyGoals = allGoals.filter(goal => {
+       if (!goal.date) return true; // Eğer db.json'da hedefin tarihi yoksa varsayılan olarak göster
+       const [year, month] = goal.date.split("-"); // "2026-07-20" formatını bölüyoruz
+       return parseInt(year) === currentYear && parseInt(month) === currentMonth;
+     })
+     .sort((a,b) => b.progress - a.progress) //Yüksek yüzdesi olan en üste gelsindiye
+     .slice(0, 3); // İlk 3'ünü al
+     renderGoals(monthlyGoals);
+   }
+ } catch (error) {
+   console.error("Dashboard verisi yüklenirken hata oluştu:", error);
+ }
 }
-
 //Kullanıcı Selamlamasını Ekrana Basma
 function renderUser(user) {
   const greetingElement = document.getElementById("user-greeting");
@@ -91,16 +124,23 @@ function renderGoals(goalsArray) {
  if (!goalListElement) return;
  goalListElement.innerHTML = ""; // Önce içini temizle
  goalsArray.forEach((goal) => {
-   // DİKKAT: O upuzun "style=" kısımlarını sildik! Tasarımı tamamen dashboard.css dosyasına bıraktık.
-   // Sadece dinamik olan "width" (genişlik) değerini mecburen inline bırakıyoruz.
+   // Fotoğraftaki goals.css mantığına göre tam uyumlu class ataması
+   let statusClass = "progress-red"; // 0-35 arası için varsayılan (Kırmızı)
+   if (goal.progress >= 76) {
+       statusClass = "progress-green"; // 76-100 Yeşil
+   } else if (goal.progress >= 51) {
+       statusClass = "progress-blue"; // 51-75 Mavi
+   } else if (goal.progress >= 36) {
+       statusClass = "progress-orange"; // 36-50 Turuncu
+   }
    const goalItem = `
 <div class="goal-row">
 <div class="goal-info">
 <span class="goal-name">${goal.title}</span>
-<span class="goal-percent">%${goal.progress}</span>
+<span class="goal-percent ${statusClass}">%${goal.progress}</span>
 </div>
 <div class="dash-progress-bg">
-<div class="dash-progress-fill" style="width: ${goal.progress}%;"></div>
+<div class="dash-progress-fill ${statusClass}" style="width: ${goal.progress}%;"></div>
 </div>
 </div>
    `;

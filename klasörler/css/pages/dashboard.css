@@ -183,3 +183,43 @@
    grid-template-columns: 1fr;
  }
 }
+
+/* =======================================================
+  DİNAMİK HEDEF RENKLERİ (Goals Sayfası ile Birebir Uyumlu)
+  ======================================================= */
+/* --- 76-100 YEŞİL --- */
+.goal-percent.progress-green,
+body.dark-mode .goal-percent.progress-green {
+ color: #10b981 !important;
+}
+.dash-progress-fill.progress-green,
+body.dark-mode .dash-progress-fill.progress-green {
+ background-color: #10b981 !important;
+}
+/* --- 51-75 MAVİ --- */
+.goal-percent.progress-blue,
+body.dark-mode .goal-percent.progress-blue {
+ color: #3b82f6 !important;
+}
+.dash-progress-fill.progress-blue,
+body.dark-mode .dash-progress-fill.progress-blue {
+ background-color: #3b82f6 !important;
+}
+/* --- 36-50 TURUNCU --- */
+.goal-percent.progress-orange,
+body.dark-mode .goal-percent.progress-orange {
+ color: #f59e0b !important;
+}
+.dash-progress-fill.progress-orange,
+body.dark-mode .dash-progress-fill.progress-orange {
+ background-color: #f59e0b !important;
+}
+/* --- 0-35 KIRMIZI --- */
+.goal-percent.progress-red,
+body.dark-mode .goal-percent.progress-red {
+ color: #ef4444 !important;
+}
+.dash-progress-fill.progress-red,
+body.dark-mode .dash-progress-fill.progress-red {
+ background-color: #ef4444 !important;
+}
