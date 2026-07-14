@@ -48,7 +48,7 @@ async function fetchTasksData() {
 
     const completedTasks = tasksArray.filter(task => task.status === "Tamamlandı").length;
 
-    // Bekleyenler pending kısmında olanlar
+    // Bekleyenler pending kısmında olanlardenemeiçin
 
     const pendingTasks = tasksArray.filter(task => task.status !== "Tamamlandı").length;
 
