@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         filteredTasks = allTasks.filter((task) => task.status === "Tamamlandı");
       } else if (filterType === "Tamamlanmayan") {
         filteredTasks = allTasks.filter(
-          (task) => task.status === "Tamamlanmayan",
+          (task) => task.status === "Devam Ediyor",
         );
       }
       renderTasks(filteredTasks);
@@ -89,15 +89,31 @@ document.addEventListener("DOMContentLoaded", async () => {
       const completedClass =
         task.status === "Tamamlandı" ? "completed-card" : "";
       // CSS'indeki öncelik rozet renklerini eşleştiriyoruz
-      let priorityClass = "normal-priority";
-      if (task.priority === "low") {
-        priorityClass = "low-priority";
-      } else if (task.priority === "high") {
-        priorityClass = "high-priority";
-      }
-      if (task.priority === "completed" || task.status === "Tamamlandı") {
-        priorityClass = "completed-priority";
-      }
+
+    let priorityClass = "normal-priority"; // Varsayılan (Orta/Medium için bu class'ı kullanıyoruz)
+
+    // DB'den gelen İNGİLİZCE ("high", "medium", "low") değerlere göre eşleştirme yapıyoruz
+
+    if (task.priority === "low") {
+
+      priorityClass = "low-priority"; // Düşük öncelik rengi (Mavi)
+
+    } else if (task.priority === "high") {
+
+      priorityClass = "high-priority"; // Yüksek öncelik rengi (Kırmızı/Pembe)
+
+    } else if (task.priority === "medium") {
+
+      priorityClass = "normal-priority"; // Orta öncelik rengi (CSS'indeki ismi neyse onu yazabilirsin)
+
+    }
+
+    // DİKKAT: Görev tamamlandığında rozetin zorla yeşil olmasını engellemek için 
+
+    // daha önceki 'if (task.status === "Tamamlandı")' bloğunu tamamen kaldırdık!
+
+    // Artık görev bitse bile rozet (Yüksek/Orta/Düşük) kendi orijinal renginde kalacak.
+ 
       // CSS yapınla birebir uyumlu HTML şablonu
       const taskItem = `
 <div class="card task-item-card ${completedClass}">

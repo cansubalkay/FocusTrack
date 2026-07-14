@@ -385,4 +385,9 @@ body.dark-mode .complete-btn:hover .circle-icon {
     background-color: rgba(255, 255, 255, 0.05);
 
 }
- 
+/*Reports sayfasındaki sayıların dark modeda daha güzel görünmesi için*/
+body.dark-mode #completion-rate-text,
+body.dark-mode #completed-count,
+body.dark-mode #pending-count {
+    color: #ffffff;
+}
