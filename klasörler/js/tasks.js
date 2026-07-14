@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // her şey doğru çalışırsa try bloğu çalışır aksi takdirde catch erroru devreye girer.
   async function fetchTasksData() {
     try {
-      const response = await fetch("http://localhost:3000/tasks");
+      const response = await fetch("https://focustrack-pmxz.onrender.com/tasks");
       if (!response.ok) throw new Error(`Hata: ${response.status}`);
       const data = await response.json();
       allTasks = data; // Arama yapmak için veriyi hafızaya alıyoruz
@@ -152,8 +152,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Eğer editId varsa PUT (Güncelle), yoksa POST (Yeni Ekle)
       const method = editId ? "PUT" : "POST";
       const url = editId
-        ? `http://localhost:3000/tasks/${editId}`
-        : "http://localhost:3000/tasks";
+        ? `https://focustrack-pmxz.onrender.com/${editId}`
+        : "https://focustrack-pmxz.onrender.com/tasks";
       try {
         const response = await fetch(url, {
           method: method, // Dinamik olark metod belrilenrir put veya post
@@ -217,7 +217,7 @@ window.toggleTaskCompletion = async function (id, currentStatus) {
 
     const newStatus = currentStatus === "Tamamlandı" ? "Devam Ediyor" : "Tamamlandı";
 
-    const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+    const response = await fetch(`https://focustrack-pmxz.onrender.com/tasks/${id}`, {
 
       method: "PATCH",
 
@@ -283,7 +283,7 @@ window.closeDeleteModal = function () {
 window.confirmDelete = async function () {
  if (!taskToDeleteId) return;
  try {
-   const response = await fetch(`http://localhost:3000/tasks/${taskToDeleteId}`, {
+   const response = await fetch(`https://focustrack-pmxz.onrender.com/tasks/${taskToDeleteId}`, {
      method: "DELETE",
    });
    if (response.ok) {

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 async function fetchGoalsData() {
   try {
-    const response = await fetch("http://localhost:3000/goals");
+    const response = await fetch("https://focustrack-pmxz.onrender.com/goals");
     if (!response.ok) throw new Error(`Hata: ${response.status}`);
     const data = await response.json();
     renderGoals(data);
@@ -87,7 +87,7 @@ function setupFormSubmit() {
    const editId = goalForm.dataset.editId;
    // Eğer editId varsa PUT (Güncelle), yoksa POST (Yeni Ekle)
    const method = editId ? "PUT" : "POST";
-   const url = editId ? `http://localhost:3000/goals/${editId}` : "http://localhost:3000/goals";
+   const url = editId ? `https://focustrack-pmxz.onrender.com/goals/${editId}` : "https://focustrack-pmxz.onrender.com/goals";
    try {
      const response = await fetch(url, {
        method: method,
@@ -113,7 +113,7 @@ window.deleteGoal = async function (id) {
   if (!confirm("Bu hedefi silmek istediğine emin misin?")) return;
 
   try {
-    const response = await fetch(`http://localhost:3000/goals/${id}`, {
+    const response = await fetch(`https://focustrack-pmxz.onrender.com/goals/${id}`, {
       method: "DELETE",
     });
 
@@ -126,7 +126,7 @@ window.deleteGoal = async function (id) {
 window.editGoal = async function (id) {
  try {
    // 1. Tıklanan hedefin mevcut verilerini veritabanından çek
-   const response = await fetch(`http://localhost:3000/goals/${id}`);
+   const response = await fetch(`https://focustrack-pmxz.onrender.com/goals/${id}`);
    const goal = await response.json();
    // 2. Modalı bul ve aç
    const modal = document.getElementById("goalModal");

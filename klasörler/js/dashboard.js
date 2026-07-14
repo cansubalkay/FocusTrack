@@ -29,7 +29,7 @@ async function fetchDashboardData() {
    }
    // --- 2. DİNAMİK GÖREVLER (En Yakın 3 Görev) ---
    // Gerçek görevleri json-server'dan çekiyoruz
-   const tasksRes = await fetch("http://localhost:3000/tasks");
+   const tasksRes = await fetch("https://focustrack-pmxz.onrender.com/tasks");
    if (tasksRes.ok) {
      const allTasks = await tasksRes.json();
      // Görevleri tarihe göre sırala (en yakın tarih en üste gelir) ve ilk 3 tanesini al (slice)
@@ -39,7 +39,7 @@ async function fetchDashboardData() {
      renderTasks(upcomingTasks);
    }
    // --- 3. DİNAMİK HEDEFLER (Bu Ayki 3 Hedef) ---
-   const goalsRes = await fetch("http://localhost:3000/goals");
+   const goalsRes = await fetch("https://focustrack-pmxz.onrender.com/goals");
    if (goalsRes.ok) {
      const allGoals = await goalsRes.json();
      const currentMonth = new Date().getMonth() + 1; // JS'de aylar 0'dan başlar, o yüzden +1 ekliyoruz
