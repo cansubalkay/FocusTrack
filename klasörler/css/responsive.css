@@ -261,3 +261,64 @@
     order: 2;
   }
 }
+
+/* ==========================================================================
+
+   MOBİL COALS KART ÇAKIŞMA DÜZELTMESİ (SUNUM ÖNCESİ JİLET GİBİ YAPAR)
+
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. Sabit yüksekliği iptal edip kartı içeriğe göre esnek yapıyoruz */
+
+    .card.goal-item-card {
+
+        height: auto !important; 
+
+        min-height: 240px !important; /* Kartın çok küçülmesini engeller */
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        justify-content: flex-start !important;
+
+        gap: 16px !important; /* Elemanların arasına otomatik nefes alma boşluğu bırakır */
+
+        padding-bottom: 20px !important;
+
+    }
+
+    /* 2. Eğer açıklamalar uzunsa kartı esnetmek için alt boşluğunu koru */
+
+    .card.goal-item-card .goal-desc {
+
+        margin-bottom: 8px !important;
+
+    }
+
+    /* 3. Tarih kutusunun konumlandırmasını sıfırlayıp doğal akışa alıyoruz */
+
+    .card.goal-item-card .goal-date-box {
+
+        position: static !important; 
+
+        margin-top: auto !important; /* Diğer her şeyi yukarı itip kendisi doğal olarak alta yerleşir */
+
+        margin-bottom: 8px !important;
+
+    }
+
+    /* 4. İlerleme çubuğunu tarihin üzerine binmeyecek şekilde konumlandırıyoruz */
+
+    .card.goal-item-card .progress-section {
+
+        position: static !important;
+
+        margin-top: 12px !important;
+
+    }
+
+}
+ 

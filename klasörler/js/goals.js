@@ -115,17 +115,37 @@ goalForm.addEventListener("submit", async (e) => {
   }
 });
 }
-window.deleteGoal = async function (id) {
- // 💡 GÜNCELLEME: Tarayıcı uyarı penceresini (confirm) aktif dile göre gösteriyoruz
- const confirmMessage = (typeof currentLang !== "undefined" && currentLang === "en")
-   ? "Are you sure you want to delete this goal?"
-   : "Bu hedefi silmek istediğine emin misin?";
- if (!confirm(confirmMessage)) return;
+//sil e tıkladıktan sonra açıacak modal
+let goalToDeleteId = null; // Hangi hedefin silineceğini aklında tutması için
+// Çöp kutusu (Sil) butonuna basıldığında
+window.deleteGoal = function (id) {
+ goalToDeleteId = id;
+ const deleteModal = document.getElementById("deleteGoalModal");
+ if (deleteModal) {
+   deleteModal.style.display = "flex"; // Modalı göster
+   deleteModal.classList.add("active");
+ }
+};
+// "İptal" butonuna basıldığında
+window.closeDeleteGoalModal = function () {
+ goalToDeleteId = null;
+ const deleteModal = document.getElementById("deleteGoalModal");
+ if (deleteModal) {
+   deleteModal.classList.remove("active");
+   deleteModal.style.display = "none"; // Modalı gizle
+ }
+};
+// "Evet, Sil" kırmızı butonuna basıldığında
+window.confirmDeleteGoal = async function () {
+ if (!goalToDeleteId) return;
  try {
-   const response = await fetch(`https://focustrack-pmxz.onrender.com/goals/${id}`, {
+   const response = await fetch(`https://focustrack-pmxz.onrender.com/goals/${goalToDeleteId}`, {
      method: "DELETE",
    });
-   if (response.ok) fetchGoalsData(); // Listeyi güncelle
+   if (response.ok) {
+     window.closeDeleteGoalModal();
+     fetchGoalsData(); // Sayfayı yenilemeden listeyi güncelle
+   }
  } catch (error) {
    console.error("Silme hatası:", error);
  }

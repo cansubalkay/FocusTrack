@@ -589,4 +589,11 @@
   background-color: #dc2626;
 
 }
- 
+
+/* Mobilde kaybolan modal başlığını zorla görünür ve koyu renk yap */
+.modal-header h3 {
+   display: block !important;
+   visibility: visible !important;
+   color: #111827 !important; /* Koyu gri/siyah renk */
+   margin: 0;
+}

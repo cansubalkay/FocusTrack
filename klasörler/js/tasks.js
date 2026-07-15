@@ -260,6 +260,7 @@ window.closeDeleteModal = function () {
   const deleteModal = document.getElementById("deleteModal");
   if (deleteModal) {
     deleteModal.classList.remove("active"); // Modalı gizle
+    deleteModal.style.display = "none"; // modalın cancel tuşunun çalışmama hatası için
   }
 };
 // "Evet, Sil" kırmızı butonuna basıldığında

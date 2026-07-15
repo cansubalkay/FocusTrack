@@ -84,6 +84,7 @@
    display: flex;
    flex-direction: column;
    gap: 8px;
+   margin-bottom: 18px !important;
 }
 /* Her Bir Tarih Satırı */
 .date-row {
@@ -152,3 +153,21 @@
     height: 20px;
 }
 
+/* Tarih ve Progress Bar arasını ZORLA aç */
+
+.card.goal-item-card .goal-date-box {
+
+    margin-bottom: 24px !important;
+
+    padding-bottom: 10px !important; /* Eğer margin çalışmazsa padding ile ittirir */
+
+}
+
+.card.goal-item-card .progress-section {
+
+    margin-top: 20px !important;
+
+    padding-top: 10px !important;
+
+}
+ 

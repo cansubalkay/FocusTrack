@@ -66,6 +66,8 @@ const translations = {
    label_end_prefix: "Bitiş:",
    label_progress: "İLERLEME",
    modal_update_goal: "Hedef Güncelle",
+   modal_delete_goal_title: "Hedefi Sil",
+   modal_delete_goal_desc: "Bu hedefi kalıcı olarak silmek istediğine emin misin? Bu işlem maalesef geri alınamaz.",
 
     // Sidebar (Yan Menü) Kelimeleri
 
@@ -158,6 +160,8 @@ const translations = {
    label_end_prefix: "End:",
    label_progress: "PROGRESS",
    modal_update_goal: "Update Goal",
+   modal_delete_goal_title: "Delete Goal",
+   modal_delete_goal_desc: "Are you sure you want to permanently delete this goal? This action cannot be undone.",
 
 
     //  Sidebar (Yan Menü) Kelimeleri

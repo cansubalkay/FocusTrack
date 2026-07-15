@@ -1,4 +1,4 @@
-Console.log("REPORTS CANLI VERİ AKTİF");
+console.log("REPORTS CANLI VERİ AKTİF");
 // REPORTS SAYFASI İÇİN reports.json veya yerel dosya değil, tamamen canlı Render API'den gelen verileri kullanacağız.
 // Bu sayede Vercel'deki sitemiz her zaman en güncel görev yüzdelerini gösterecek.
 document.addEventListener("DOMContentLoaded", () => {
