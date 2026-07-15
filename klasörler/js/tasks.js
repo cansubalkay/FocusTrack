@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   // her şey doğru çalışırsa try bloğu çalışır aksi takdirde catch erroru devreye girer.
   async function fetchTasksData() {
     try {
-      const response = await fetch("https://focustrack-pmxz.onrender.com/tasks");
+      const response = await fetch(
+        "https://focustrack-pmxz.onrender.com/tasks",
+      );
       if (!response.ok) throw new Error(`Hata: ${response.status}`);
       const data = await response.json();
       allTasks = data; // Arama yapmak için veriyi hafızaya alıyoruz
@@ -26,7 +28,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Task verisi yüklenirken hata oluştu:", error);
     }
   }
-
   // aRAMA CUBUGU VE DEBOUNCE*
   // debounce fonku sayesinde her harf yazıldığında sistem arama yapıp yorulmayacak
   function debounce(callback, delay = 300) {
@@ -58,17 +59,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 300);
     searchInput.addEventListener("input", debouncedSearch);
   }
-
   // FİLTRELEME MANTIĞI
   filterButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       const filterType = e.target.textContent.trim();
       let filteredTasks = [];
-      if (filterType === "Tümü") {
+      if (filterType === "Tümü" || filterType === "All") {
         filteredTasks = allTasks;
-      } else if (filterType === "Tamamlanan") {
+      } else if (filterType === "Tamamlanan" || filterType === "Completed") {
         filteredTasks = allTasks.filter((task) => task.status === "Tamamlandı");
-      } else if (filterType === "Tamamlanmayan") {
+      } else if (filterType === "Tamamlanmayan" || filterType === "Pending") {
         filteredTasks = allTasks.filter(
           (task) => task.status === "Devam Ediyor",
         );
@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       e.target.classList.add("active");
     });
   });
-
   // GÖREV KARTLARINI EKRANA BASAN FONKSİYON (RENDER)
   function renderTasks(tasksArray) {
     if (!container) return;
@@ -89,63 +88,54 @@ document.addEventListener("DOMContentLoaded", async () => {
       const completedClass =
         task.status === "Tamamlandı" ? "completed-card" : "";
       // CSS'indeki öncelik rozet renklerini eşleştiriyoruz
-
-    let priorityClass = "normal-priority"; // Varsayılan (Orta/Medium için bu class'ı kullanıyoruz)
-
-    // DB'den gelen İNGİLİZCE ("high", "medium", "low") değerlere göre eşleştirme yapıyoruz
-
-    if (task.priority === "low") {
-
-      priorityClass = "low-priority"; // Düşük öncelik rengi (Mavi)
-
-    } else if (task.priority === "high") {
-
-      priorityClass = "high-priority"; // Yüksek öncelik rengi (Kırmızı/Pembe)
-
-    } else if (task.priority === "medium") {
-
-      priorityClass = "normal-priority"; // Orta öncelik rengi (CSS'indeki ismi neyse onu yazabilirsin)
-
-    }
-
-    // DİKKAT: Görev tamamlandığında rozetin zorla yeşil olmasını engellemek için 
-
-    // daha önceki 'if (task.status === "Tamamlandı")' bloğunu tamamen kaldırdık!
-
-    // Artık görev bitse bile rozet (Yüksek/Orta/Düşük) kendi orijinal renginde kalacak.
- 
-      // CSS yapınla birebir uyumlu HTML şablonu
+      let priorityClass = "normal-priority"; // Varsayılan (Orta/Medium için bu class'ı kullanıyoruz)
+      // DB'den gelen İNGİLİZCE ("high", "medium", "low") değerlere göre eşleştirme yapıyoruz
+      if (task.priority === "low") {
+        priorityClass = "low-priority"; // Düşük öncelik rengi (Mavi)
+      } else if (task.priority === "high") {
+        priorityClass = "high-priority"; // Yüksek öncelik rengi (Kırmızı/Pembe)
+      } else if (task.priority === "medium") {
+        priorityClass = "normal-priority"; // Orta öncelik rengi (CSS'indeki ismi neyse onu yazabilirsin)
+      }
+      // DİKKAT: Görev tamamlandığında rozetin zorla yeşil olmasını engellemek için
+      // daha önceki 'if (task.status === "Tamamlandı")' bloğunu tamamen kaldırdık!
+      // Artık görev bitse bile rozet (Yüksek/Orta/Düşük) kendi orijinal renginde kalacak.
+      // CSS yapınla birebir uyumlu HTML şablonu (Çeviri Etiketleri Eklendi)
       const taskItem = `
 <div class="card task-item-card ${completedClass}">
 <div class="task-card-header">
-<span class="badge ${priorityClass}">${task.priority === "high" ? "Yüksek" : task.priority === "medium" ? "Orta" : "Düşük"}</span>
+<span class="badge ${priorityClass}" data-i18n="${task.priority === "high" ? "priority_high" : task.priority === "medium" ? "priority_medium" : "priority_low"}">${task.priority === "high" ? "Yüksek" : task.priority === "medium" ? "Orta" : "Düşük"}</span>
 <div class="dropdown-container">
 <button class="more-options-btn" onclick="toggleMenu(event, '${task.id}')">⋮</button>
 <div id="dropdown-${task.id}" class="dropdown-menu">
-<button class="dropdown-item" onclick="editTask('${task.id}', '${task.title}', '${task.date}', '${task.priority}')">Düzenle</button>
-<button class="dropdown-item delete-item" onclick="testSil('${task.id}')">Sil</button>
+<button class="dropdown-item" onclick="editTask('${task.id}', '${task.title}', '${task.date}', '${task.priority}')" data-i18n="btn_edit">Düzenle</button>
+<button class="dropdown-item delete-item" onclick="testSil('${task.id}')" data-i18n="btn_delete">Sil</button>
 </div>
 </div>
 </div>
 <h3 class="task-card-title">
-              ${task.title}
+             ${task.title}
 </h3>
 <div class="task-date">
 <img src="assets/icons/calendar1.svg" alt="Tarih" class="date-icon">
 <span>${task.date}</span>
 </div>
 <div class="task-card-footer">
-<button class="complete-btn ${task.status === 'Tamamlandı' ? 'done' : ''}" onclick="toggleTaskCompletion('${task.id}', '${task.status}')">
+<button class="complete-btn ${task.status === "Tamamlandı" ? "done" : ""}" onclick="toggleTaskCompletion('${task.id}', '${task.status}')">
 <span class="circle-icon">
-         ${task.status === 'Tamamlandı' ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
+        ${task.status === "Tamamlandı" ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ""}
 </span>
-       ${task.status === 'Tamamlandı' ? 'Bitti' : 'Tamamla'}
+<span data-i18n="${task.status === "Tamamlandı" ? "btn_done" : "btn_complete"}">${task.status === "Tamamlandı" ? "Bitti" : "Tamamla"}</span>
 </button>
 </div>
 </div>
-    `;
+   `;
       container.insertAdjacentHTML("beforeend", taskItem);
     });
+    // 💡 YENİ EKLEME: Kartlar dinamik olarak çizildikten sonra dil motorunu uyar!
+    if (typeof setLanguage === "function") {
+      setLanguage(currentLang);
+    }
   }
   // YENİ GÖREV EKLEME VE SUNUCUYA KAYDETME (POST)
   if (taskForm) {
@@ -161,14 +151,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         title: taskTitleInput.value,
         date: dueDateInput.value,
         priority: priorityValue,
-        status: "Tamamlanmayan",
+        status: "Devam Ediyor", // Backend tutarlılığı için orijinal "Devam Ediyor" yapıldı
       };
       // Formda bir editId var mı kontrol et
       const editId = taskForm.dataset.editId;
       // Eğer editId varsa PUT (Güncelle), yoksa POST (Yeni Ekle)
       const method = editId ? "PUT" : "POST";
       const url = editId
-        ? `https://focustrack-pmxz.onrender.com/${editId}`
+        ? `https://focustrack-pmxz.onrender.com/tasks/${editId}` // URL düzeltmesi: ID'den önce /tasks/ eklendi
         : "https://focustrack-pmxz.onrender.com/tasks";
       try {
         const response = await fetch(url, {
@@ -182,13 +172,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           taskForm.reset();
           // İşlem bitince formdaki gizli ID'yi ve başlığı temizle
           delete taskForm.dataset.editId;
-
           if (taskModal) {
             taskModal.style.display = "none";
             taskModal.classList.remove("active");
             // başlığı sıfırla (yeni gorev eklencekmis gibi)
             const modalTitle = taskModal.querySelector(".modal-header h3");
-            if (modalTitle) modalTitle.textContext = "Yeni Görev";
+            if (modalTitle) {
+              modalTitle.textContent = "Yeni Görev Oluştur";
+              modalTitle.setAttribute("data-i18n", "modal_new_task_title"); // Dili sıfırla
+            }
           }
           window.location.reload();
         } else {
@@ -222,101 +214,84 @@ document.addEventListener("click", () => {
     .querySelectorAll(".dropdown-menu")
     .forEach((m) => (m.style.display = "none"));
 });
-
 // --- GÖREV TAMAMLANDI DURUMUNU GÜNCELLEME (PATCH) ---
-
 window.toggleTaskCompletion = async function (id, currentStatus) {
-
   try {
-
     // Eğer durum zaten "Tamamlandı" ise geri al ("Devam Ediyor" yap), değilse "Tamamlandı" yap.
-
-    const newStatus = currentStatus === "Tamamlandı" ? "Devam Ediyor" : "Tamamlandı";
-
-    const response = await fetch(`https://focustrack-pmxz.onrender.com/tasks/${id}`, {
-
-      method: "PATCH",
-
-      headers: {
-
-        "Content-Type": "application/json",
-
+    const newStatus =
+      currentStatus === "Tamamlandı" ? "Devam Ediyor" : "Tamamlandı";
+    const response = await fetch(
+      `https://focustrack-pmxz.onrender.com/tasks/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // Sadece 'status' alanını yeni durumla güncelliyoruz
+        body: JSON.stringify({ status: newStatus }),
       },
-
-      // Sadece 'status' alanını yeni durumla güncelliyoruz
-
-      body: JSON.stringify({ status: newStatus }), 
-
-    });
-
+    );
     if (response.ok) {
-
       window.location.reload(); // Kartın yeni tasarımla çizilmesi için sayfayı yenile
-
     }
-
   } catch (error) {
-
     console.error("Görev güncellenirken hata:", error);
-
   }
-
 };
- 
 
 // SİLME İŞLEMİ DELET
 window.testSil = function (id) {
-
-  taskToDeleteId = id; 
-
+  taskToDeleteId = id;
   const deleteModal = document.getElementById("deleteModal");
 
   // DEDEKTİF KONTROLÜ: Modal gerçekten HTML'de var mı?
-
   if (!deleteModal) {
-
-    alert("DİKKAT: JavaScript çalışıyor ama HTML dosyasında 'deleteModal' isimli kutuyu bulamıyor! HTML kodunu silmiş olabiliriz.");
-
+    alert(
+      "DİKKAT: JavaScript çalışıyor ama HTML dosyasında 'deleteModal' isimli kutuyu bulamıyor! HTML kodunu silmiş olabiliriz.",
+    );
     return;
-
   }
-
   deleteModal.style.display = "flex"; // CSS engellerini ezip zorla göster
-
-  deleteModal.classList.add("active"); 
-
+  deleteModal.classList.add("active");
 };
- 
 // "İptal" butonuna basıldığında
 window.closeDeleteModal = function () {
- taskToDeleteId = null;
- const deleteModal = document.getElementById("deleteModal");
- if (deleteModal) {
-   deleteModal.classList.remove("active"); // Modalı gizle
- }
+  taskToDeleteId = null;
+  const deleteModal = document.getElementById("deleteModal");
+  if (deleteModal) {
+    deleteModal.classList.remove("active"); // Modalı gizle
+  }
 };
 // "Evet, Sil" kırmızı butonuna basıldığında
 window.confirmDelete = async function () {
- if (!taskToDeleteId) return;
- try {
-   const response = await fetch(`https://focustrack-pmxz.onrender.com/tasks/${taskToDeleteId}`, {
-     method: "DELETE",
-   });
-   if (response.ok) {
-     window.closeDeleteModal();
-     window.location.reload();
-   }
- } catch (error) {
-   console.error("Silme işlemi başarısız:", error);
- }
+  if (!taskToDeleteId) return;
+  try {
+    const response = await fetch(
+      `https://focustrack-pmxz.onrender.com/tasks/${taskToDeleteId}`,
+      {
+        method: "DELETE",
+      },
+    );
+    if (response.ok) {
+      window.closeDeleteModal();
+      window.location.reload();
+    }
+  } catch (error) {
+    console.error("Silme işlemi başarısız:", error);
+  }
 };
 // DÜZENLEME İŞLEMİ (MODALI DOLDUR
 window.editTask = function (id, title, date, priority) {
   const modal = document.getElementById("taskModal");
   if (modal) modal.classList.add("active");
-  // Başlığı değiştir
+  // Başlığı değiştir (Çeviri sistemiyle uyumlu hale getirildi)
   const modalTitle = modal.querySelector(".modal-header h3");
-  if (modalTitle) modalTitle.textContent = "Görev Güncelle";
+  if (modalTitle) {
+    modalTitle.textContent = "Görev Güncelle";
+    modalTitle.setAttribute("data-i18n", "modal_update_task");
+    // Dili anında yansıt
+    if (typeof setLanguage === "function") setLanguage(currentLang);
+  }
   // Formdaki inputları var olan verilerle doldur
   document.getElementById("taskTitle").value = title;
   document.getElementById("dueDate").value = date;

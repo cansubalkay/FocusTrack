@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reports - FocusTrack</title>
+    <title data-i18n="page_title_reports">Reports - FocusTrack</title>
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/layout/sidebar.css" />
     <link rel="stylesheet" href="css/components/card.css" />
@@ -13,21 +13,26 @@
   <body>
     <div class="kapsayici">
       <!-- Hamburger menü ve sidebar için js divi  -->
-        <div id="sidebar-container"></div>
-
+      <div id="sidebar-container"></div>
 
       <main class="responsive-container">
         <div class="responsive-content">
           <header class="reports-header">
-            <h2>Reports</h2>
-            <p>Your performance metrics for the current week.</p>
+            <h2 data-i18n="reports_title">Reports</h2>
+            <p data-i18n="reports_subtitle">
+              Your performance metrics for the current week.
+            </p>
           </header>
           <div class="reports-grid" id="goals-container">
             <div class="card report-large-card">
               <div class="report-card-header">
                 <div>
-                  <h3 class="report-title">Görev Tamamlama Oranı</h3>
-                  <p class="report-subtitle">Weekly progress toward goals</p>
+                  <h3 class="report-title" data-i18n="reports_rate">
+                    Görev Tamamlama Oranı
+                  </h3>
+                  <p class="report-subtitle" data-i18n="reports_rate_subtitle">
+                    Weekly progress toward goals
+                  </p>
                 </div>
                 <div class="icon-box-purple">
                   <img
@@ -37,14 +42,20 @@
                   />
                 </div>
               </div>
-              <div id="completion-rate-text" class="report-main-value">80%</div>
+              <div id="completion-rate-text" class="report-main-value">...</div>
               <div class="progress-bar-large">
-                <div id="completion-progress-bar" class="progress-fill-green" style="width: 80%"></div>
+                <div
+                  id="completion-progress-bar"
+                  class="progress-fill-green"
+                  style="width: 0%"
+                ></div>
               </div>
             </div>
             <div class="card report-small-card">
               <div class="report-card-header">
-                <h3 class="report-title">Tamamlanan<br />Görev</h3>
+                <h3 class="report-title" data-i18n="reports_completed_card">
+                  Tamamlanan<br />Görev
+                </h3>
                 <span class="small-icon">
                   <img
                     src="assets/icons/tamamlanan.svg"
@@ -53,11 +64,13 @@
                   />
                 </span>
               </div>
-              <div id="completed-count" class="report-main-value">99999999</div>
+              <div id="completed-count" class="report-main-value">...</div>
             </div>
             <div class="card report-small-card">
               <div class="report-card-header">
-                <h3 class="report-title">Bekleyen</h3>
+                <h3 class="report-title" data-i18n="reports_pending_card">
+                  Bekleyen
+                </h3>
                 <span class="small-icon">
                   <img
                     src="assets/icons/hourglass.svg"
@@ -66,12 +79,13 @@
                   />
                 </span>
               </div>
-              <div id="pending-count" class="report-main-value">4</div>
+              <div id="pending-count" class="report-main-value">...</div>
             </div>
           </div>
         </div>
       </main>
     </div>
+    <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
     <script src="js/dark-mode.js"></script>
     <script src="js/reports.js"></script>

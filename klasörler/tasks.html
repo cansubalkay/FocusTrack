@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tasks - FocusTrack</title>
+    <title data-i18n="page_title_tasks">Tasks - FocusTrack</title>
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/layout/sidebar.css" />
     <link rel="stylesheet" href="css/components/card.css" />
@@ -15,17 +15,19 @@
     <div class="kapsayici">
       <!-- Hamburger menü ve sidebar için js divi  -->
       <div id="sidebar-container"></div>
-
       <main class="responsive-container">
         <div class="responsive-content">
           <header class="tasks-header">
             <div class="tasks-title-area">
-              <h2>Tasks</h2>
-              <p>Manage your priorities and flow.</p>
+              <h2 data-i18n="tasks_page_title">Tasks</h2>
+              <p data-i18n="tasks_page_subtitle">
+                Manage your priorities and flow.
+              </p>
             </div>
-            <button class="btn-primary">+ Yeni Görev</button>
+            <button class="btn-primary" data-i18n="btn_new_task">
+              + Yeni Görev
+            </button>
           </header>
-
           <div class="search-bar-container">
             <img src="assets/icons/search.svg" alt="Ara" class="search-icon" />
             <input
@@ -33,21 +35,27 @@
               id="searchInput"
               class="search-input"
               placeholder="Görev Ara..."
+              data-i18n-placeholder="search_task_placeholder"
             />
           </div>
-
           <div class="tasks-actions">
             <div class="filter-group">
-              <button class="filter-btn active">Tümü</button>
-              <button class="filter-btn">Tamamlanan</button>
-              <button class="filter-btn">Tamamlanmayan</button>
+              <button class="filter-btn active" data-i18n="filter_all">
+                Tümü
+              </button>
+              <button class="filter-btn" data-i18n="filter_completed">
+                Tamamlanan
+              </button>
+              <button class="filter-btn" data-i18n="filter_pending">
+                Tamamlanmayan
+              </button>
             </div>
           </div>
-
           <div class="tasks-grid" id="tasks-container"></div>
         </div>
       </main>
     </div>
+    <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
     <script src="js/dark-mode.js"></script>
     <script src="js/tasks.js"></script>
@@ -56,25 +64,28 @@
     <div class="modal-overlay" id="taskModal">
       <div class="modal-content">
         <div class="modal-header">
-          <h3>Yeni Task Oluştur</h3>
+          <h3 data-i18n="modal_new_task_title">Yeni Task Oluştur</h3>
           <button class="close-btn" id="closeModalBtn">&times;</button>
         </div>
         <form id="newTaskForm">
           <div class="form-group">
-            <label for="taskTitle">Görev Başlığı</label>
+            <label for="taskTitle" data-i18n="label_task_title"
+              >Görev Başlığı</label
+            >
             <input
               type="text"
               id="taskTitle"
               placeholder="Örn: Tasarım sistemini güncelle"
+              data-i18n-placeholder="placeholder_task_title"
               required
             />
           </div>
           <div class="form-group">
-            <label for="dueDate">Bitiş Tarihi</label>
+            <label for="dueDate" data-i18n="label_due_date">Bitiş Tarihi</label>
             <input type="date" id="dueDate" required />
           </div>
           <div class="form-group">
-            <label>Öncelik</label>
+            <label data-i18n="label_priority">Öncelik</label>
             <div class="priority-options">
               <input
                 type="radio"
@@ -82,7 +93,10 @@
                 name="priority"
                 value="high"
               />
-              <label for="priorityHigh" class="priority-label high"
+              <label
+                for="priorityHigh"
+                class="priority-label high"
+                data-i18n="priority_high"
                 >Yüksek</label
               >
               <input
@@ -91,7 +105,10 @@
                 name="priority"
                 value="medium"
               />
-              <label for="priorityMedium" class="priority-label medium"
+              <label
+                for="priorityMedium"
+                class="priority-label medium"
+                data-i18n="priority_medium"
                 >Orta</label
               >
               <input
@@ -100,41 +117,75 @@
                 name="priority"
                 value="low"
               />
-              <label for="priorityLow" class="priority-label low">Düşük</label>
+              <label
+                for="priorityLow"
+                class="priority-label low"
+                data-i18n="priority_low"
+                >Düşük</label
+              >
             </div>
           </div>
           <div class="modal-actions">
-            <button type="button" class="btn-cancel" id="cancelModalBtn">
+            <button
+              type="button"
+              class="btn-cancel"
+              id="cancelModalBtn"
+              data-i18n="btn_cancel"
+            >
               İptal
             </button>
-            <button type="submit" class="btn-save">Kaydet</button>
-          </div>
-            </div>
+            <button type="submit" class="btn-save" data-i18n="btn_save">
+              Kaydet
+            </button>
           </div>
         </form>
       </div>
     </div>
-
     <div id="deleteModal" class="modal-overlay">
-<div class="modal-card">
-<div class="modal-icon-container">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<polyline points="3 6 5 6 21 6"></polyline>
-<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-<line x1="10" y1="11" x2="10" y2="17"></line>
-<line x1="14" y1="11" x2="14" y2="17"></line>
-</svg>
-</div>
-<h3 class="modal-title-danger">Görevi Sil</h3>
-<p class="modal-text">
-     Bu görevi kalıcı olarak silmek istediğine emin misin? Bu işlem maalesef geri alınamaz.
-</p>
-<div class="modal-actions-clean">
-<button onclick="closeDeleteModal()" class="btn-cancel-modern">İptal</button>
-<button onclick="confirmDelete()" class="btn-danger-modern">Evet, Sil</button>
-</div>
-</div>
-</div>
-
+      <div class="modal-card">
+        <div class="modal-icon-container">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#ef4444"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path
+              d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+            ></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+        </div>
+        <h3 class="modal-title-danger" data-i18n="modal_delete_title">
+          Görevi Sil
+        </h3>
+        <p class="modal-text" data-i18n="modal_delete_desc">
+          Bu görevi kalıcı olarak silmek istediğine emin misin? Bu işlem
+          maalesef geri alınamaz.
+        </p>
+        <div class="modal-actions-clean">
+          <button
+            onclick="closeDeleteModal()"
+            class="btn-cancel-modern"
+            data-i18n="btn_cancel"
+          >
+            İptal
+          </button>
+          <button
+            onclick="confirmDelete()"
+            class="btn-danger-modern"
+            data-i18n="btn_delete_confirm"
+          >
+            Evet, Sil
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

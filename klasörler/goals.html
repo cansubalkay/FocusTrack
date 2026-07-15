@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Goals - FocusTrack</title>
+    <title data-i18n="page_title_goals">Goals - FocusTrack</title>
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/layout/sidebar.css" />
     <link rel="stylesheet" href="css/components/card.css" />
@@ -15,20 +15,28 @@
     <div class="kapsayici">
       <!-- Hamburger menü ve sidebar için js divi  -->
       <div id="sidebar-container"></div>
-
       <main class="responsive-container">
         <div class="responsive-content">
           <header class="goals-header">
             <div class="goals-title-area">
-              <h2>Goals</h2>
-              <p>Manage your long-term objectives and track progress.</p>
+              <h2 data-i18n="goals_page_title">Goals</h2>
+              <p data-i18n="goals_page_subtitle">
+                Manage your long-term objectives and track progress.
+              </p>
             </div>
-            <button class="btn-primary" id="openGoalModalBtn">+ Yeni Hedef</button>
+            <button
+              class="btn-primary"
+              id="openGoalModalBtn"
+              data-i18n="btn_new_goal"
+            >
+              + Yeni Hedef
+            </button>
           </header>
           <div class="goals-grid" id="goals-container"></div>
         </div>
       </main>
     </div>
+    <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
     <script src="js/dark-mode.js"></script>
     <script src="js/goals.js"></script>
@@ -37,42 +45,52 @@
     <div class="modal-overlay" id="goalModal">
       <div class="modal-content">
         <div class="modal-header">
-          <h3>Yeni Hedef Oluştur</h3>
+          <h3 data-i18n="modal_new_goal_title">Yeni Hedef Oluştur</h3>
           <button class="close-btn" id="closeGoalModalBtn">&times;</button>
         </div>
         <form id="newGoalForm">
           <div class="form-group">
-            <label for="goalTitle">HEDEF BAŞLIĞI</label>
+            <label for="goalTitle" data-i18n="label_goal_title"
+              >HEDEF BAŞLIĞI</label
+            >
             <input
               type="text"
               id="goalTitle"
               placeholder="Örn: Yeni Tasarım Sistemini Tamamla"
+              data-i18n-placeholder="placeholder_goal_title"
               required
             />
           </div>
           <div class="form-group">
-            <label for="goalDesc">AÇIKLAMA</label>
+            <label for="goalDesc" data-i18n="label_goal_desc">AÇIKLAMA</label>
             <textarea
               id="goalDesc"
               rows="3"
               placeholder="Bu hedefin kapsamı ve detayları nelerdir?"
+              data-i18n-placeholder="placeholder_goal_desc"
               required
             ></textarea>
           </div>
           <!-- Tarihleri yan yana almak için form-row kapsayıcısı -->
           <div class="form-row">
             <div class="form-group half-width">
-              <label for="goalStartDate">BAŞLANGIÇ TARİHİ</label>
+              <label for="goalStartDate" data-i18n="label_start_date"
+                >BAŞLANGIÇ TARİHİ</label
+              >
               <input type="date" id="goalStartDate" required />
             </div>
             <div class="form-group half-width">
-              <label for="goalEndDate">BİTİŞ TARİHİ</label>
+              <label for="goalEndDate" data-i18n="label_end_date"
+                >BİTİŞ TARİHİ</label
+              >
               <input type="date" id="goalEndDate" required />
             </div>
           </div>
           <div class="form-group">
             <div class="progress-label-group">
-              <label for="goalProgress">BAŞLANGIÇ İLERLEMESİ</label>
+              <label for="goalProgress" data-i18n="label_start_progress"
+                >BAŞLANGIÇ İLERLEMESİ</label
+              >
             </div>
             <div class="progress-input-wrapper">
               <input
@@ -87,10 +105,17 @@
           </div>
           <!-- Butonlar -->
           <div class="modal-actions goal-actions">
-            <button type="button" class="btn-cancel" id="cancelGoalModalBtn">
+            <button
+              type="button"
+              class="btn-cancel"
+              id="cancelGoalModalBtn"
+              data-i18n="btn_cancel"
+            >
               İptal
             </button>
-            <button type="submit" class="btn-save">Kaydet</button>
+            <button type="submit" class="btn-save" data-i18n="btn_save">
+              Kaydet
+            </button>
           </div>
         </form>
       </div>

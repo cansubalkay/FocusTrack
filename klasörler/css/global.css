@@ -391,3 +391,19 @@ body.dark-mode #completed-count,
 body.dark-mode #pending-count {
     color: #ffffff;
 }
+
+/*Dashboard sayfasındaki dark mod ve dil çeviri butonları için hizalama*/
+.header-actions {
+    display:flex;
+    gap:12px;
+    align-items: center;
+}
+#lang-toggle-btn {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333333;
+}
+body.dark-mode #lang-toggle-btn,
+body.dark-mode #lang-text {
+    color: #ffffff;
+}
