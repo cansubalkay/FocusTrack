@@ -89,15 +89,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         task.status === "Tamamlandı" ? "completed-card" : "";
       // CSS'indeki öncelik rozet renklerini eşleştiriyoruz
       let priorityClass = "normal-priority"; // Varsayılan (Orta/Medium için bu class'ı kullanıyoruz)
-      // DB'den gelen İNGİLİZCE ("high", "medium", "low") değerlere göre eşleştirme yapıyoruz
+      // DB'den gelen İNGİLİZCE ("high", "medium", "low") değerlere göre eşleştirme yap
       if (task.priority === "low") {
-        priorityClass = "low-priority"; // Düşük öncelik rengi (Mavi)
+        priorityClass = "low-priority"; // Düşük öncelik rengi 
       } else if (task.priority === "high") {
-        priorityClass = "high-priority"; // Yüksek öncelik rengi (Kırmızı/Pembe)
+        priorityClass = "high-priority"; // Yüksek öncelik rengi 
       } else if (task.priority === "medium") {
-        priorityClass = "normal-priority"; // Orta öncelik rengi (CSS'indeki ismi neyse onu yazabilirsin)
+        priorityClass = "normal-priority"; // Orta öncelik rengi 
       }
-      // DİKKAT: Görev tamamlandığında rozetin zorla yeşil olmasını engellemek için
+      // Görev tamamlandığında rozetin yeşil olmasını engellemek için
       // daha önceki 'if (task.status === "Tamamlandı")' bloğunu tamamen kaldırdık!
       // Artık görev bitse bile rozet (Yüksek/Orta/Düşük) kendi orijinal renginde kalacak.
       // CSS yapınla birebir uyumlu HTML şablonu (Çeviri Etiketleri Eklendi)
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async () => {
    `;
       container.insertAdjacentHTML("beforeend", taskItem);
     });
-    // 💡 YENİ EKLEME: Kartlar dinamik olarak çizildikten sonra dil motorunu uyar!
+    // Kartlar dinamik olarak çizildikten sonra dil motorunu uyarı
     if (typeof setLanguage === "function") {
       setLanguage(currentLang);
     }
@@ -151,14 +151,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         title: taskTitleInput.value,
         date: dueDateInput.value,
         priority: priorityValue,
-        status: "Devam Ediyor", // Backend tutarlılığı için orijinal "Devam Ediyor" yapıldı
+        status: "Devam Ediyor", 
       };
       // Formda bir editId var mı kontrol et
       const editId = taskForm.dataset.editId;
       // Eğer editId varsa PUT (Güncelle), yoksa POST (Yeni Ekle)
       const method = editId ? "PUT" : "POST";
       const url = editId
-        ? `https://focustrack-pmxz.onrender.com/tasks/${editId}` // URL düzeltmesi: ID'den önce /tasks/ eklendi
+        ? `https://focustrack-pmxz.onrender.com/tasks/${editId}` 
         : "https://focustrack-pmxz.onrender.com/tasks";
       try {
         const response = await fetch(url, {
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   }
-  // Sayfa yüklendiğinde verileri çekme fonksiyonunu başlat (Burası kritik!)
+  // Sayfa yüklendiğinde verileri çekme fonksiyonunu başlat
   fetchTasksData();
 });
 // DROPDOWN MENÜ YÖNETİmi
@@ -214,10 +214,10 @@ document.addEventListener("click", () => {
     .querySelectorAll(".dropdown-menu")
     .forEach((m) => (m.style.display = "none"));
 });
-// --- GÖREV TAMAMLANDI DURUMUNU GÜNCELLEME (PATCH) ---
+// GÖREV TAMAMLANDI DURUMUNU GÜNCELLEME (PATCH) 
 window.toggleTaskCompletion = async function (id, currentStatus) {
   try {
-    // Eğer durum zaten "Tamamlandı" ise geri al ("Devam Ediyor" yap), değilse "Tamamlandı" yap.
+    // Eğer durum zaten "Tamamlandı" ise geri al ("Devam Ediyor" yap), değilse "Tamamlandı" yap
     const newStatus =
       currentStatus === "Tamamlandı" ? "Devam Ediyor" : "Tamamlandı";
     const response = await fetch(
@@ -251,10 +251,10 @@ window.testSil = function (id) {
     );
     return;
   }
-  deleteModal.style.display = "flex"; // CSS engellerini ezip zorla göster
+  deleteModal.style.display = "flex"; 
   deleteModal.classList.add("active");
 };
-// "İptal" butonuna basıldığında
+// İptal butonuna basıldığında
 window.closeDeleteModal = function () {
   taskToDeleteId = null;
   const deleteModal = document.getElementById("deleteModal");
@@ -263,7 +263,7 @@ window.closeDeleteModal = function () {
     deleteModal.style.display = "none"; // modalın cancel tuşunun çalışmama hatası için
   }
 };
-// "Evet, Sil" kırmızı butonuna basıldığında
+// Evet, Silkırmızı butonuna basıldığında
 window.confirmDelete = async function () {
   if (!taskToDeleteId) return;
   try {
@@ -301,7 +301,7 @@ window.editTask = function (id, title, date, priority) {
     `input[name="priority"][value="${priority}"]`,
   );
   if (priorityRadio) priorityRadio.checked = true;
-  // Güncelleme isteği (PUT/PATCH) atarken hangi görevi güncelleyeceğimizi bilmek için ID'yi formda saklıyoruz
+  // Güncelleme isteği (PUT/PATCH) atarken hangi görevi güncelleyeceğimizi bilmek için ID'yi formda saklıo
   const form = document.getElementById("newTaskForm");
   if (form) form.dataset.editId = id;
 };

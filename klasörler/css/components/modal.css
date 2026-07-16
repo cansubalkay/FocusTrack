@@ -1,599 +1,353 @@
 /* Tüm elemanların iç boşluklarının dışarı taşmasını engelleme */
 
 * {
-
   box-sizing: border-box;
-
 }
 
 /* Arka Plan Karartması */
 
 .modal-overlay {
-
   position: fixed;
-
   top: 0;
-
   left: 0;
-
   width: 100%;
-
   height: 100%;
-
   background-color: rgba(0, 0, 0, 0.4);
-
   backdrop-filter: blur(5px);
-
-  display: none; /* JS ile tetiklendiğinde görünecek */
-
+  display: none; /* JS ile tetiklendiğinde görünsün */
   justify-content: center;
-
   align-items: center;
-
   z-index: 999;
-
   padding: 16px; /* Ekranın köşelerine yapışmasını engeller */
-
 }
 
 /* JavaScript ile eklenecek aktif durumu */
-
 .modal-overlay.active {
-
   display: flex;
-
 }
 
 /* Beyaz Modal Kutusu */
-
 .modal-content {
-
   background-color: #fff;
-
-  width: 100%; /* Overlay'de zaten padding olduğu için %100 kullanabiliriz */
-
+  width: 100%; /* Overlay'de zaten padding olduğu için %100 kullanılabilir */
   max-width: 400px;
-
   border-radius: 12px;
-
   padding: 24px;
-
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-
   font-family: inherit;
-
   box-sizing: border-box;
-
 }
 
 .modal-header {
-
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   padding-bottom: 16px;
-
   border-bottom: 2px solid #e5e7eb;
-
   margin-bottom: 20px;
-
 }
 
 .modal-header h3 {
-
   margin: 0;
-
   font-size: 18px;
-
   color: #333;
-
 }
 
 .close-btn {
-
   background: none;
-
   border: none;
-
   font-size: 24px;
-
   cursor: pointer;
-
   color: #666;
-
 }
 
 /* Form Elemanları */
-
 .form-group {
-
   margin-bottom: 16px;
-
   display: flex;
-
   flex-direction: column;
-
   width: 100%;
-
 }
 
 .form-group label {
-
   margin-bottom: 6px;
-
   font-size: 12px;
-
   color: #555;
-
   font-weight: bold;
-
 }
 
 .form-group input[type="text"],
-
 .form-group input[type="date"] {
-
-  width: 100%; /* Taşmayı önleyen ve kutuyu dolduran kritik satır */
-
+  width: 100%; /* Taşmayı önler ve kutuyu doldurur */
   padding: 10px;
-
   border: 1px solid #ddd;
-
   border-radius: 6px;
-
   font-size: 14px;
-
 }
 
 /* Öncelik Radyo Butonları Tasarımı */
 
 .priority-options {
-
   display: flex;
-
   gap: 10px;
-
   width: 100%;
-
 }
 
 .priority-options input[type="radio"] {
-
   display: none; /* Orijinal yuvarlak butonları gizle */
-
 }
 
 .priority-label {
-
   flex: 1;
-
   text-align: center;
-
   padding: 8px;
-
   border: 1px solid #ddd;
-
   border-radius: 6px;
-
   font-size: 13px;
-
   cursor: pointer;
-
   transition: all 0.2s ease-in-out;
-
 }
 
-/* Seçili (Checked) Durumlar */
-
+/* Seçili Durumlar */
 #priorityHigh:checked + .priority-label {
-
   border-color: #e74c3c;
-
   color: #e74c3c;
-
   background-color: #fdf5f5;
-
 }
 
 #priorityMedium:checked + .priority-label {
-
   border-color: #f39c12;
-
   color: #f39c12;
-
   background-color: #fefaf3;
-
 }
 
 #priorityLow:checked + .priority-label {
-
   border-color: #0ea5e9;
-
   color: #0ea5e9;
-
   background-color: #f4fbf7;
-
 }
 
 /* İptal ve Kaydet Butonları */
-
 .modal-actions {
-
   display: flex;
-
-  flex-wrap: wrap; /* Çok dar ekranlarda butonların alt alta geçmesine izin verir */
-
+  flex-wrap: wrap; /* Çok dar ekranlarda butonların alt alta geçmesi için */
   gap: 12px;
-
   width: 100%;
-
   padding-top: 16px;
-
   border-top: 2px solid #e5e7eb;
-
   margin-top: 24px;
-
 }
 
 .btn-cancel, .btn-save {
-
   flex: 1;
-
-  padding: 12px; /* Dokunmatik alan için padding hafif artırıldı */
-
+  padding: 12px; 
   border-radius: 6px;
-
   font-size: 14px;
-
   font-weight: bold;
-
   cursor: pointer;
-
-  min-width: 110px; /* Butonların formunu kaybetmemesi için minimum genişlik */
-
+  min-width: 110px; 
 }
 
 .btn-cancel {
-
   background-color: white;
-
   border: 1px solid #ddd;
-
   color: #555;
-
 }
 
 .btn-save {
-
-  background-color: #2a1b7c; /* Tasarımdaki koyu mor renk */
-
+  background-color: #2a1b7c; 
   border: none;
-
   color: white;
-
 }
 
 /*GOALSTA AÇILACAK MODAL*/
-
-/* Textarea (Açıklama) Alanı */
-
+/* Textarea -Açıklama Alanı */
 .form-group textarea {
-
   width: 100%;
-
   padding: 10px;
-
   border: 1px solid #ddd;
-
   border-radius: 6px;
-
   font-size: 14px;
-
   font-family: inherit;
-
-  resize: vertical; /* Sadece dikeyde büyütülebilir */
-
+  resize: vertical; /* Sadece dikeyde büyür */
 }
 
 /* Yan Yana Duran Elemanlar (Tarihler için) */
-
 .form-row {
-
   display: flex;
-
   gap: 16px;
-
   width: 100%;
-
 }
 
 .half-width {
-
   flex: 1;
-
 }
 
-/* İlerleme (Progress) Özel Tasarımı */
-
+/* İlerleme -Progress Özel Tasarımı */
 .progress-label-group {
-
   display: flex;
-
   justify-content: space-between;
-
   margin-bottom: 6px;
-
 }
 
 .progress-percent-label {
-
   font-size: 12px;
-
-  color: #2a1b7c; /* Mor renk vurgusu */
-
+  color: #2a1b7c; 
   font-weight: bold;
-
 }
 
 .progress-input-wrapper {
-
   position: relative;
-
   display: flex;
-
   align-items: center;
-
 }
 
 .progress-input-wrapper input {
-
   width: 100%;
-
   padding: 10px;
-
-  padding-right: 30px; /* İçerideki % simgesinin yazının üstüne binmesini engeller */
-
+  padding-right: 30px; 
   border: 1px solid #ddd;
-
   border-radius: 6px;
-
   font-size: 14px;
-
 }
 
 .percent-sign {
-
   position: absolute;
-
   right: 12px;
-
   color: #555;
-
   font-size: 14px;
-
 }
 
 /* Hedef Modalındaki Butonları Sağa Yaslama */
-
 .goal-actions {
-
   justify-content: flex-end; /* Web görünümünde sağa yaslar */
-
 }
 
 .goal-actions .btn-cancel,
-
 .goal-actions .btn-save {
-
   flex: 0 1 auto; /* Butonların tüm alanı kaplamasını engeller */
-
   min-width: 100px;
-
 }
 
 /* Sadece ekran genişliği 768px ve altındayken (Mobil cihazlarda) çalışacak kurallar */
-
 @media (max-width: 768px) {
-
   /* Modal kutusunun mobildeki davranışı */
-
   .modal-content {
-
     padding: 16px; 
-
     max-width: calc(100% - 32px); 
-
   }
 
   .priority-options {
-
     gap: 8px; 
-
   }
 
   .priority-label {
-
     padding: 8px 4px; 
-
     font-size: 12px; 
-
   }
 
   .modal-actions {
-
     margin-top: 16px; 
-
     gap: 8px;
-
   }
 
   .btn-cancel, .btn-save {
-
     padding: 12px;
-
     font-size: 14px;
-
     flex: 1 1 45%;
-
     min-width: 0;
-
   }
 
   .goal-actions .btn-cancel,
-
   .goal-actions .btn-save {
-
     flex: 1 1 45%;
-
   }
 
   .form-row {
-
     gap: 8px; 
-
   }
 
 }
 
 /* SİLME ONAY MODALI  */
-
 .modal-card {
-
   background-color: #fff;
-
   width: 100%;
-
   max-width: 380px;
-
   border-radius: 24px;
-
   padding: 32px 24px;
-
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-
   text-align: center;
-
   box-sizing: border-box;
-
 }
 
 .modal-icon-container {
-
   background-color: #fee2e2;
-
   width: 64px;
-
   height: 64px;
-
   border-radius: 50%;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   margin: 0 auto 20px auto;
-
 }
 
 .modal-title-danger {
-
   margin: 0 0 12px 0;
-
   font-size: 20px;
-
   color: #111827;
-
   font-weight: 700;
-
 }
 
 .modal-text {
-
   margin: 0 0 24px 0;
-
   font-size: 15px;
-
   color: #6b7280;
-
   line-height: 1.5;
-
 }
 
 .modal-actions-clean {
-
   display: flex;
-
   gap: 12px;
-
   width: 100%;
-
 }
 
 .btn-cancel-modern {
-
   flex: 1;
-
   padding: 12px;
-
   border-radius: 12px;
-
   border: 1px solid #e5e7eb;
-
   background-color: #fff;
-
   color: #374151;
-
   font-weight: 600;
-
   cursor: pointer;
-
   transition: background-color 0.2s;
-
 }
 
 .btn-cancel-modern:hover {
-
   background-color: #f9fafb;
-
 }
 
 .btn-danger-modern {
-
   flex: 1;
-
   padding: 12px;
-
   border-radius: 12px;
-
   border: none;
-
   background-color: #ef4444;
-
   color: #fff;
-
   font-weight: 600;
-
   cursor: pointer;
-
   transition: background-color 0.2s;
-
 }
 
 .btn-danger-modern:hover {
-
   background-color: #dc2626;
-
 }
 
-/* Mobilde kaybolan modal başlığını zorla görünür ve koyu renk yap */
+/* Mobilde kaybolan modal başlığını importla görünür olsun */
 .modal-header h3 {
    display: block !important;
    visibility: visible !important;
-   color: #111827 !important; /* Koyu gri/siyah renk */
+   color: #111827 !important; 
    margin: 0;
 }

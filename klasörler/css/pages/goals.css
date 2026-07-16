@@ -5,7 +5,7 @@
   flex-direction: column; /*flexbox ta sıralamayı sütuna göre yapar*/
   gap: 32px; /* Karşılama yazısı, 3'lü kartlar ve alt kutular arasına eşit boşluk koyar */
 }
-/* --- ÜST BAŞLIK ALANI --- */
+/*ÜST BAŞLIK ALANI */
 .goals-header {
    display: flex;
    justify-content: space-between;
@@ -18,13 +18,13 @@
    background-color: #1e3a8a; color: white; border: none; padding: 10px 20px;
    border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer;
 }
-/* --- IZGARA SİSTEMİ --- */
+/*IZGARA SİSTEMİ*/
 .goals-grid {
    display: grid;
    grid-template-columns: repeat(3, 1fr);
    gap: 24px;
 }
-/* --- KART İÇ MİMARİSİ --- */
+/*KART İÇ MİMARİSİ */
 .goal-item-card {
    display: flex;
    flex-direction: column;
@@ -41,7 +41,7 @@
 .goal-icon-box {
    width: 40px;
    height: 40px;
-   background-color: #e0f2fe; /* Açık mavi arka plan */
+   background-color: #e0f2fe;
    border-radius: 8px;
    display: flex;
    justify-content: center;
@@ -128,16 +128,13 @@
 .progress-bar-fill {
  height: 100%;
  border-radius: 4px;
- transition: width 0.4s ease-in-out; /* Dolarken yumuşak bir animasyon yapar */
+ transition: width 0.4s ease-in-out; /* Dolarken yumuşak  animasyon yapar */
 }
-/* =========================================================
-  DİNAMİK RENK DURUMLARI
-  (JS'den gelen sınıflara göre renk değiştirir)
-  ========================================================= */
+/*DİNAMİK RENK (JS'den gelen sınıflara göre renk değiştirir)*/
 /* 0-35 Kırmızı */
 .progress-red .progress-percent { color: #ef4444; }
 .progress-red .progress-bar-fill { background-color: #ef4444; }
-/* 36-50 Turuncumsu Sarı */
+/* 36-50  Sarı */
 .progress-orange .progress-percent { color: #f59e0b; }
 .progress-orange .progress-bar-fill { background-color: #f59e0b; }
 /* 51-75 Mavi */
@@ -153,21 +150,5 @@
     height: 20px;
 }
 
-/* Tarih ve Progress Bar arasını ZORLA aç */
 
-.card.goal-item-card .goal-date-box {
-
-    margin-bottom: 24px !important;
-
-    padding-bottom: 10px !important; /* Eğer margin çalışmazsa padding ile ittirir */
-
-}
-
-.card.goal-item-card .progress-section {
-
-    margin-top: 20px !important;
-
-    padding-top: 10px !important;
-
-}
  

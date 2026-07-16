@@ -15,7 +15,7 @@ try {
 // İlerleme yüzdesine göre CSS sınıfı döndüren yardımcı fonksiyon
 function getProgressClass(progress) {
 if (progress <= 35) return "progress-red"; // Kırmızı (0-35)
-if (progress <= 50) return "progress-orange"; // Turuncumsu Sarı (36-50)
+if (progress <= 50) return "progress-orange"; // Sarı (36-50)
 if (progress <= 75) return "progress-blue"; // Mavi (51-75)
 return "progress-green"; // Yeşil (76-100)
 }
@@ -26,7 +26,7 @@ goalListElement.innerHTML = "";
 goalsArray.forEach((goal) => {
   // Dinamik renk yönetimi
   const colorClass = getProgressClass(goal.progress); // İsim colorClass olarak düzeltildi
-  // 💡 YENİ EKLEME: Dil seçeneğine göre yüzde (%) işaretinin yerini dinamik ayarlıyoruz
+  // Dil seçeneğine göre yüzde (%) işaretinin yerini dinamik ayarla
   const percentText = (typeof currentLang !== "undefined" && currentLang === "en") ? `${goal.progress}%` : `%${goal.progress}`;
   const goalItem = `
 <div class="card goal-item-card">
@@ -66,7 +66,7 @@ goalsArray.forEach((goal) => {
 </div>`;
    goalListElement.insertAdjacentHTML("beforeend", goalItem);
  });
- // 💡 YENİ EKLEME: Kartlar çizildikten sonra dil motorunu uyar
+ //Kartlar çizildikten sonra dil motorunu uyar
  if (typeof setLanguage === "function") {
    setLanguage(currentLang);
  }
@@ -117,7 +117,7 @@ goalForm.addEventListener("submit", async (e) => {
 }
 //sil e tıkladıktan sonra açıacak modal
 let goalToDeleteId = null; // Hangi hedefin silineceğini aklında tutması için
-// Çöp kutusu (Sil) butonuna basıldığında
+//Sil butonuna basıldığında
 window.deleteGoal = function (id) {
  goalToDeleteId = id;
  const deleteModal = document.getElementById("deleteGoalModal");
@@ -126,7 +126,7 @@ window.deleteGoal = function (id) {
    deleteModal.classList.add("active");
  }
 };
-// "İptal" butonuna basıldığında
+// İptal butonuna basıldığında
 window.closeDeleteGoalModal = function () {
  goalToDeleteId = null;
  const deleteModal = document.getElementById("deleteGoalModal");
@@ -135,7 +135,7 @@ window.closeDeleteGoalModal = function () {
    deleteModal.style.display = "none"; // Modalı gizle
  }
 };
-// "Evet, Sil" kırmızı butonuna basıldığında
+// Evet, Sil kırmızı butonuna basıldığında
 window.confirmDeleteGoal = async function () {
  if (!goalToDeleteId) return;
  try {
@@ -171,7 +171,7 @@ try {
   document.getElementById("goalStartDate").value = goal.startDate;
   document.getElementById("goalEndDate").value = goal.endDate;
   document.getElementById("goalProgress").value = goal.progress;
-  // 5. Formun içine gizli bir şekilde ID'yi kaydet (Kaydet'e basılınca lazım olcak)
+  // 5. Formun içine gizli bir şekilde ID'yi kaydet (Kaydet'e basılınca lazım olduğunda kullanmak için)
   const form = document.getElementById("newGoalForm");
   if (form) form.dataset.editId = id;
 } catch (error) {

@@ -11,14 +11,14 @@
 }
 .reports-header h2 { margin: 0 0 4px 0; color: #0f172a; font-size: 28px; }
 .reports-header p { margin: 0; color: #64748b; font-size: 14px; }
-/* --- ASİMETRİK IZGARA SİSTEMİ --- */
+/*ASİMETRİK IZGARA SİSTEM */
 .reports-grid {
    display: grid;
-   /* Sihir burada: 1. Sütun 2 kat geniş, 2. ve 3. Sütunlar 1 kat geniş */
+   /* 1. Sütun 2 kat geniş, 2. ve 3. Sütunlar 1 kat geniş */
    grid-template-columns: 2fr 1fr 1fr;
    gap: 24px;
 }
-/* --- KART İÇ MİMARİLERİ --- */
+/*KART İÇ MİMARİLERİ */
 .report-card-header {
    display: flex;
    justify-content: space-between;
@@ -35,7 +35,7 @@
 /* Sağ üstteki mor ikon kutusu */
 .icon-box-purple {
    width: 32px; height: 32px;
-   background-color: #e0e7ff; /* Açık mor */
+   background-color: #e0e7ff; 
    border-radius: 50%;
    display: flex; justify-content: center; align-items: center;
    color: #4f46e5;
@@ -46,7 +46,7 @@
    color: #64748b;
    font-size: 16px;
 }
-/* --- GENİŞ KARTTAKİ PROGRESS BAR --- */
+/*GENİŞ KARTTAKİ PROGRESS BAR  */
 .progress-bar-large {
    width: 100%;
    height: 8px;
@@ -57,7 +57,7 @@
 }
 .progress-fill-green {
    height: 100%;
-   background-color: #16a34a; /* Figma'daki yeşil tonu */
+   background-color: #16a34a; 
    border-radius: 4px;
 }
 

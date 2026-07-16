@@ -1,6 +1,4 @@
-/* =========================================
-   1. MASAÜSTÜ (DESKTOP) KURALLARI (Ekran 769px ve üzeri olduğunda)
-   ========================================= */
+/* MASAÜSTÜ KURALLARI (Ekran 769px ve üzeri olduğunda)*/
 @media (min-width: 769px) {
   /* Tüm ekranı yöneten ana kapsayıcı */
   .kapsayici {
@@ -33,7 +31,7 @@
   .menu-checkbox {
     display: none !important; 
   }
-  /* Sağ taraftaki ana içerik alanı (%68'lik kısım) */
+  /* Sağ taraftaki ana içerik alanı */
   .responsive-content {
     flex: 1 !important; /* Geriye kalan tüm alanı otomatik doldurur */
     height: 100% !important;
@@ -43,9 +41,7 @@
     box-sizing: border-box !important;
   }
 }
-/* =========================================
-   2. MOBİL VE TABLET DURUMU (Ekran 768px ve altı olduğunda) 
-   ========================================= */
+/*MOBİL VE TABLET DURUMU (Ekran 768px ve altı olduğunda)*/
 @media (max-width: 768px) {
   /* Onay kutusunu arkada çalışması için gizli tutuyoruz */
   .menu-checkbox {
@@ -66,7 +62,7 @@
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
-  /* Sol Menüyü (Sidebar) Ekrandan Dışarı Çıkarıyoruz */
+  /* Sol Menüyü (Sidebar) Ekrandan Dışarı Çıkar */
   .responsive-sidebar {
     position: fixed;
     left: 0;
@@ -75,10 +71,10 @@
     width: 260px;
     z-index: 1000;
     transform: translateX(-100%); /* Menüyü sol tarafa, ekranın dışına gizler */
-    transition: transform 0.3s ease; /* Açılıp kapanırken yumuşak kayma efekti */
+    transition: transform 0.3s ease; /* Açılıp kapanırken kayma efekti */
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
   }
-  /* Mantık şu: Eğer input (checkbox) seçili ise (~ işaretiyle) yanındaki sidebar'ı bul ve ekrana getir */
+  /*Eğer input (checkbox) seçili ise (~ işaretiyle) yanındaki sidebar'ı bul ve ekrana getir */
   .menu-checkbox:checked ~ .responsive-sidebar {
     transform: translateX(0); /* Menüyü ekrana geri kaydırır */
   }
@@ -92,12 +88,10 @@
   }
   /* Sağ İçerik Alanını Düzenleme */
   .responsive-content {
-    padding: 60px 16px 24px 16px; /* Üstten hamburger butonu için ekstra boşluk bıraktık */
+    padding: 60px 16px 24px 16px; /* Üstten hamburger butonu için ekstra boşluk */
   }
-  /*
-     AŞAMA 3: IZGARA (GRID) SİSTEMLERİNİN ÇÖKERTİLMESİ
-     */
-  /* TASKS (GÖREVLER) Izgarası */
+  /*IZGARA (GRID) SİSTEMLERİNİN ÇÖKERTİLMESİ*/
+  /* TASKS -GÖREVLER Izgarası */
   .tasks-grid {
     width: 100%;
     display: grid;
@@ -201,9 +195,9 @@
   }
   /* yeni hedef butonu tek satır*/
   .goals-header .btn-primary {
-    white-space: nowrap; /* Metnin alt satıra kırılmasını kesin olarak yasaklar */
+    white-space: nowrap; /* Metnin alt satıra kırılmasını önler */
     flex-shrink: 0; /* Ekran daralsa bile butonun sıkışıp küçülmesini engeller */
-    padding: 8px 16px; /* İhtiyaca göre mobilde butonun iç boşluğunu ayarlayabilirsiniz */
+    padding: 8px 16px; 
   }
   /* REPORTS (RAPORLAR) Asimetrik Izgarası */
   /* Kartları yan yana dizmeyi bırakıp alt alta (column) sıralar */
@@ -222,7 +216,7 @@
        box-sizing: border-box; /* Padding'lerin genişliği bozmasını önler */
        margin: 0;
    }
-   /* Kart İçerik Hizalaması (Opsiyonel Düzenleme) */
+   /* Kart İçerik Hizalaması*/
    /* Masaüstünde başlık ve ikon yan yana ise mobilde de bu düzeni korumak için */
    .report-card-header {
        display: flex;
@@ -230,11 +224,11 @@
        align-items: flex-start;
    }
   /* DASHBOARD (ANA SAYFA) MOBİL DÜZENİ */
-  /* 1. Üstteki 3'lü istatistik kartlarını alt alta diz */
+  /*Üstteki 3'lü istatistik kartlarını alt alta diz */
   .dashboard-stats {
     flex-direction: column;
   }
-  /* 2. Alttaki Görevler ve Hedefler büyük kutularını alt alta diz */
+  /*Alttaki Görevler ve Hedefler büyük kutularını alt alta diz */
   .dashboard-bottom-grid {
     flex-direction: column;
   }
@@ -262,63 +256,34 @@
   }
 }
 
-/* ==========================================================================
-
-   MOBİL COALS KART ÇAKIŞMA DÜZELTMESİ (SUNUM ÖNCESİ JİLET GİBİ YAPAR)
-
-   ========================================================================== */
-
+/*MOBİL COALS KART ÇAKIŞMA DÜZELTMESİ*/
 @media (max-width: 768px) {
-
-    /* 1. Sabit yüksekliği iptal edip kartı içeriğe göre esnek yapıyoruz */
-
+    /*Sabit yüksekliği iptal edip kartı içeriğe göre esnek yap */
     .card.goal-item-card {
-
         height: auto !important; 
-
         min-height: 240px !important; /* Kartın çok küçülmesini engeller */
-
         display: flex !important;
-
         flex-direction: column !important;
-
         justify-content: flex-start !important;
-
         gap: 16px !important; /* Elemanların arasına otomatik nefes alma boşluğu bırakır */
-
         padding-bottom: 20px !important;
-
     }
-
-    /* 2. Eğer açıklamalar uzunsa kartı esnetmek için alt boşluğunu koru */
+    /* Eğer açıklamalar uzunsa kartı esnetmek için alt boşluğunu koru */
 
     .card.goal-item-card .goal-desc {
-
         margin-bottom: 8px !important;
-
     }
-
-    /* 3. Tarih kutusunun konumlandırmasını sıfırlayıp doğal akışa alıyoruz */
-
+    /* Tarih kutusunun konumlandırmasını sıfırlayıp doğal akışa al */
     .card.goal-item-card .goal-date-box {
-
         position: static !important; 
-
         margin-top: auto !important; /* Diğer her şeyi yukarı itip kendisi doğal olarak alta yerleşir */
-
         margin-bottom: 8px !important;
-
     }
 
-    /* 4. İlerleme çubuğunu tarihin üzerine binmeyecek şekilde konumlandırıyoruz */
-
+    /*İlerleme çubuğunu tarihin üzerine binmeyecek şekilde konumlandırma */
     .card.goal-item-card .progress-section {
-
         position: static !important;
-
         margin-top: 12px !important;
-
     }
-
 }
  

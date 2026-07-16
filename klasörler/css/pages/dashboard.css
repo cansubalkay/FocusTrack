@@ -1,6 +1,4 @@
-/* =======================================================
-  ÜST BÖLÜM: ANA KAPSAYICI VE HEADER (Değişmedi)
-  ======================================================= */
+/*ÜST BÖLÜM: ANA KAPSAYICI VE HEADER*/
 .responsive-content {
  background-color: transparent;
  padding: 30px;
@@ -22,9 +20,7 @@
  margin: 0;
  color: #64748b;
 }
-/* =======================================================
-  ORTA BÖLÜM: 3'LÜ İSTATİSTİK KARTLARI (Değişmedi)
-  ======================================================= */
+/*ORTA BÖLÜM: 3'LÜ İSTATİSTİK KARTLARI */
 .dashboard-stats {
  display: flex;
  gap: 20px;
@@ -71,9 +67,7 @@
  width: 100%;
  text-align: left;
 }
-/* =======================================================
-  ALT BÖLÜM: YENİ TASARIM GÖREVLER VE HEDEFLER
-  ======================================================= */
+/* ALT BÖLÜM: YENİ TASARIM GÖREVLER VE HEDEFLER */
 .dashboard-bottom-grid {
  display: grid;
  grid-template-columns: 1fr 1fr;
@@ -102,7 +96,7 @@
 .view-all-link:hover {
  text-decoration: underline;
 }
-/* --- SOL: GÖREVLER KISMI --- */
+/*SoL: GÖREVLER KISMI */
 .tasks-wrapper {
  display: flex;
  flex-direction: column;
@@ -137,7 +131,7 @@
  text-decoration: line-through;
  color: #94a3b8;
 }
-/* --- SAĞ: HEDEFLER KISMI --- */
+/*SAĞ: HEDEFLER KISMI */
 .goals-wrapper {
  background-color: #ffffff;
  border: 1px solid #e2e8f0;
@@ -175,19 +169,15 @@
  border-radius: 10px;
  transition: width 0.5s ease-in-out;
 }
-/* =======================================================
-  MOBİL (RESPONSIVE) UYUMU
-  ======================================================= */
+/*MOBİL (RESPONSIVE) UYUM*/
 @media (max-width: 768px) {
  .dashboard-bottom-grid {
    grid-template-columns: 1fr;
  }
 }
 
-/* =======================================================
-  DİNAMİK HEDEF RENKLERİ (Goals Sayfası ile Birebir Uyumlu)
-  ======================================================= */
-/* --- 76-100 YEŞİL --- */
+/*DİNAMİK HEDEF RENKLERİ (Goals Sayfasıyla Uyumlu) */
+/*  76-100 YEŞİL */
 .goal-percent.progress-green,
 body.dark-mode .goal-percent.progress-green {
  color: #10b981 !important;
@@ -196,7 +186,7 @@ body.dark-mode .goal-percent.progress-green {
 body.dark-mode .dash-progress-fill.progress-green {
  background-color: #10b981 !important;
 }
-/* --- 51-75 MAVİ --- */
+/* 51-75 MAVİ */
 .goal-percent.progress-blue,
 body.dark-mode .goal-percent.progress-blue {
  color: #3b82f6 !important;
@@ -205,7 +195,7 @@ body.dark-mode .goal-percent.progress-blue {
 body.dark-mode .dash-progress-fill.progress-blue {
  background-color: #3b82f6 !important;
 }
-/* --- 36-50 TURUNCU --- */
+/* 36-50 TURUNCU*/
 .goal-percent.progress-orange,
 body.dark-mode .goal-percent.progress-orange {
  color: #f59e0b !important;
@@ -214,7 +204,7 @@ body.dark-mode .goal-percent.progress-orange {
 body.dark-mode .dash-progress-fill.progress-orange {
  background-color: #f59e0b !important;
 }
-/* --- 0-35 KIRMIZI --- */
+/* 0-35 KIRMIZI */
 .goal-percent.progress-red,
 body.dark-mode .goal-percent.progress-red {
  color: #ef4444 !important;

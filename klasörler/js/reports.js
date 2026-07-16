@@ -1,6 +1,5 @@
 console.log("REPORTS CANLI VERİ AKTİF");
-// REPORTS SAYFASI İÇİN reports.json veya yerel dosya değil, tamamen canlı Render API'den gelen verileri kullanacağız.
-// Bu sayede Vercel'deki sitemiz her zaman en güncel görev yüzdelerini gösterecek.
+// REPORTS SAYFASI İÇİN reports.json veya yerel dosya değil, tamamen canlı Render API'den gelen veriler olcak
 document.addEventListener("DOMContentLoaded", () => {
  // Sayfa yüklenince reports verilerini çekmeye başla
  fetchTasksData();
@@ -8,15 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // async, fonksiyonun içinde bekleme gerektiren işler var anlamına gelir.
 async function fetchTasksData() {
  try {
-   // ⚠️ GÜNCELLEME: Canlı Render API linkimizden veriyi alıyoruz.
+   //Render API linkinden veri gelir
    const response = await fetch("https://focustrack-pmxz.onrender.com/tasks");
    if (!response.ok) {
      throw new Error(`Veri çekilemedi! Hata Kodu: ${response.status}`);
    }
    // Sunucudan gelen veri bir string yığınıdır. .json() komutu JS'nin anlayacağı JSON formatına çevirir
    const data = await response.json();
-   // JSON yapısından sadece görev listesini array olarak alma
-   // (json-server doğrudan array döndürür, ancak ekstra güvenlik için ternary koruması bıraktık)
+   // JSON yapısından sadece görev listesini array olarak al
+   //*ternary koruması*
    const tasksArray = data.tasks ? data.tasks : data;
    // Matematiksel ve filtre kısımları
    // İlk toplam görev sayısını bul
@@ -41,7 +40,7 @@ async function fetchTasksData() {
        pendingElement.textContent = pendingTasks;
    }
    if(rateTextElement) {
-       // 💡 GÜNCELLEME: Dil seçeneğine göre yüzde (%) işaretinin yerini dinamik ayarlıyoruz
+       // Dil seçeneğine göre yüzde (%) işaretinin yerini dinamik ayarla
        const percentText = (typeof currentLang !== "undefined" && currentLang === "en") ? `${completionRate}%` : `%${completionRate}`;
        rateTextElement.textContent = percentText;
    }

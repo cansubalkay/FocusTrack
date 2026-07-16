@@ -1,4 +1,4 @@
-/* Bu dosya beyaz kart kutu görünümü için kullanılacak */
+/* Bu dosya kart kutu görünümü için kullanılacak */
 /* Bu kod class = "card" yazılan her <div> elementini beyaz kutuya dönüştürür */
 
 /* Genel Kart Tasarımı */
@@ -108,7 +108,7 @@
    z-index: 10;
    min-width: 120px;
    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-   overflow: hidden; /* Kenar ovalliğinden butonların taşmasını önler */
+   overflow: hidden; /* Kenar ovalliği butonların taşmasını önler */
 }
 .dropdown-item {
    display: block;
@@ -137,7 +137,7 @@
 .task-card-footer {
  margin-top: 16px;
  padding-top: 16px;
- border-top: 1px dashed #e5e7eb; /* Tasarımdaki kesikli çizgi */
+ border-top: 1px dashed #e5e7eb; /* kesikli çizgi */
 }
 .complete-btn {
  display: flex;
@@ -172,7 +172,7 @@
     border-color: #3b82f6;
  background-color: #eff6ff; /* Üzerine gelince hafif mavi efekt */
 }
-/* --- BİTTİ (DONE) DURUMU --- */
+/*BİTTİ DONE DURUm */
 .complete-btn.done {
  color: #10b981; /* Tasarımdaki yeşil metin rengi */
 }

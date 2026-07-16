@@ -1,13 +1,9 @@
 console.log("i18n Dil Motoru Başlatıldı");
 
 // 1. SÖZLÜK (Tüm metinlerin TR ve EN karşılıkları burada duracak)
-
 const translations = {
-
   tr: {
-
     // Dashboard (Ana Sayfa) Kelimeleri
-
     greeting: "Merhaba",
     focus_text: "Bugün odaklanman gerekenler burada. Akışta kal.",
     today_tasks: "Bugünkü Görevler",
@@ -70,37 +66,26 @@ const translations = {
    modal_delete_goal_desc: "Bu hedefi kalıcı olarak silmek istediğine emin misin? Bu işlem maalesef geri alınamaz.",
 
     // Sidebar (Yan Menü) Kelimeleri
-
     sidebar_dashboard: "Kontrol Paneli",
-
     sidebar_tasks: "Görevler",
     sidebar_goals: "Hedefler",
-
     sidebar_reports: "Raporlar",
-
 
     // Raporlar Sayfası Kelimeleri
     page_title_reports: "Raporlar - FocusTrack",
    reports_rate_subtitle: "Hedeflere doğru haftalık ilerleme",
    reports_completed_card: "Tamamlanan<br />Görev",
    reports_pending_card: "Bekleyen",
-
     reports_title: "Raporlar",
-
     reports_subtitle: "Bu haftaki performans metrikleriniz.",
-
     reports_rate: "Görev Tamamlama Oranı",
-
     reports_completed: "Tamamlanan Görev",
-
     reports_pending: "Bekleyen"
-
   },
 
   en: {
 
     // Dashboard (Ana Sayfa) Kelimeleri
-
     greeting: "Hello",
     focus_text: "Here is your focus for today. Stay in the flow.",
     today_tasks: "Today's Tasks",
@@ -142,7 +127,6 @@ const translations = {
    btn_done: "Done",
    modal_update_task: "Update Task",
 
-
     //Goals Syfsının kelimeleri
     page_title_goals: "Goals - FocusTrack",
    goals_page_title: "Goals",
@@ -165,13 +149,9 @@ const translations = {
 
 
     //  Sidebar (Yan Menü) Kelimeleri
-
-
     sidebar_dashboard: "Dashboard",
-
     sidebar_tasks: "Tasks",
     sidebar_goals: "Goals",
-
     sidebar_reports: "Reports",
 
     // Raporlar Sayfası Kelimeleri
@@ -179,30 +159,20 @@ const translations = {
    reports_rate_subtitle: "Weekly progress toward goals",
    reports_completed_card: "Completed<br />Tasks",
    reports_pending_card: "Pending",
-
     reports_title: "Reports",
-
     reports_subtitle: "Your performance metrics for the current week.",
-
     reports_rate: "Task Completion Rate",
-
     reports_completed: "Completed Tasks",
-
     reports_pending: "Pending"
 
-
   }
-
 };
 
 // 2. HAFIZA KONTROLÜ
-
 // Kullanıcı daha önce dil seçmiş mi? Seçmediyse varsayılan "tr" olsun
-
 let currentLang = localStorage.getItem("appLang") || "tr";
 
 // 3. DİLİ DEĞİŞTİREN ANA FONKSİYON
-
 function setLanguage(lang) {
 
   currentLang = lang;
@@ -210,20 +180,15 @@ function setLanguage(lang) {
   localStorage.setItem("appLang", lang); // Hafızaya kaydet
 
   // HTML içindeki data-i18n etiketine sahip tüm elemanları bul ve metnini çevir
-
   document.querySelectorAll("[data-i18n]").forEach(element => {
-
     const key = element.getAttribute("data-i18n");
-
     if (translations[lang][key]) {
 
       element.innerHTML = translations[lang][key]; 
-
     }
-
   });
 
-  // HTML içindeki data-i18n-placeholder etiketine sahip input'ların placeholder'ını çevir
+  // HTML içindeki data-i18n-placeholder etiketine sahip inputların placeholderını çevir
   document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
     const key = element.getAttribute("data-i18n-placeholder");
     if (translations[lang][key]) {
@@ -231,35 +196,23 @@ function setLanguage(lang) {
     }
   });
 
-  // BUTON YAZISI GÜNCELLEMESİ (Sadece hedef dili gösteriyoruz)
-
+  // BUTON YAZISI (Sadece hedef dili göster)
   const langText = document.getElementById("lang-text");
-
   if (langText) {
-
     // Eğer anlık dil Türkçe ise butonda "EN", İngilizce ise "TR" yazsın
-
     langText.textContent = lang === "tr" ? "EN" : "TR";
-
   }
-
 }
 
 // 4. BUTONA TIKLANDIĞINDA ÇALIŞACAK TETİKLEYİCİ
-
 function toggleLanguage() {
-
   const newLang = currentLang === "tr" ? "en" : "tr";
-
   setLanguage(newLang);
 
 }
 
 // 5. SAYFA YÜKLENDİĞİNDE HAFIZADAKİ DİLİ UYGULA
-
 document.addEventListener("DOMContentLoaded", () => {
-
   setLanguage(currentLang);
-
 });
  

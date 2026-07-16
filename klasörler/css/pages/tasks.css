@@ -5,7 +5,7 @@
   flex-direction: column; /*flexbox ta sıralamayı sütuna göre yapar*/
   gap: 32px; /* Karşılama yazısı, 3'lü kartlar ve alt kutular arasına eşit boşluk koyar */
 }
-/* --- ÜST BAŞLIK VE BUTONLAR --- */
+/* ÜST BAŞLIK VE BUTONLAR */
 .tasks-header {
    display: flex;
    justify-content: space-between; /* Başlığı sola, butonları sağa iter */
@@ -46,7 +46,7 @@
 }
 /* Seçili Olan Filtre Butonu (Tümü) */
 .filter-btn.active {
-   background-color: #1e3a8a; /* Koyu lacivert */
+   background-color: #1e3a8a; 
    color: #ffffff;
    border-color: #1e3a8a;
 }
@@ -61,7 +61,7 @@
    font-size: 14px;
    cursor: pointer;
 }
-/* --- ARAMA ÇUBUĞU --- */
+/*ARAMA ÇUBUĞU*/
 .search-bar-container {
    position: relative; /* İçindeki ikonun konumunu buna göre ayarlayacağız */
    margin-bottom: 16px;
