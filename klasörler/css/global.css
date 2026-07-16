@@ -239,3 +239,113 @@ body.dark-mode #lang-toggle-btn,
 body.dark-mode #lang-text {
     color: #ffffff;
 }
+
+/* 1. ANA ARKA PLAN (Görseldeki gibi çok koyu, mat ve derin bir antrasit) */
+/* Ana arka planı ve üstünü örten tüm kapsayıcıları zorla antrasit yap */
+body.dark-mode,
+body.dark-mode .kapsayici,
+body.dark-mode main,
+body.dark-mode .responsive-container,
+body.dark-mode .responsive-content {
+   background-color: #111113 !important;
+   color: #e4e4e7 !important;
+}
+
+body.dark-mode {
+
+    background-color: #111113 !important; 
+
+    color: #e4e4e7 !important; /* Metinler kör edici beyaz değil, yumuşak açık gri */
+
+}
+
+/* 2. SIDEBAR (Yan Menü) ARKA PLANI (Ana arka plandan çok hafif açık) */
+
+body.dark-mode .responsive-sidebar {
+
+    background-color: #18181b !important;
+
+    border-right: 1px solid #27272a !important; /* Yan menüyü ayıran çok ince, zarif bir çizgi */
+
+}
+
+/* 3. KARTLARIN ARKA PLANI (Görseldeki o şık, yumuşak gri tonu) */
+
+body.dark-mode .card,
+
+body.dark-mode .report-large-card,
+
+body.dark-mode .report-small-card,
+
+body.dark-mode .goal-item-card,
+
+body.dark-mode .stat-card {
+
+    background-color: #212125 !important;
+
+    border: 1px solid #2e2e33 !important; /* Kartın etrafına çok hafif bir sınır ekler */
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important; /* Kartları havada duruyormuş gibi gösterir */
+
+}
+
+/* 4. AÇILAN PENCERELER (MODAL) İÇİN DE AYNI UYUM */
+
+body.dark-mode .modal-content,
+
+body.dark-mode .modal-card {
+
+    background-color: #212125 !important;
+
+    border: 1px solid #2e2e33 !important;
+
+}
+
+/* 5. GİRDİ KUTULARI (Input / Textarea) ARKA PLANI (Kartın içindeyken sırıtmaması için) */
+
+body.dark-mode input,
+
+body.dark-mode textarea {
+
+    background-color: #18181b !important;
+
+    border: 1px solid #3f3f46 !important;
+
+    color: #ffffff !important;
+
+}
+
+/* Goals sayfasındaki tarih kutularını Premium karanlık temaya uydur */
+
+body.dark-mode .goal-date-box {
+
+    background-color: #18181b !important; /* Kartın renginden bir tık daha koyu, içeri gömülü hissi verir */
+
+    border: 1px solid #2e2e33 !important; /* Etrafına çok ince, zarif bir çerçeve */
+
+    color: #a1a1aa !important; /* Yazı rengini loş gri yaparak okunabilirliği artırır */
+
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* İçeriye doğru hafif bir gölge (derinlik katar) */
+
+}
+
+/* Takvim ikonları veya içindeki yazılar için ekstra yumuşatma */
+
+body.dark-mode .goal-date-box span,
+
+body.dark-mode .goal-date-box div {
+
+    color: #a1a1aa !important;
+
+}
+
+/* Eğer takvimler ikon (img/svg) ise onların da parlaklığını alalım */
+
+body.dark-mode .goal-date-box img,
+
+body.dark-mode .goal-date-box svg {
+
+    opacity: 0.7 !important;
+
+}
+ 
