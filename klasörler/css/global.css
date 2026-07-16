@@ -216,8 +216,12 @@ body.dark-mode .complete-btn:hover .circle-icon {
 /*Reports sayfasındaki sayıların dark modeda daha güzel görünmesi için*/
 body.dark-mode #completion-rate-text,
 body.dark-mode #completed-count,
-body.dark-mode #pending-count {
-    color: #ffffff;
+body.dark-mode #pending-count,
+body.dark-mode .report-main-value,
+.dark-theme .report-main-value, 
+[data-theme="dark"] .report-main-value {
+
+    color: #ffffff !important;
 }
 
 /*Dashboard sayfasındaki dark mod ve dil çeviri butonları için hizalama*/
