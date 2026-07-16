@@ -80,6 +80,10 @@ const translations = {
     reports_subtitle: "Bu haftaki performans metrikleriniz.",
     reports_rate: "Görev Tamamlama Oranı",
     reports_completed: "Tamamlanan Görev",
+    reports_goal_rate: "Hedef Tamamlama Oranı",
+   reports_goal_rate_subtitle: "Hedeflere doğru aylık ilerleme",
+   reports_goal_completed: "Tamamlanan<br />Hedef",
+   reports_goal_pending: "Bekleyen",
     reports_pending: "Bekleyen"
   },
 
@@ -163,8 +167,11 @@ const translations = {
     reports_subtitle: "Your performance metrics for the current week.",
     reports_rate: "Task Completion Rate",
     reports_completed: "Completed Tasks",
+    reports_goal_rate: "Goal Completion Rate",
+    reports_goal_rate_subtitle: "Monthly progress toward goals",
+    reports_goal_completed: "Completed<br />Goals",
+    reports_goal_pending: "Pending",
     reports_pending: "Pending"
-
   }
 };
 

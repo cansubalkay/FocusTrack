@@ -23,7 +23,7 @@ try {
   //alttaki satırla; index.htmlde idsi sidebar-container olan boş div etiketini yakalar.
   //innerHTML= ... yakalanan divin içindeki html yapısını eşittirin sağındaki değerle eşler
   document.getElementById("sidebar-container").innerHTML = sidebarHTML;
-  // 💡 YENİ EKLEME: Sidebar sonradan (dinamik) yüklendiği için dil motorunu burada tekrar tetikliyoruz
+  // Sidebar sonradan (dinamik) yüklendiği için dil motorunu burada tekrar tetikle
   if (typeof setLanguage === "function") {
     setLanguage(currentLang);
   }
@@ -48,7 +48,6 @@ try {
 }
 // YENİ GÖREV MODAL için fonk
 function initTaskModal() {
-// NOT: Kendi HTML'indeki butona hangi class'ı verdiysen '.yeni-gorev-btn' kısmını ona göre düzeltmelisin.
 const openBtn = document.querySelector(".btn-primary");
 const modalOverlay = document.getElementById("taskModal");
 const closeBtn = document.getElementById("closeModalBtn");
@@ -82,7 +81,7 @@ const goalModal = document.getElementById('goalModal');
 const openGoalModalBtn = document.getElementById('openGoalModalBtn'); // Baştaki nokta (.) kaldırıldı
 const closeGoalModalBtn = document.getElementById('closeGoalModalBtn');
 const cancelGoalModalBtn = document.getElementById('cancelGoalModalBtn');
-// KORUMA: Eğer o anki sayfada bu buton veya modal yoksa (Örn: Tasks sayfasındaysak),
+//Eğer o anki sayfada bu buton veya modal yoksa (Örn: Tasks sayfasındaysak),
 // kodu burada durdur ki konsolda 'null' hatası vermesin.
 if (!openGoalModalBtn || !goalModal) {
   return;

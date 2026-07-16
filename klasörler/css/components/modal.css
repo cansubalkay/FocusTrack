@@ -351,3 +351,27 @@
    color: #111827 !important; 
    margin: 0;
 }
+
+/*MOBİL MODAL İÇİ TAŞMA (OVERFLOW) DÜZELTMESİ*/
+@media (max-width: 768px) {
+    /* Tüm inputların kutu dışına taşmasını kesin olarak engelle */
+    .modal-content input,
+    .modal-content textarea,
+    .modal-content select {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important; /* Padding'i genişliğe dahil et */
+    }
+
+    /* Goals sayfasındaki yan yana tarihleri (form-row) mobilde alt alta al */
+    .form-row {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important; /* Alt alta geçtiklerinde aralarında boşluk olsun */
+    }
+    /* Yan yana durmaları için verdiğimiz yarım genişliği (%50) tam (%100) yap */
+    .half-width {
+        width: 100% !important;
+    }
+}
+ 

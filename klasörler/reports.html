@@ -12,9 +12,7 @@
   </head>
   <body>
     <div class="kapsayici">
-      <!-- Hamburger menü ve sidebar için js divi  -->
       <div id="sidebar-container"></div>
-
       <main class="responsive-container">
         <div class="responsive-content">
           <header class="reports-header">
@@ -80,6 +78,70 @@
                 </span>
               </div>
               <div id="pending-count" class="report-main-value">...</div>
+            </div>
+          </div>
+          <div class="reports-grid goals-report-grid">
+            <div class="card report-large-card">
+              <div class="report-card-header">
+                <div>
+                  <h3 class="report-title" data-i18n="reports_goal_rate">
+                    Hedef Tamamlama Oranı
+                  </h3>
+                  <p
+                    class="report-subtitle"
+                    data-i18n="reports_goal_rate_subtitle"
+                  >
+                    Monthly progress toward goals
+                  </p>
+                </div>
+                <div class="icon-box-purple">
+                  <img
+                    src="assets/icons/oran.svg"
+                    alt="Oran"
+                    class="report-icon-purple"
+                  />
+                </div>
+              </div>
+              <div id="goal-completion-rate-text" class="report-main-value">
+                ...
+              </div>
+              <div class="progress-bar-large">
+                <div
+                  id="goal-completion-progress-bar"
+                  class="progress-fill-green"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="card report-small-card">
+              <div class="report-card-header">
+                <h3 class="report-title" data-i18n="reports_goal_completed">
+                  Tamamlanan<br />Hedef
+                </h3>
+                <span class="small-icon">
+                  <img
+                    src="assets/icons/tamamlanan.svg"
+                    alt="Tamamlanan"
+                    class="report-icon-purple"
+                  />
+                </span>
+              </div>
+              <div id="goal-completed-count" class="report-main-value">...</div>
+            </div>
+            <div class="card report-small-card">
+              <div class="report-card-header">
+                <h3 class="report-title" data-i18n="reports_goal_pending">
+                  Bekleyen
+                </h3>
+                <span class="small-icon">
+                  <img
+                    src="assets/icons/hourglass.svg"
+                    alt="Bekleyen"
+                    class="report-icon-purple"
+                  />
+                </span>
+              </div>
+              <div id="goal-pending-count" class="report-main-value">...</div>
             </div>
           </div>
         </div>

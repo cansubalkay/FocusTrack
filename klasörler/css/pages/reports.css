@@ -85,3 +85,7 @@
     margin-top: auto; /*rakamı aşağı çeker*/
     margin-bottom:0 ; /*büyük karttakş progres bar için bırakılan boşluğu kaldırır*/
 }
+/*Hedefler ve görevler satırı arasındaki boşluk için*/
+.goals-report-grid {
+   margin-top: 24px;
+}
