@@ -1,351 +1,258 @@
 /*GENEL AYARLAR */
+
 * {
+
     box-sizing: border-box;
+
     margin: 0;
+
     padding: 0;
+
 }
 
 body {
+
     background-color: #F8F9FA;
+
     margin: 0;
+
     padding: 0;
+
     height: 100vh;
+
     overflow: hidden;
+
     font-family: sans-serif;
+
 }
 
 /* Sayfalar Arası Yumuşak Geçiş Efekti */
+
 body, .responsive-sidebar, .card, a, input, button {
+
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+
 }
 
 /*LAYOUT (SAYFA İSKELETİ & MASAÜSTÜ / MOBİL)*/
+
 .kapsayici {
+
     display: flex;
+
     height: 100vh;
+
     width: 100%;
+
     margin: 0;
+
     padding: 0;
+
     gap: 0;
+
     overflow: hidden;
+
 }
 
 .responsive-sidebar {
+
     flex: 0 0 25%;
+
     background-color: #f4f4f4;
+
     height: 100%;
+
     padding: 15px;
+
     display: flex;
+
     flex-direction: column;
+
 }
 
 .responsive-sidebar ul {
+
     display: flex;
+
     flex-direction: column;
+
     flex-grow: 1;
+
 }
 
 .responsive-container {
+
     flex: 1;
+
     background-color: #ffffff;
+
     height: 100%;
+
     overflow-y: auto;
+
     padding: 15px;
+
 }
 
 .responsive-content {
+
     background-color: transparent;
+
     padding: 30px;
+
     display: flex;
+
     flex-direction: column;
+
     gap: 32px;
+
 }
 
 .menu-checkbox, .hamburger-btn {
+
     display: none;
+
 }
 
 @media (max-width: 768px) {
+
     html, body {
+
         overflow-x: hidden;
+
         width: 100%;
+
         margin: 0;
+
         padding: 0;
+
     }
 
     .responsive-container,
+
     .responsive-content {
+
         width: 100%;
+
         max-width: 100vw;
+
         box-sizing: border-box;
+
         overflow-x: hidden;
+
     }
-}
 
-/*DARK MODE (OLED / Midnight Style)-Mavi alt tonluyu begenmedim*/
-/*Ana Arka Plan*/
-body.dark-mode,
-body.dark-mode .kapsayici,
-body.dark-mode .responsive-container,
-body.dark-mode .responsive-content {
-    background-color: #000000;
-    background-image: none;
-    color: #ededed;
-}
-
-/* Sidebar-Sol Menü */
-body.dark-mode .responsive-sidebar {
-    background-color: #050505;
-    border-right: 1px solid #1a1a1a;
-}
-
-body.dark-mode .responsive-sidebar h3 {
-    color: #ffffff;
-    border-bottom-color: #1a1a1a;
-}
-
-body.dark-mode .responsive-sidebar a {
-    color: #888888;
-}
-
-body.dark-mode .responsive-sidebar a:hover {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-body.dark-mode .responsive-sidebar a.active {
-    background-color: #111111;
-    color: #ffffff;
-    border-left-color: #ffffff;
-}
-
-/* Kartlar, Kutular ve Satırlar */
-body.dark-mode .task-card,
-body.dark-mode .card,
-body.dark-mode .goals-wrapper,
-body.dark-mode .task-row,
-body.dark-mode .stat-card {
-    background-color: #0a0a0a;
-    border: 1px solid #1a1a1a;
-    box-shadow: none;
-}
-
-body.dark-mode .task-row:hover {
-    background-color: #111111;
-}
-
-/*Metinler ve Başlıklar (Beyaz) */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode .page-title,
-body.dark-mode .reports-title,
-body.dark-mode .goals-title,
-body.dark-mode .dashboard-header h2,
-body.dark-mode #user-greeting,
-body.dark-mode .task-card-title,
-body.dark-mode .task-text,
-body.dark-mode .goal-name,
-body.dark-mode .stat-value,
-body.dark-mode .stat-info p {
-    color: #ffffff;
-}
-
-/*Alt Metinler ve Açıklamalar (Gri)  */
-body.dark-mode p,
-body.dark-mode .dashboard-header p,
-body.dark-mode .tasks-title-area p,
-body.dark-mode .task-date,
-body.dark-mode .goal-percent,
-body.dark-mode .stat-info h3 {
-    color: #777777;
-}
-
-/* Arama Çubuğu ve Filtreler */
-body.dark-mode .search-input {
-    background-color: #000000;
-    border: 1px solid #222222;
-    color: #ffffff;
-}
-
-body.dark-mode .search-input::placeholder {
-    color: #555555;
-}
-
-body.dark-mode .filter-btn {
-    background-color: #050505;
-    border: 1px solid #1a1a1a;
-    color: #888888;
-}
-
-body.dark-mode .filter-btn.active {
-    background-color: #ffffff;
-    color: #000000;
-    border-color: #ffffff;
-}
-
-/* İlerleme Çubukları */
-body.dark-mode .dash-progress-bg {
-    background-color: #1a1a1a;
-}
-
-body.dark-mode .dash-progress-fill {
-    background-color: #ffffff;
-}
-
-/*  Butonlar (Theme & Task Complete) */
-body.dark-mode .theme-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-body.dark-mode .task-card-footer {
-    border-top-color: #1a1a1a;
-}
-body.dark-mode .complete-btn {
-    color: #777777;
-}
-body.dark-mode .complete-btn .circle-icon {
-    border-color: #444444;
-}
-body.dark-mode .complete-btn:hover {
-    color: #ffffff;
-}
-body.dark-mode .complete-btn:hover .circle-icon {
-    border-color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.05);
-}
-/*Reports sayfasındaki sayıların dark modeda daha güzel görünmesi için*/
-body.dark-mode #completion-rate-text,
-body.dark-mode #completed-count,
-body.dark-mode #pending-count,
-body.dark-mode .report-main-value,
-.dark-theme .report-main-value, 
-[data-theme="dark"] .report-main-value {
-
-    color: #ffffff !important;
 }
 
 /*Dashboard sayfasındaki dark mod ve dil çeviri butonları için hizalama*/
+
 .header-actions {
+
     display:flex;
+
     gap:12px;
+
     align-items: center;
+
 }
+
 #lang-toggle-btn {
+
     font-weight: bold;
+
     font-size: 14px;
+
     color: #333333;
-}
-body.dark-mode #lang-toggle-btn,
-body.dark-mode #lang-text {
-    color: #ffffff;
-}
-
-/* 1. ANA ARKA PLAN (Görseldeki gibi çok koyu, mat ve derin bir antrasit) */
-/* Ana arka planı ve üstünü örten tüm kapsayıcıları zorla antrasit yap */
-body.dark-mode,
-body.dark-mode .kapsayici,
-body.dark-mode main,
-body.dark-mode .responsive-container,
-body.dark-mode .responsive-content {
-   background-color: #111113 !important;
-   color: #e4e4e7 !important;
-}
-
-body.dark-mode {
-
-    background-color: #111113 !important; 
-
-    color: #e4e4e7 !important; /* Metinler kör edici beyaz değil, yumuşak açık gri */
 
 }
 
-/* 2. SIDEBAR (Yan Menü) ARKA PLANI (Ana arka plandan çok hafif açık) */
+/* ==========================================================================
 
-body.dark-mode .responsive-sidebar {
+   YOUTUBE STİLİ GLOBAL LOADING EKRANI (AYDINLIK MOD VARSAYILAN)
 
-    background-color: #18181b !important;
+   ========================================================================== */
 
-    border-right: 1px solid #27272a !important; /* Yan menüyü ayıran çok ince, zarif bir çizgi */
+.loading-screen {
 
-}
+    position: fixed;
 
-/* 3. KARTLARIN ARKA PLANI (Görseldeki o şık, yumuşak gri tonu) */
+    top: 0;
 
-body.dark-mode .card,
+    left: 0;
 
-body.dark-mode .report-large-card,
+    width: 100vw;
 
-body.dark-mode .report-small-card,
+    height: 100vh;
 
-body.dark-mode .goal-item-card,
+    background-color: #f8fafc; /* Aydınlık mod için ferah ve çok açık bir gri/beyaz */
 
-body.dark-mode .stat-card {
+    display: flex;
 
-    background-color: #212125 !important;
+    flex-direction: column;
 
-    border: 1px solid #2e2e33 !important; /* Kartın etrafına çok hafif bir sınır ekler */
+    justify-content: center;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important; /* Kartları havada duruyormuş gibi gösterir */
+    align-items: center;
 
-}
+    z-index: 99999;
 
-/* 4. AÇILAN PENCERELER (MODAL) İÇİN DE AYNI UYUM */
+    opacity: 1;
 
-body.dark-mode .modal-content,
+    visibility: visible;
 
-body.dark-mode .modal-card {
-
-    background-color: #212125 !important;
-
-    border: 1px solid #2e2e33 !important;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 
 }
 
-/* 5. GİRDİ KUTULARI (Input / Textarea) ARKA PLANI (Kartın içindeyken sırıtmaması için) */
+.loading-screen.hidden {
 
-body.dark-mode input,
+    opacity: 0;
 
-body.dark-mode textarea {
+    visibility: hidden;
 
-    background-color: #18181b !important;
-
-    border: 1px solid #3f3f46 !important;
-
-    color: #ffffff !important;
+    pointer-events: none;
 
 }
 
-/* Goals sayfasındaki tarih kutularını Premium karanlık temaya uydur */
+.loading-logo {
 
-body.dark-mode .goal-date-box {
+    font-family: 'Inter', sans-serif;
 
-    background-color: #18181b !important; /* Kartın renginden bir tık daha koyu, içeri gömülü hissi verir */
+    font-size: 28px;
 
-    border: 1px solid #2e2e33 !important; /* Etrafına çok ince, zarif bir çerçeve */
+    font-weight: 800;
 
-    color: #a1a1aa !important; /* Yazı rengini loş gri yaparak okunabilirliği artırır */
+    color: #11418d;
 
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* İçeriye doğru hafif bir gölge (derinlik katar) */
+    margin-bottom: 24px;
 
-}
-
-/* Takvim ikonları veya içindeki yazılar için ekstra yumuşatma */
-
-body.dark-mode .goal-date-box span,
-
-body.dark-mode .goal-date-box div {
-
-    color: #a1a1aa !important;
+    letter-spacing: 1px;
 
 }
 
-/* Eğer takvimler ikon (img/svg) ise onların da parlaklığını alalım */
+/* Spinner (Dönen Halka) her iki modda da mavi kalabilir, çok şık durur */
 
-body.dark-mode .goal-date-box img,
+.loading-spinner {
 
-body.dark-mode .goal-date-box svg {
+    width: 48px;
 
-    opacity: 0.7 !important;
+    height: 48px;
+
+    border: 4px solid rgba(37, 99, 235, 0.12);
+
+    border-top: 4px solid #2563eb;
+
+    border-radius: 50%;
+
+    animation: spinFocusTrack 1s linear infinite;
+
+}
+
+@keyframes spinFocusTrack {
+
+    0% { transform: rotate(0deg); }
+
+    100% { transform: rotate(360deg); }
 
 }
  

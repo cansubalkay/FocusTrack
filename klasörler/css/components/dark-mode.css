@@ -1,0 +1,244 @@
+/* ==========================================================================
+
+   PREMIUM DARK MODE (OLED / Midnight Style)
+
+   ========================================================================== */
+
+/* 1. ANA ARKA PLAN */
+
+body.dark-mode,
+
+body.dark-mode .kapsayici,
+
+body.dark-mode main,
+
+body.dark-mode .responsive-container,
+
+body.dark-mode .responsive-content {
+
+    background-color: #111113 !important;
+
+    background-image: none;
+
+    color: #e4e4e7 !important;
+
+}
+
+/* 2. YAN MENÜ (SIDEBAR) */
+
+body.dark-mode .responsive-sidebar {
+
+    background-color: #18181b !important;
+
+    border-right: 1px solid #27272a !important;
+
+}
+
+body.dark-mode .responsive-sidebar h3 {
+
+    color: #ffffff;
+
+    border-bottom-color: #1a1a1a;
+
+}
+
+body.dark-mode .responsive-sidebar a { color: #888888; }
+
+body.dark-mode .responsive-sidebar a:hover { background-color: #121212; color: #ffffff; }
+
+body.dark-mode .responsive-sidebar a.active { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: #ffffff; border-left-color: #ffffff; }
+
+/* 3. KARTLAR VE AÇILIR PENCERELER (MODAL) */
+
+body.dark-mode .task-card,
+
+body.dark-mode .card,
+
+body.dark-mode .goals-wrapper,
+
+body.dark-mode .task-row,
+
+body.dark-mode .stat-card,
+
+body.dark-mode .report-large-card,
+
+body.dark-mode .report-small-card,
+
+body.dark-mode .goal-item-card,
+
+body.dark-mode .modal-content,
+
+body.dark-mode .modal-card {
+
+    background-color: #212125 !important;
+
+    border: 1px solid #2e2e33 !important;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+
+}
+
+body.dark-mode .task-row:hover { background-color: #111111; }
+
+/* 4. METİNLER VE BAŞLIKLAR */
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3,
+
+body.dark-mode .page-title, body.dark-mode .reports-title,
+
+body.dark-mode .goals-title, body.dark-mode .dashboard-header h2,
+
+body.dark-mode #user-greeting, body.dark-mode .task-card-title,
+
+body.dark-mode .task-text, body.dark-mode .goal-name,
+
+body.dark-mode .stat-value, body.dark-mode .stat-info p,
+
+body.dark-mode .modal-header h2, body.dark-mode .modal-header h3,
+
+body.dark-mode .modal-title, body.dark-mode .modal-content h2,
+
+body.dark-mode .modal-content h3 {
+
+    color: #ffffff !important;
+
+}
+
+/* Alt Metinler (Gri) */
+
+body.dark-mode p, body.dark-mode .dashboard-header p,
+
+body.dark-mode .tasks-title-area p, body.dark-mode .task-date,
+
+body.dark-mode .goal-percent, body.dark-mode .stat-info h3 {
+
+    color: #777777;
+
+}
+
+/* 5. RAPORLAR VE SPESİFİK SAYILAR */
+
+body.dark-mode #completion-rate-text,
+
+body.dark-mode #completed-count,
+
+body.dark-mode #pending-count,
+
+body.dark-mode .report-main-value,
+
+.dark-theme .report-main-value,
+
+[data-theme="dark"] .report-main-value {
+
+    color: #ffffff !important;
+
+}
+
+/* 6. GİRDİ KUTULARI VE FİLTRELER */
+
+body.dark-mode .search-input,
+
+body.dark-mode input,
+
+body.dark-mode textarea {
+
+    background-color: #18181b !important;
+
+    border: 1px solid #3f3f46 !important;
+
+    color: #ffffff !important;
+
+}
+
+body.dark-mode .search-input::placeholder { color: #555555; }
+
+body.dark-mode .filter-btn { background-color: #050505; border: 1px solid #1a1a1a; color: #888888; }
+
+body.dark-mode .filter-btn.active { background-color: #ffffff; color: #000000; border-color: #ffffff; }
+
+/* 7. HEDEFLER TARİH KUTUCUKLARI */
+
+body.dark-mode .goal-date-box {
+
+    background-color: #18181b !important;
+
+    border: 1px solid #2e2e33 !important;
+
+    color: #a1a1aa !important;
+
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+
+}
+
+body.dark-mode .goal-date-box span,
+
+body.dark-mode .goal-date-box div { color: #a1a1aa !important; }
+
+body.dark-mode .goal-date-box img,
+
+body.dark-mode .goal-date-box svg { opacity: 0.7 !important; }
+
+/* 8. İLERLEME ÇUBUKLARI VE BUTONLAR */
+
+body.dark-mode .dash-progress-bg { background-color: #1a1a1a; }
+
+body.dark-mode .dash-progress-fill { background-color: #ffffff; }
+
+body.dark-mode .theme-btn:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+body.dark-mode .task-card-footer { border-top-color: #1a1a1a; }
+
+body.dark-mode .complete-btn { color: #777777; }
+
+body.dark-mode .complete-btn .circle-icon { border-color: #444444; }
+
+body.dark-mode .complete-btn:hover { color: #ffffff; }
+
+body.dark-mode .complete-btn:hover .circle-icon { border-color: #ffffff; background-color: rgba(255, 255, 255, 0.05); }
+
+/* Dil Değiştirici */
+
+body.dark-mode #lang-toggle-btn,
+
+body.dark-mode #lang-text { color: #ffffff; }
+
+/* 9. LOADING EKRANI (KARANLIK MOD) */
+
+body.dark-mode .loading-screen,
+
+.dark-theme .loading-screen,
+
+[data-theme="dark"] .loading-screen {
+
+    background-color: #111113 !important;
+
+}
+
+body.dark-mode .loading-screen .loading-logo,
+
+.dark-theme .loading-screen .loading-logo,
+
+[data-theme="dark"] .loading-screen .loading-logo {
+
+    color: #ffffff !important;
+
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+
+}
+
+/* Yan menüde seçili (aktif) olan sekmenin ikonunu zorla bembeyaz yap */
+
+body.dark-mode .responsive-sidebar a.active img,
+
+body.dark-mode .responsive-sidebar a.active svg {
+
+    filter: brightness(0) invert(1) !important;
+
+}
+/* Yan menüde seçili OLMAYAN (pasif) sekmelerin ikonlarını Dashboard mavisi yap */
+body.dark-mode .responsive-sidebar a:not(.active) img,
+body.dark-mode .responsive-sidebar a:not(.active) svg {
+   /* CSS Filter Büyüsü: İkonu önce sıfırlar, sonra o parlak kurumsal maviye çevirir */
+   filter: brightness(0) saturate(100%) invert(43%) sepia(85%) saturate(1637%) hue-rotate(204deg) brightness(98%) contrast(96%) !important;
+   opacity: 1 !important; /* Eğer başka bir yerde ikonları soluk yaptıysak onu ezip tam canlı görünmesini sağlar */
+}

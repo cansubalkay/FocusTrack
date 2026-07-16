@@ -26,6 +26,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       renderTasks(allTasks); // İlk açılışta tüm veriyi ekrana basıyoruz
     } catch (error) {
       console.error("Task verisi yüklenirken hata oluştu:", error);
+    } finally {
+      // Yükleme işlemi tamamlandığında (başarılı veya başarısız) loading ekranını gizle
+      hideLoader();
     }
   }
   // aRAMA CUBUGU VE DEBOUNCE*
@@ -91,11 +94,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       let priorityClass = "normal-priority"; // Varsayılan (Orta/Medium için bu class'ı kullanıyoruz)
       // DB'den gelen İNGİLİZCE ("high", "medium", "low") değerlere göre eşleştirme yap
       if (task.priority === "low") {
-        priorityClass = "low-priority"; // Düşük öncelik rengi 
+        priorityClass = "low-priority"; // Düşük öncelik rengi
       } else if (task.priority === "high") {
-        priorityClass = "high-priority"; // Yüksek öncelik rengi 
+        priorityClass = "high-priority"; // Yüksek öncelik rengi
       } else if (task.priority === "medium") {
-        priorityClass = "normal-priority"; // Orta öncelik rengi 
+        priorityClass = "normal-priority"; // Orta öncelik rengi
       }
       // Görev tamamlandığında rozetin yeşil olmasını engellemek için
       // daha önceki 'if (task.status === "Tamamlandı")' bloğunu tamamen kaldırdık!
@@ -114,7 +117,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 </div>
 </div>
 <h3 class="task-card-title">
-             ${task.title}
+            ${task.title}
 </h3>
 <div class="task-date">
 <img src="assets/icons/calendar1.svg" alt="Tarih" class="date-icon">
@@ -123,13 +126,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 <div class="task-card-footer">
 <button class="complete-btn ${task.status === "Tamamlandı" ? "done" : ""}" onclick="toggleTaskCompletion('${task.id}', '${task.status}')">
 <span class="circle-icon">
-        ${task.status === "Tamamlandı" ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ""}
+       ${task.status === "Tamamlandı" ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ""}
 </span>
 <span data-i18n="${task.status === "Tamamlandı" ? "btn_done" : "btn_complete"}">${task.status === "Tamamlandı" ? "Bitti" : "Tamamla"}</span>
 </button>
 </div>
 </div>
-   `;
+  `;
       container.insertAdjacentHTML("beforeend", taskItem);
     });
     // Kartlar dinamik olarak çizildikten sonra dil motorunu uyarı
@@ -151,14 +154,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         title: taskTitleInput.value,
         date: dueDateInput.value,
         priority: priorityValue,
-        status: "Devam Ediyor", 
+        status: "Devam Ediyor",
       };
       // Formda bir editId var mı kontrol et
       const editId = taskForm.dataset.editId;
       // Eğer editId varsa PUT (Güncelle), yoksa POST (Yeni Ekle)
       const method = editId ? "PUT" : "POST";
       const url = editId
-        ? `https://focustrack-pmxz.onrender.com/tasks/${editId}` 
+        ? `https://focustrack-pmxz.onrender.com/tasks/${editId}`
         : "https://focustrack-pmxz.onrender.com/tasks";
       try {
         const response = await fetch(url, {
@@ -214,7 +217,7 @@ document.addEventListener("click", () => {
     .querySelectorAll(".dropdown-menu")
     .forEach((m) => (m.style.display = "none"));
 });
-// GÖREV TAMAMLANDI DURUMUNU GÜNCELLEME (PATCH) 
+// GÖREV TAMAMLANDI DURUMUNU GÜNCELLEME (PATCH)
 window.toggleTaskCompletion = async function (id, currentStatus) {
   try {
     // Eğer durum zaten "Tamamlandı" ise geri al ("Devam Ediyor" yap), değilse "Tamamlandı" yap
@@ -238,12 +241,10 @@ window.toggleTaskCompletion = async function (id, currentStatus) {
     console.error("Görev güncellenirken hata:", error);
   }
 };
-
 // SİLME İŞLEMİ DELET
 window.testSil = function (id) {
   taskToDeleteId = id;
   const deleteModal = document.getElementById("deleteModal");
-
   // DEDEKTİF KONTROLÜ: Modal gerçekten HTML'de var mı?
   if (!deleteModal) {
     alert(
@@ -251,7 +252,7 @@ window.testSil = function (id) {
     );
     return;
   }
-  deleteModal.style.display = "flex"; 
+  deleteModal.style.display = "flex";
   deleteModal.classList.add("active");
 };
 // İptal butonuna basıldığında
@@ -305,3 +306,10 @@ window.editTask = function (id, title, date, priority) {
   const form = document.getElementById("newTaskForm");
   if (form) form.dataset.editId = id;
 };
+// Yükleme ekranını gizleyen yardımcı fonksiyon
+function hideLoader() {
+  const loader = document.getElementById("loadingScreen");
+  if (loader) {
+    loader.classList.add("hidden");
+  }
+}
